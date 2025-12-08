@@ -1,13 +1,29 @@
 // ========== DATOS Y CONFIGURACIÓN ==========
 const levelTexts = {
-    1: ['asdf asdf asdf asdf', 'fdsa fdsa fdsa fdsa', 'asdf fdsa asdf fdsa', 'asd dsa fds sdf asd', 'dad sad fad asa dad'],
-    2: ['jklñ jklñ jklñ jklñ', 'ñlkj ñlkj ñlkj ñlkj', 'jkl lkj kjl jkl lkj', 'jñj klk lñl ñkj jlñ'],
-    3: ['asdf jklñ asdf jklñ', 'fdsa ñlkj fdsa ñlkj', 'aj sk dl fñ aj sk dl', 'afjñ sldkfjñ alskdfjñ'],
-    4: ['qwert qwert qwert', 'trewq trewq trewq', 'qwe rew ter qwe rew', 'aq sw de fr gt aq sw'],
-    5: ['yuiop yuiop yuiop', 'poiuy poiuy poiuy', 'yui uio iop yui uio', 'jy ku li oñ jy ku li'],
-    6: ['zxcvb zxcvb zxcvb', 'bvcxz bvcxz bvcxz', 'zxc xcv cvb zxc xcv', 'az sx dc fv gb az sx'],
-    7: ['nm nm nm nm nm nm', 'mn mn mn mn mn mn', 'jn km lñ jn km lñ', 'nmb bmn jnm nmb bmn'],
-    8: ['sal las ala sol los', 'casa masa pasa rasa', 'luna nube sol cielo', 'el sol sale bonito', 'mi mama me mima']
+    1: ['asdf asdf asdf asdf', 'fdsa fdsa fdsa fdsa', 'asdf fdsa asdf fdsa', 'asd dsa fds sdf asd', 'dad sad fad asa dad', 
+        'asdf asdf fdsa fdsa', 'aaa sss ddd fff', 'fas das sas fas', 'fad sad dad fad', 'asdf fdsa asdf fdsa',
+        'dasa fasa safa dafa', 'sadf fasddasf safd', 'afds sfda dfas asfd', 'dsaf asfd fdas sadf'],
+    2: ['jklñ jklñ jklñ jklñ', 'ñlkj ñlkj ñlkj ñlkj', 'jkl lkj kjl jkl lkj', 'jñj klk lñl ñkj jlñ',
+        'jklñ ñlkj jklñ ñlkj', 'jjj kkk lll ñññ', 'ñlj klj lkj ñlj', 'jañ lañ kañ jañ', 'jklñ lkjñ jklñ lkjñ',
+        'laja kaña jala ñaka', 'jañl kñlj lñjk ñlkj', 'añjk lñkj jñlk kñlj', 'ñjkl jlkñ klñj lkjñ'],
+    3: ['asdf jklñ asdf jklñ', 'fdsa ñlkj fdsa ñlkj', 'aj sk dl fñ aj sk dl', 'afjñ sldkfjñ alskdfjñ',
+        'asdf jklñ fdsa ñlkj', 'aj fk sl dñ aj fk sl', 'alas faja sala kaj', 'lasa daka faja sañ',
+        'asdf jklñ asdf jklñ', 'fdsa ñlkj fdsa ñlkj', 'asjk dflñ sadk fjlñ', 'jfas kñds ljaf ñksd'],
+    4: ['qwert qwert qwert', 'trewq trewq trewq', 'qwe rew ter qwe rew', 'aq sw de fr gt aq sw',
+        'qwert trewq qwert trewq', 'qqq www eee rrr ttt', 'qwer rewq terw wqer', 'aqe swe dre frt gtr',
+        'qeta reta seta feta', 'qrew trew drew frew', 'trew qrew erew rrew', 'qwer trew qrew ertw'],
+    5: ['yuiop yuiop yuiop', 'poiuy poiuy poiuy', 'yui uio iop yui uio', 'jy ku li oñ jy ku li',
+        'yuiop poiuy yuiop poiuy', 'yyy uuu iii ooo ppp', 'yuio poiu uiop ioyu', 'jyui kuio lipo ñoui',
+        'yoyo pupi uiui oyoy', 'yupi pipo uopi ypui', 'poyo yupi uipo oyui', 'iyop uyop pyop oyui'],
+    6: ['zxcvb zxcvb zxcvb', 'bvcxz bvcxz bvcxz', 'zxc xcv cvb zxc xcv', 'az sx dc fv gb az sx',
+        'zxcvb bvcxz zxcvb bvcxz', 'zzz xxx ccc vvv bbb', 'zxcv vcxz cvbx xzvc', 'azx sxc dcv fvb gbc',
+        'zaca vaca baza caza', 'zxvb cxbv bxcz vzxc', 'baza caza vaza xaza', 'zxcv bvcx cxbv vxzc'],
+    7: ['nm nm nm nm nm nm', 'mn mn mn mn mn mn', 'jn km lñ jn km lñ', 'nmb bmn jnm nmb bmn',
+        'nmnm mnmn nmnm mnmn', 'nnn mmm nnn mmm', 'nman mnan jman kman', 'nmbn mnbm bnmn mbnm',
+        'mana nana mona noma', 'nmon mnom ñnom jnom', 'nmnm mnmn nmbn mbnm', 'jnmn kmnm lnmñ ñmnm'],
+    8: ['sal las ala sol los', 'casa masa pasa rasa', 'luna nube sol cielo', 'el sol sale bonito', 'mi mama me mima',
+        'la luna sale hoy', 'el mar esta azul', 'mi perro corre rapido', 'las aves vuelan alto', 'mi familia es grande',
+        'la vida es bella', 'el pan esta rico', 'los niños juegan felices', 'el viento sopla fuerte', 'la casa es blanca']
 };
 
 const levelNames = {
@@ -202,8 +218,12 @@ function startPractice() {
     
     document.getElementById('practiceTitle').textContent = `Nivel ${state.selectedLevel}: ${levelNames[state.selectedLevel]}`;
     
+    // Generar ejercicio más largo combinando múltiples textos
     const texts = levelTexts[state.selectedLevel];
-    state.practiceText = texts[Math.floor(Math.random() * texts.length)];
+    const shuffled = [...texts].sort(() => Math.random() - 0.5); // Mezclar el array
+    const selectedTexts = shuffled.slice(0, Math.min(8, texts.length)); // Tomar hasta 8 textos
+    state.practiceText = selectedTexts.join('  '); // Unir con doble espacio para separación
+    
     state.currentPosition = 0;
     state.errors = 0;
     state.totalChars = 0;
@@ -314,14 +334,21 @@ function finishPractice() {
     state.userData.accuracyCount++;
     saveUserData();
     
+    // Calcular aciertos y errores
+    const correct = state.totalChars - state.errors;
+    const errors = state.errors;
+    
     // Mostrar modal
     document.getElementById('resultWpm').textContent = wpm;
     document.getElementById('resultAccuracy').textContent = `${accuracy}%`;
     document.getElementById('resultTime').textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+    document.getElementById('resultCorrect').textContent = correct;
+    document.getElementById('resultErrors').textContent = errors;
     document.getElementById('pointsEarned').textContent = `+${points} puntos`;
     
     document.getElementById('resultIcon').textContent = accuracy >= 90 ? '🎉' : accuracy >= 70 ? '👍' : '💪';
     document.getElementById('resultTitle').textContent = accuracy >= 90 ? '¡Excelente!' : accuracy >= 70 ? '¡Buen trabajo!' : '¡Sigue practicando!';
+
     
     document.getElementById('resultsModal').classList.add('active');
     updateUI();
