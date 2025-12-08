@@ -47,26 +47,33 @@ const levelTexts = {
         'la vida es bella', 'el pan esta rico', 'los niños juegan felices', 'el viento sopla fuerte', 'la casa es blanca',
         'la mesa esta limpia', 'los gatos duermen mucho', 'mi hermano es alto', 'el agua esta fria', 'la flor es roja',
         'el libro tiene hojas', 'la silla es comoda', 'mi papa trabaja bien', 'el cielo es hermoso', 'la tierra es redonda',
-        'los peces nadan rapido', 'el bosque es verde', 'la luz brilla fuerte', 'mi amigo es bueno']
+        'los peces nadan rapido', 'el bosque es verde', 'la luz brilla fuerte', 'mi amigo es bueno'],
+    9: ['123 456 789 012 345', '111 222 333 444 555', '1234 5678 9012 3456', '0987 6543 2109 8765',
+        '123 321 456 654 789', '101 202 303 404 505', '12 23 34 45 56 67', '10 20 30 40 50 60',
+        '1111 2222 3333 4444', '5555 6666 7777 8888', '9999 0000 1234 5678', '147 258 369 159 753',
+        '112 223 334 445 556', '667 778 889 990 001', '135 246 357 468 579', '159 267 348 426 537',
+        '100 200 300 400 500', '111 333 555 777 999', '1357 2468 1590 3570', '1029 3847 5647 8290',
+        '12345 67890 09876 54321', '13579 24680 86420 97531', '11223 44556 77889 90012']
 };
 
 const levelNames = {
     1: 'Fila Base - ASDF', 2: 'Fila Base - JKLÑ', 3: 'Fila Base Completa',
     4: 'Fila Superior - QWERT', 5: 'Fila Superior - YUIOP',
-    6: 'Fila Inferior - ZXCVB', 7: 'Fila Inferior - NM', 8: 'Palabras Completas'
+    6: 'Fila Inferior - ZXCVB', 7: 'Fila Inferior - NM', 8: 'Palabras Completas', 9: 'Números'
 };
 
 const levelKeys = {
     1: ['A', 'S', 'D', 'F'], 2: ['J', 'K', 'L', 'Ñ'], 3: ['A', 'S', 'D', 'F', 'J', 'K', 'L', 'Ñ'],
     4: ['Q', 'W', 'E', 'R', 'T'], 5: ['Y', 'U', 'I', 'O', 'P'],
-    6: ['Z', 'X', 'C', 'V', 'B'], 7: ['N', 'M'], 8: ['Palabras']
+    6: ['Z', 'X', 'C', 'V', 'B'], 7: ['N', 'M'], 8: ['Palabras'], 9: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 };
 
 const levelColors = [
     'linear-gradient(135deg, #6C63FF, #8B84FF)', 'linear-gradient(135deg, #FF6B9D, #FF8FAF)',
     'linear-gradient(135deg, #00D4AA, #00E6B8)', 'linear-gradient(135deg, #F59E0B, #FBBF24)',
     'linear-gradient(135deg, #8B5CF6, #A78BFA)', 'linear-gradient(135deg, #EC4899, #F472B6)',
-    'linear-gradient(135deg, #14B8A6, #2DD4BF)', 'linear-gradient(135deg, #EF4444, #F87171)'
+    'linear-gradient(135deg, #14B8A6, #2DD4BF)', 'linear-gradient(135deg, #EF4444, #F87171)',
+    'linear-gradient(135deg, #F59E0B, #FBBF24)'
 ];
 
 const ranks = [
@@ -113,6 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initLevelGrid();
     initPractice();
     initLevelsDisplay();
+    initSessionCards();
     updateUI();
 });
 
@@ -152,6 +160,44 @@ function changeSlide(dir) {
 function updateSlideButtons() {
     document.getElementById('prevBtn').disabled = state.currentSlide === 1;
     document.getElementById('nextBtn').disabled = state.currentSlide === state.totalSlides;
+}
+
+// ========== SESSION CARDS ==========
+function initSessionCards() {
+    document.querySelectorAll('.session-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const action = card.dataset.action;
+            const target = parseInt(card.dataset.target);
+            
+            if (action === 'slide') {
+                // Ir a la teoría (slide específico)
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                document.getElementById('teoria').classList.add('active');
+                document.querySelector('[data-section="teoria"]').classList.add('active');
+                
+                // Cambiar al slide específico
+                state.currentSlide = target;
+                document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+                document.querySelector(`.slide[data-slide="${target}"]`).classList.add('active');
+                document.getElementById('currentSlide').textContent = target;
+                updateSlideButtons();
+            } else if (action === 'practice') {
+                // Ir directo a la práctica del nivel
+                state.selectedLevel = target;
+                state.currentExercise = 1;
+                
+                // Cambiar a sección de práctica
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                document.getElementById('practica').classList.add('active');
+                document.querySelector('[data-section="practica"]').classList.add('active');
+                
+                // Iniciar práctica
+                startPractice();
+            }
+        });
+    });
 }
 
 // ========== TECLADO VISUAL ==========
