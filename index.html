@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DactiloKids - Curso de Dactilografía para Niños | UCATEC</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <span class="logo-icon">⌨️</span>
+            <span class="logo-text">DactiloKids</span>
+        </div>
+        <div class="user-stats">
+            <div class="stat-badge level">
+                <span id="currentLevel">🐣</span>
+                <span id="levelName">Pollito</span>
+            </div>
+            <div class="stat-badge points">
+                <span>⭐</span>
+                <span id="totalPoints">0</span>
+                <span>pts</span>
+            </div>
+        </div>
+    </header>
+    
+    <nav class="main-nav">
+        <button class="nav-btn active" data-section="teoria">Teoría</button>
+        <button class="nav-btn" data-section="practica">Práctica</button>
+        <button class="nav-btn" data-section="progreso">Mi Progreso</button>
+    </nav>
+    
+    <main class="content">
+        <!-- SECCIÓN TEORÍA -->
+        <section id="teoria" class="section active">
+            <div class="slides-container">
+                <!-- Slide 1: Portada -->
+                <div class="slide active" data-slide="1">
+                    <div class="slide-center">
+                        <p class="big-emoji">⌨️</p>
+                        <h1 class="main-title">Curso de Dactilografía</h1>
+                        <p class="subtitle">¡Aprende a escribir como un profesional!</p>
+                        <div class="tags">
+                            <span class="tag purple">Divertido</span>
+                            <span class="tag pink">Intuitivo</span>
+                            <span class="tag green">Fácil</span>
+                        </div>
+                        <p class="footer-text">UCATEC • Curso Vacacional 2025<br>¡Aprendiendo junto al profe Erlanger!</p>
+                    </div>
+                </div>
+                
+                <!-- Slide 2: ¿Qué es? -->
+                <div class="slide" data-slide="2">
+                    <h2 class="slide-title">¿Qué es la Dactilografía?</h2>
+                    <div class="two-columns">
+                        <div>
+                            <div class="info-box">
+                                <p><strong class="highlight">Dactilografía</strong> viene del griego: <em>dáctylos</em> (dedos) + <em>graphía</em> (escritura). Es el arte de escribir usando <strong>todos los dedos</strong> sin mirar el teclado.</p>
+                            </div>
+                            <div class="gradient-box purple">
+                                <p class="box-title">Objetivo del curso:</p>
+                                <p>Aprender a escribir correctamente usando los 10 dedos, sin mirar el teclado, con velocidad y precisión.</p>
+                            </div>
+                        </div>
+                        <div class="benefits-card">
+                            <p class="section-title pink">¿Por qué aprender?</p>
+                            <div class="benefits-list">
+                                <div class="benefit-item"><div class="benefit-icon green">⚡</div><span><strong>Más velocidad</strong> al escribir</span></div>
+                                <div class="benefit-item"><div class="benefit-icon blue">🎯</div><span><strong>Menos errores</strong> de ortografía</span></div>
+                                <div class="benefit-item"><div class="benefit-icon orange">💪</div><span><strong>Mejor postura</strong> y salud</span></div>
+                                <div class="benefit-item"><div class="benefit-icon pink">🧠</div><span><strong>Concentración</strong> en las ideas</span></div>
+                                <div class="benefit-item"><div class="benefit-icon purple">🚀</div><span><strong>Habilidad profesional</strong></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 3: El Teclado -->
+                <div class="slide" data-slide="3">
+                    <h2 class="slide-title">El Teclado y Sus Partes 🖥️</h2>
+                    <div class="keyboard-display" id="keyboardTheory"></div>
+                    <div class="legend">
+                        <div class="legend-item"><div class="legend-color home"></div> Fila Base (Home)</div>
+                        <div class="legend-item"><div class="legend-color left"></div> Mano Izquierda</div>
+                        <div class="legend-item"><div class="legend-color right"></div> Mano Derecha</div>
+                        <div class="legend-item"><div class="legend-color special"></div> Teclas Especiales</div>
+                    </div>
+                </div>
+                
+                <!-- Slide 4: Teclas Especiales -->
+                <div class="slide" data-slide="4">
+                    <h2 class="slide-title">Teclas Especiales</h2>
+                    <div class="special-keys-grid">
+                        <div class="special-key-card">
+                            <span class="key-badge green">Enter ↵</span>
+                            <p class="key-name">Confirmar / Nueva línea</p>
+                            <p class="key-desc">Se presiona con el meñique derecho</p>
+                        </div>
+                        <div class="special-key-card">
+                            <span class="key-badge red">← Retroceso</span>
+                            <p class="key-name">Borrar caracter</p>
+                            <p class="key-desc">Se presiona con el meñique derecho</p>
+                        </div>
+                        <div class="special-key-card">
+                            <span class="key-badge orange">⇧ Shift</span>
+                            <p class="key-name">Mayúsculas</p>
+                            <p class="key-desc">Hay uno en cada lado del teclado</p>
+                        </div>
+                        <div class="special-key-card">
+                            <span class="key-badge purple">Tab →|</span>
+                            <p class="key-name">Tabulación</p>
+                            <p class="key-desc">Se presiona con el meñique izquierdo</p>
+                        </div>
+                        <div class="special-key-card">
+                            <span class="key-badge pink">Bloq Mayús</span>
+                            <p class="key-name">Bloqueo de mayúsculas</p>
+                            <p class="key-desc">¡Evita usarla! Usa Shift mejor</p>
+                        </div>
+                        <div class="special-key-card">
+                            <span class="key-badge cyan">Espacio ▭</span>
+                            <p class="key-name">Separar palabras</p>
+                            <p class="key-desc">¡Se presiona con los pulgares!</p>
+                        </div>
+                    </div>
+                    <div class="tip-box gradient">
+                        <span>💡</span>
+                        <p><strong>Tip:</strong> Las teclas F y J tienen una pequeña marca para ubicar los dedos índice sin mirar.</p>
+                    </div>
+                </div>
+                
+                <!-- Slide 5: Posición de dedos -->
+                <div class="slide" data-slide="5">
+                    <h2 class="slide-title">Posición de los Dedos 👐</h2>
+                    <div class="finger-guide">
+                        <div class="hand-section">
+                            <div class="hand-title left">🤚🏻 MANO IZQUIERDA</div>
+                            <div class="finger-row yellow"><div class="finger-key yellow">A</div><div><div class="finger-name">Meñique</div><div class="finger-keys">A, Q, Z, 1, Tab, Shift</div></div></div>
+                            <div class="finger-row orange"><div class="finger-key orange">S</div><div><div class="finger-name">Anular</div><div class="finger-keys">S, W, X, 2</div></div></div>
+                            <div class="finger-row blue"><div class="finger-key blue">D</div><div><div class="finger-name">Medio</div><div class="finger-keys">D, E, C, 3</div></div></div>
+                            <div class="finger-row pink"><div class="finger-key pink">F</div><div><div class="finger-name">Índice</div><div class="finger-keys">F, G, R, T, V, B, 4, 5</div></div></div>
+                        </div>
+                        <div class="hand-section">
+                            <div class="hand-title right">MANO DERECHA ✋🏻</div>
+                            <div class="finger-row pink"><div class="finger-key pink">J</div><div><div class="finger-name">Índice</div><div class="finger-keys">J, H, Y, U, N, M, 6, 7</div></div></div>
+                            <div class="finger-row blue"><div class="finger-key blue">K</div><div><div class="finger-name">Medio</div><div class="finger-keys">K, I, coma, 8</div></div></div>
+                            <div class="finger-row orange"><div class="finger-key orange">L</div><div><div class="finger-name">Anular</div><div class="finger-keys">L, O, punto, 9</div></div></div>
+                            <div class="finger-row yellow"><div class="finger-key yellow">Ñ</div><div><div class="finger-name">Meñique</div><div class="finger-keys">Ñ, P, Enter, Shift, 0</div></div></div>
+                        </div>
+                    </div>
+                    <div class="thumbs-section">
+                        <div class="thumbs-box">
+                            <p class="big-emoji">👍</p>
+                            <p><strong>PULGARES</strong></p>
+                            <p class="small">Barra espaciadora</p>
+                        </div>
+                        <div class="home-row-box">
+                            <p class="small-title">FILA BASE</p>
+                            <p class="home-keys">ASDF JKL Ñ</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 6: Postura -->
+                <div class="slide" data-slide="6">
+                    <h2 class="slide-title">Postura Correcta 🪑</h2>
+                    <div class="two-columns">
+                        <div class="posture-image">
+                            <p class="huge-emoji">🧑‍💻</p>
+                            <p class="posture-label">Espalda recta, codos a 90°</p>
+                        </div>
+                        <div class="posture-tips">
+                            <div class="posture-item"><div class="posture-icon blue">🪑</div><div><div class="posture-title">Espalda recta</div><div class="posture-desc">Apóyala en el respaldo. No te encorves.</div></div></div>
+                            <div class="posture-item"><div class="posture-icon pink">💪</div><div><div class="posture-title">Codos a 90 grados</div><div class="posture-desc">Brazos relajados formando ángulo recto.</div></div></div>
+                            <div class="posture-item"><div class="posture-icon green">🖐️</div><div><div class="posture-title">Muñecas flotando</div><div class="posture-desc">No las apoyes. Dedos curvados.</div></div></div>
+                            <div class="posture-item"><div class="posture-icon yellow">👀</div><div><div class="posture-title">Monitor a nivel de ojos</div><div class="posture-desc">Pantalla a 50-70 cm de distancia.</div></div></div>
+                            <div class="posture-item"><div class="posture-icon purple">🦶</div><div><div class="posture-title">Pies apoyados</div><div class="posture-desc">Pies planos en el suelo.</div></div></div>
+                        </div>
+                    </div>
+                    <div class="tip-box yellow">
+                        <span>⏰</span>
+                        <p><strong>Regla 20-20-20:</strong> Cada 20 minutos, mira algo a 20 metros de distancia por 20 segundos.</p>
+                    </div>
+                </div>
+                
+                <!-- Slide 7: Tips -->
+                <div class="slide" data-slide="7">
+                    <h2 class="slide-title">Tips para Mejorar</h2>
+                    <div class="tips-grid">
+                        <div class="tips-column do">
+                            <div class="tips-title do">✅ LO QUE SÍ DEBES HACER</div>
+                            <div class="tip-item"><span>🎯</span><div><strong>Precisión antes que velocidad.</strong> Primero escribe bien.</div></div>
+                            <div class="tip-item"><span>📅</span><div><strong>Practica todos los días.</strong> 15-20 minutos diarios.</div></div>
+                            <div class="tip-item"><span>🏠</span><div><strong>Siempre vuelve a la fila base.</strong> ASDF JKL Ñ.</div></div>
+                            <div class="tip-item"><span>🧘</span><div><strong>Mantén la calma.</strong> Ritmo constante.</div></div>
+                            <div class="tip-item"><span>💪</span><div><strong>Usa todos los dedos.</strong> Cada uno tiene sus teclas.</div></div>
+                        </div>
+                        <div class="tips-column dont">
+                            <div class="tips-title dont">❌ LO QUE NO DEBES HACER</div>
+                            <div class="tip-item"><span>👀</span><div><strong>No mires el teclado.</strong> Confía en tus dedos.</div></div>
+                            <div class="tip-item"><span>☝️</span><div><strong>No uses solo dos dedos.</strong> Es lento.</div></div>
+                            <div class="tip-item"><span>😤</span><div><strong>No te frustres.</strong> Los errores son normales.</div></div>
+                            <div class="tip-item"><span>💨</span><div><strong>No te apresures.</strong> La velocidad vendrá.</div></div>
+                            <div class="tip-item"><span>📵</span><div><strong>No te distraigas.</strong> Apaga el celular.</div></div>
+                        </div>
+                    </div>
+                    <div class="motivation-box">
+                        <p>"La práctica no hace la perfección, la práctica perfecta hace la perfección"</p>
+                    </div>
+                </div>
+                
+                <!-- Slide 8: Plan de sesiones -->
+                <div class="slide" data-slide="8">
+                    <h2 class="slide-title">Nuestro Plan de 10 Sesiones 📋</h2>
+                    <div class="sessions-grid">
+                        <div class="session-card" style="background: linear-gradient(135deg, #6C63FF, #8B84FF);"><div class="session-number">1</div><div class="session-name">Introducción</div><div class="session-desc">Conocer el teclado</div><div class="session-icon">⌨️</div></div>
+                        <div class="session-card" style="background: linear-gradient(135deg, #FF6B9D, #FF8FAF);"><div class="session-number">2</div><div class="session-name">Posición</div><div class="session-desc">Dedos y postura</div><div class="session-icon">👐</div></div>
+                        <div class="session-card" style="background: linear-gradient(135deg, #00D4AA, #00E6B8);"><div class="session-number">3</div><div class="session-name">Fila Base I</div><div class="session-desc">ASDF</div><div class="session-icon">🅰️</div></div>
+                        <div class="session-card" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);"><div class="session-number">4</div><div class="session-name">Fila Base II</div><div class="session-desc">JKLÑ</div><div class="session-icon">🇯</div></div>
+                        <div class="session-card" style="background: linear-gradient(135deg, #8B5CF6, #A78BFA);"><div class="session-number">5</div><div class="session-name">Superior I</div><div class="session-desc">QWERT</div><div class="session-icon">⬆️</div></div>
+                        <div class="session-card" style="background: linear-gradient(135deg, #EC4899, #F472B6);"><div class="session-number">6</div><div class="session-name">Superior II</div><div class="session-desc">YUIOP</div><div class="session-icon">⬆️</div></div>
+                        <div class="session-card" style="background: linear-gradient(135deg, #14B8A6, #2DD4BF);"><div class="session-number">7</div><div class="session-name">Inferior I</div><div class="session-desc">ZXCVB</div><div class="session-icon">⬇️</div></div>
+                        <div class="session-card" style="background: linear-gradient(135deg, #3B82F6, #60A5FA);"><div class="session-number">8</div><div class="session-name">Inferior II</div><div class="session-desc">NM</div><div class="session-icon">⬇️</div></div>
+                        <div class="session-card" style="background: linear-gradient(135deg, #EF4444, #F87171);"><div class="session-number">9</div><div class="session-name">Números</div><div class="session-desc">1234567890</div><div class="session-icon">🔢</div></div>
+                        <div class="session-card" style="background: linear-gradient(135deg, #10B981, #34D399);"><div class="session-number">10</div><div class="session-name">¡Final!</div><div class="session-desc">Competencia</div><div class="session-icon">🏆</div></div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label"><span>Tu progreso:</span><span id="sessionProgress">1/10</span></div>
+                        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 10%;"></div></div>
+                    </div>
+                </div>
+                
+                <!-- Controles de slides -->
+                <div class="slide-controls">
+                    <button class="slide-btn prev" id="prevBtn">← Anterior</button>
+                    <span class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">8</span></span>
+                    <button class="slide-btn next" id="nextBtn">Siguiente →</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SECCIÓN PRÁCTICA -->
+        <section id="practica" class="section">
+            <div class="card" id="levelSelection">
+                <h2 class="card-title">🎯 Selecciona un nivel de práctica</h2>
+                <div class="level-grid" id="levelGrid"></div>
+                <button class="start-btn" id="startPracticeBtn">¡Comenzar Práctica!</button>
+            </div>
+            
+            <div class="practice-area" id="practiceArea" style="display: none;">
+                <div class="practice-header">
+                    <h3 class="practice-title" id="practiceTitle">Nivel 1</h3>
+                    <div class="practice-stats">
+                        <div class="mini-stat"><div class="mini-stat-value" id="wpmDisplay">0</div><div class="mini-stat-label">PPM</div></div>
+                        <div class="mini-stat"><div class="mini-stat-value" id="accuracyDisplay">100%</div><div class="mini-stat-label">Precisión</div></div>
+                        <div class="mini-stat"><div class="mini-stat-value" id="timeDisplay">0:00</div><div class="mini-stat-label">Tiempo</div></div>
+                    </div>
+                </div>
+                <div class="text-display" id="textDisplay"></div>
+                <input type="text" class="input-area" id="inputArea" placeholder="Escribe aquí..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                <div class="keyboard-display" id="practiceKeyboard"></div>
+                <div class="practice-buttons">
+                    <button class="btn secondary" id="resetBtn">🔄 Reiniciar</button>
+                    <button class="btn secondary" id="endBtn">✋ Terminar</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SECCIÓN PROGRESO -->
+        <section id="progreso" class="section">
+            <div class="two-columns">
+                <div class="card dark">
+                    <h2 class="card-title gold">🎮 Niveles de Mecanógrafo</h2>
+                    <div class="levels-display" id="levelsDisplay"></div>
+                </div>
+                <div class="card">
+                    <h2 class="card-title">📊 Mis Estadísticas</h2>
+                    <div class="stats-grid">
+                        <div class="stat-box"><p class="stat-value" id="statPoints">0</p><p class="stat-label">Puntos Totales</p></div>
+                        <div class="stat-box"><p class="stat-value green" id="statExercises">0</p><p class="stat-label">Ejercicios</p></div>
+                        <div class="stat-box"><p class="stat-value orange" id="statBestWpm">0</p><p class="stat-label">Mejor PPM</p></div>
+                        <div class="stat-box"><p class="stat-value pink" id="statAccuracy">0%</p><p class="stat-label">Precisión</p></div>
+                    </div>
+                    <div class="points-info">
+                        <h3>🎯 Cómo ganar puntos:</h3>
+                        <div class="points-badges">
+                            <span class="badge green">+10 pts por ejercicio</span>
+                            <span class="badge orange">+5 pts sin errores</span>
+                            <span class="badge purple">+15 pts récord</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Modal de Resultados -->
+    <div class="modal-overlay" id="resultsModal">
+        <div class="modal">
+            <div class="modal-icon" id="resultIcon">🎉</div>
+            <h2 class="modal-title" id="resultTitle">¡Excelente!</h2>
+            <p class="modal-subtitle" id="resultSubtitle">Has completado el ejercicio</p>
+            <div class="result-stats">
+                <div class="result-stat"><div class="result-stat-value" id="resultWpm">0</div><div class="result-stat-label">PPM</div></div>
+                <div class="result-stat"><div class="result-stat-value" id="resultAccuracy">0%</div><div class="result-stat-label">Precisión</div></div>
+                <div class="result-stat"><div class="result-stat-value" id="resultTime">0:00</div><div class="result-stat-label">Tiempo</div></div>
+            </div>
+            <div class="points-earned" id="pointsEarned">+15 puntos</div>
+            <div class="modal-buttons">
+                <button class="btn primary" id="retryBtn">🔄 Practicar de nuevo</button>
+                <button class="btn secondary" id="closeModalBtn">✓ Continuar</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
