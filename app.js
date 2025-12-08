@@ -2,28 +2,52 @@
 const levelTexts = {
     1: ['asdf asdf asdf asdf', 'fdsa fdsa fdsa fdsa', 'asdf fdsa asdf fdsa', 'asd dsa fds sdf asd', 'dad sad fad asa dad', 
         'asdf asdf fdsa fdsa', 'aaa sss ddd fff', 'fas das sas fas', 'fad sad dad fad', 'asdf fdsa asdf fdsa',
-        'dasa fasa safa dafa', 'sadf fasddasf safd', 'afds sfda dfas asfd', 'dsaf asfd fdas sadf'],
+        'dasa fasa safa dafa', 'sadf fasddasf safd', 'afds sfda dfas asfd', 'dsaf asfd fdas sadf',
+        'asd fds sad fad', 'ddd aaa sss fff', 'fds sdf asd dsa', 'fas saf das sad', 'asdf asdf asdf',
+        'fdsa fdsa fdsa', 'afd sfd daf saf', 'sada fada dada safa', 'asfd fdas sadf dfas',
+        'ada fafa dada sasa', 'fsdf asds dfdf sdsd', 'afas dfdf sasas fafaf'],
     2: ['jklñ jklñ jklñ jklñ', 'ñlkj ñlkj ñlkj ñlkj', 'jkl lkj kjl jkl lkj', 'jñj klk lñl ñkj jlñ',
         'jklñ ñlkj jklñ ñlkj', 'jjj kkk lll ñññ', 'ñlj klj lkj ñlj', 'jañ lañ kañ jañ', 'jklñ lkjñ jklñ lkjñ',
-        'laja kaña jala ñaka', 'jañl kñlj lñjk ñlkj', 'añjk lñkj jñlk kñlj', 'ñjkl jlkñ klñj lkjñ'],
+        'laja kaña jala ñaka', 'jañl kñlj lñjk ñlkj', 'añjk lñkj jñlk kñlj', 'ñjkl jlkñ klñj lkjñ',
+        'jkl klj lkj jkl', 'ñññ jjj kkk lll', 'lkñ jkl ñlk kjl', 'jala kala laja ñaja', 'klñj jlñk ñjkl',
+        'jaja kaka lala ñaña', 'jkjk lñlñ klkl ñjñj', 'laja jala kaña ñaka', 'jlkñ klñj ñjkl lkjñ',
+        'kjkj lñlñ jñjñ klkl', 'ñaña jaja kaka lala', 'jklñ jklñ ñlkj ñlkj'],
     3: ['asdf jklñ asdf jklñ', 'fdsa ñlkj fdsa ñlkj', 'aj sk dl fñ aj sk dl', 'afjñ sldkfjñ alskdfjñ',
         'asdf jklñ fdsa ñlkj', 'aj fk sl dñ aj fk sl', 'alas faja sala kaj', 'lasa daka faja sañ',
-        'asdf jklñ asdf jklñ', 'fdsa ñlkj fdsa ñlkj', 'asjk dflñ sadk fjlñ', 'jfas kñds ljaf ñksd'],
+        'asdf jklñ asdf jklñ', 'fdsa ñlkj fdsa ñlkj', 'asjk dflñ sadk fjlñ', 'jfas kñds ljaf ñksd',
+        'afjk sldñ dkañ fslj', 'jfad ksañ ldfj añsk', 'alfa safa laja daja', 'kasa faja lasa sañ',
+        'añsk jfld ksañ dflj', 'jask fdlñsakj fñld', 'lañ kaj faj saj', 'daf jal sañ fañ',
+        'afjs dklñ sajf ñldk', 'jafs ñldk sajf kdñl', 'asdf jklñ fdsa ñlkj', 'ajsk dflñ sajk fñld'],
     4: ['qwert qwert qwert', 'trewq trewq trewq', 'qwe rew ter qwe rew', 'aq sw de fr gt aq sw',
         'qwert trewq qwert trewq', 'qqq www eee rrr ttt', 'qwer rewq terw wqer', 'aqe swe dre frt gtr',
-        'qeta reta seta feta', 'qrew trew drew frew', 'trew qrew erew rrew', 'qwer trew qrew ertw'],
+        'qeta reta seta feta', 'qrew trew drew frew', 'trew qrew erew rrew', 'qwer trew qrew ertw',
+        'qwe ewq wer rew', 'qqq eee www rrr', 'trew wert retw qwer', 'aqwr swer deqw frte',
+        'teta reta qeta weta', 'eqwr rtew qwre wetr', 'qrqr wew tete', 'aqsa dqwe frqw gtew',
+        'qwer qwer trewq trewq', 'reqw terw qrew wert', 'eret qwqw trtrt ewew', 'qwert trewq ewrt'],
     5: ['yuiop yuiop yuiop', 'poiuy poiuy poiuy', 'yui uio iop yui uio', 'jy ku li oñ jy ku li',
         'yuiop poiuy yuiop poiuy', 'yyy uuu iii ooo ppp', 'yuio poiu uiop ioyu', 'jyui kuio lipo ñoui',
-        'yoyo pupi uiui oyoy', 'yupi pipo uopi ypui', 'poyo yupi uipo oyui', 'iyop uyop pyop oyui'],
+        'yoyo pupi uiui oyoy', 'yupi pipo uopi ypui', 'poyo yupi uipo oyui', 'iyop uyop pyop oyui',
+        'yui iuy oiu pui', 'yyy iii uuu ooo', 'poiu yuio uiop ioyu', 'jyuo kuip liyo ñopu',
+        'yoyo pipi uiui opop', 'uyui ioyu poiy yuio', 'pypy uyuy ioio', 'yuop iopu pyui oyui',
+        'yuiop yuiop poiuy poiuy', 'iyop pyui uyoi opyu', 'yoyo yuyu pipi pupu', 'yuiop poiuy ioyu'],
     6: ['zxcvb zxcvb zxcvb', 'bvcxz bvcxz bvcxz', 'zxc xcv cvb zxc xcv', 'az sx dc fv gb az sx',
         'zxcvb bvcxz zxcvb bvcxz', 'zzz xxx ccc vvv bbb', 'zxcv vcxz cvbx xzvc', 'azx sxc dcv fvb gbc',
-        'zaca vaca baza caza', 'zxvb cxbv bxcz vzxc', 'baza caza vaza xaza', 'zxcv bvcx cxbv vxzc'],
+        'zaca vaca baza caza', 'zxvb cxbv bxcz vzxc', 'baza caza vaza xaza', 'zxcv bvcx cxbv vxzc',
+        'zxc xcz cvb bvc', 'zzz xxx ccc vvv', 'bvcz zxcv cvbx xzcv', 'azxc sxcv dvcb fvbz',
+        'zaza xaxa caca vava', 'vxcz bxcv zvcx czbv', 'zbzb xcxc vcvc', 'azcv sxbz dcxv fvbz',
+        'zxcvb zxcvb bvcxz bvcxz', 'cxzv bvxc zbvc vxcz', 'zaza xcxc vcvc baba', 'zxcvb bvcxz cvbx'],
     7: ['nm nm nm nm nm nm', 'mn mn mn mn mn mn', 'jn km lñ jn km lñ', 'nmb bmn jnm nmb bmn',
         'nmnm mnmn nmnm mnmn', 'nnn mmm nnn mmm', 'nman mnan jman kman', 'nmbn mnbm bnmn mbnm',
-        'mana nana mona noma', 'nmon mnom ñnom jnom', 'nmnm mnmn nmbn mbnm', 'jnmn kmnm lnmñ ñmnm'],
+        'mana nana mona noma', 'nmon mnom ñnom jnom', 'nmnm mnmn nmbn mbnm', 'jnmn kmnm lnmñ ñmnm',
+        'nmn mnm bmn nbm', 'nnn mmm nnn mmm', 'mnbm nmbm bmnm nbmn', 'jnmb knmn lnmñ mnmñ',
+        'mano noma nana mama', 'nmon mnon bnmn mnbn', 'mnmn nmnm bmbn', 'jnma knmo lnmu mnmñ',
+        'nmnm nmnm mnmn mnmn', 'bmnm nbmn mnbn nmbm', 'nana mama mona noma', 'nmnm mnmn bnmb'],
     8: ['sal las ala sol los', 'casa masa pasa rasa', 'luna nube sol cielo', 'el sol sale bonito', 'mi mama me mima',
         'la luna sale hoy', 'el mar esta azul', 'mi perro corre rapido', 'las aves vuelan alto', 'mi familia es grande',
-        'la vida es bella', 'el pan esta rico', 'los niños juegan felices', 'el viento sopla fuerte', 'la casa es blanca']
+        'la vida es bella', 'el pan esta rico', 'los niños juegan felices', 'el viento sopla fuerte', 'la casa es blanca',
+        'la mesa esta limpia', 'los gatos duermen mucho', 'mi hermano es alto', 'el agua esta fria', 'la flor es roja',
+        'el libro tiene hojas', 'la silla es comoda', 'mi papa trabaja bien', 'el cielo es hermoso', 'la tierra es redonda',
+        'los peces nadan rapido', 'el bosque es verde', 'la luz brilla fuerte', 'mi amigo es bueno']
 };
 
 const levelNames = {
@@ -64,6 +88,8 @@ let state = {
     timerInterval: null,
     errors: 0,
     totalChars: 0,
+    currentExercise: 1,
+    totalExercises: 5,
     userData: loadUserData()
 };
 
@@ -191,12 +217,15 @@ function initLevelGrid() {
     
     grid.querySelectorAll('.level-card').forEach(card => {
         card.addEventListener('click', () => {
-            grid.querySelectorAll('.level-card').forEach(c => c.classList.remove('selected'));
-            card.classList.add('selected');
             state.selectedLevel = parseInt(card.dataset.level);
+            // Resetear contador de ejercicios al cambiar de nivel
+            state.currentExercise = 1;
+            // Iniciar práctica directamente
+            startPractice();
         });
     });
     
+    // Mantener el botón por si alguien prefiere usarlo
     document.getElementById('startPracticeBtn').addEventListener('click', startPractice);
 }
 
@@ -208,15 +237,42 @@ function initPractice() {
     
     document.getElementById('resetBtn').addEventListener('click', resetPractice);
     document.getElementById('endBtn').addEventListener('click', endPractice);
-    document.getElementById('retryBtn').addEventListener('click', () => { closeModal(); startPractice(); });
-    document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+    document.getElementById('retryBtn').addEventListener('click', () => { 
+        closeModal(); 
+        // Incrementar contador de ejercicios
+        if (state.currentExercise < state.totalExercises) {
+            state.currentExercise++;
+        }
+        startPractice(); 
+    });
+    document.getElementById('closeModalBtn').addEventListener('click', () => {
+        closeModal();
+        // Incrementar contador y continuar practicando
+        if (state.currentExercise < state.totalExercises) {
+            state.currentExercise++;
+            startPractice();
+        } else {
+            // Solo si ya completó todos los ejercicios, volver a selección
+            state.currentExercise = 1;
+            endPractice();
+        }
+    });
 }
 
 function startPractice() {
     document.getElementById('levelSelection').style.display = 'none';
     document.getElementById('practiceArea').style.display = 'block';
     
+    // Resetear contador de ejercicios al seleccionar un nivel nuevo
+    if (!state.currentExercise || state.currentExercise > state.totalExercises) {
+        state.currentExercise = 1;
+    }
+    
     document.getElementById('practiceTitle').textContent = `Nivel ${state.selectedLevel}: ${levelNames[state.selectedLevel]}`;
+    
+    // Actualizar contador de ejercicios
+    document.getElementById('currentExercise').textContent = state.currentExercise;
+    document.getElementById('totalExercises').textContent = state.totalExercises;
     
     // Mostrar/ocultar badge de ayuda según el nivel
     const helperBadge = document.getElementById('helperBadge');
@@ -229,7 +285,7 @@ function startPractice() {
     // Generar ejercicio más largo combinando múltiples textos
     const texts = levelTexts[state.selectedLevel];
     const shuffled = [...texts].sort(() => Math.random() - 0.5); // Mezclar el array
-    const selectedTexts = shuffled.slice(0, Math.min(8, texts.length)); // Tomar hasta 8 textos
+    const selectedTexts = shuffled.slice(0, Math.min(15, texts.length)); // Tomar hasta 15 textos
     state.practiceText = selectedTexts.join('  '); // Unir con doble espacio para separación
     
     state.currentPosition = 0;
@@ -259,6 +315,28 @@ function renderText() {
         else if (i === state.currentPosition) cls += ' current';
         return `<span class="${cls}">${char === ' ' ? '&nbsp;' : char}</span>`;
     }).join('');
+    
+    // Scroll automático para seguir al carácter actual
+    const currentChar = display.querySelector('.char.current');
+    if (currentChar) {
+        const displayRect = display.getBoundingClientRect();
+        const charRect = currentChar.getBoundingClientRect();
+        
+        // Calcular la posición relativa del carácter dentro del contenedor
+        const relativeTop = charRect.top - displayRect.top + display.scrollTop;
+        const relativeBottom = relativeTop + charRect.height;
+        
+        // Si el carácter está cerca del final del área visible, hacer scroll
+        const scrollThreshold = displayRect.height * 0.7; // 70% de la altura visible
+        
+        if (relativeBottom > display.scrollTop + scrollThreshold) {
+            // Scroll suave hacia el carácter actual
+            display.scrollTo({
+                top: relativeTop - displayRect.height * 0.3, // Mantener el carácter en el 30% superior
+                behavior: 'smooth'
+            });
+        }
+    }
     
     // Resaltar la tecla siguiente en el teclado (solo niveles 1-3)
     highlightNextKey();
@@ -374,7 +452,14 @@ function finishPractice() {
     
     document.getElementById('resultIcon').textContent = accuracy >= 90 ? '🎉' : accuracy >= 70 ? '👍' : '💪';
     document.getElementById('resultTitle').textContent = accuracy >= 90 ? '¡Excelente!' : accuracy >= 70 ? '¡Buen trabajo!' : '¡Sigue practicando!';
-
+    
+    // Actualizar subtítulo con progreso de ejercicios
+    const subtitle = document.getElementById('resultSubtitle');
+    if (state.currentExercise < state.totalExercises) {
+        subtitle.textContent = `Ejercicio ${state.currentExercise} de ${state.totalExercises} completado`;
+    } else {
+        subtitle.textContent = `🎊 ¡Has completado todos los ejercicios del nivel! 🎊`;
+    }
     
     document.getElementById('resultsModal').classList.add('active');
     updateUI();

@@ -242,14 +242,23 @@
         <!-- SECCIÓN PRÁCTICA -->
         <section id="practica" class="section">
             <div class="card" id="levelSelection">
-                <h2 class="card-title">Selecciona un nivel de práctica</h2>
+                <h2 class="card-title">🎯 Selecciona un nivel de práctica</h2>
+                <div class="practice-goal-badge">
+                    <span class="goal-icon">🎯</span>
+                    <span class="goal-text"><strong>Meta:</strong> Completa 5 ejercicios por nivel para dominar las teclas</span>
+                </div>
                 <div class="level-grid" id="levelGrid"></div>
-                <button class="start-btn" id="startPracticeBtn">¡Comenzar Práctica!</button>
+                <button class="start-btn" id="startPracticeBtn">🚀 ¡Comenzar Práctica!</button>
             </div>
             
             <div class="practice-area" id="practiceArea" style="display: none;">
                 <div class="practice-header">
-                    <h3 class="practice-title" id="practiceTitle">Nivel 1</h3>
+                    <div>
+                        <h3 class="practice-title" id="practiceTitle">Nivel 1</h3>
+                        <div class="exercise-progress">
+                            🎯 Ejercicio <span id="currentExercise">1</span> de <span id="totalExercises">5</span>
+                        </div>
+                    </div>
                     <div class="practice-stats">
                         <div class="mini-stat"><div class="mini-stat-value" id="wpmDisplay">0</div><div class="mini-stat-label">PPM</div></div>
                         <div class="mini-stat"><div class="mini-stat-value" id="accuracyDisplay">100%</div><div class="mini-stat-label">Precisión</div></div>
@@ -259,7 +268,7 @@
                 <div class="text-display" id="textDisplay"></div>
                 <input type="text" class="input-area" id="inputArea" placeholder="Escribe aquí..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
                 <div class="helper-badge" id="helperBadge" style="display: none;">
-                    <strong>Modo Ayuda:</strong> La tecla amarilla indica qué presionar
+                    💡 <strong>Modo Ayuda:</strong> La tecla amarilla indica qué presionar
                 </div>
                 <div class="keyboard-display" id="practiceKeyboard"></div>
                 <div class="practice-buttons">

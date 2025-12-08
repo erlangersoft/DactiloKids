@@ -344,13 +344,46 @@ body {
 }
 
 /* ========== PRACTICE ========== */
+.practice-goal-badge {
+    background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+    border: 2px solid #F59E0B;
+    border-radius: 12px;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+}
+.goal-icon { font-size: 24px; }
+.goal-text { color: #92400E; font-size: 14px; }
+.goal-text strong { color: #78350F; }
+
 .level-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px; }
 .level-card {
     background: white; border-radius: 16px; padding: 20px; cursor: pointer;
     border: 3px solid transparent; transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    position: relative;
 }
-.level-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
+.level-card::after {
+    content: '▶';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: var(--primary);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+.level-card:hover { 
+    transform: translateY(-4px); 
+    box-shadow: 0 12px 30px rgba(108, 99, 255, 0.25);
+    border-color: var(--primary);
+}
+.level-card:hover::after { opacity: 1; right: 15px; }
+.level-card:active { transform: translateY(-2px); }
 .level-card.selected { border-color: var(--primary); }
 .level-card.locked { opacity: 0.6; cursor: not-allowed; }
 
@@ -375,7 +408,17 @@ body {
 
 .practice-area { background: white; border-radius: 20px; padding: 32px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
 .practice-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
-.practice-title { font-size: 24px; color: var(--primary); }
+.practice-title { font-size: 24px; color: var(--primary); margin-bottom: 4px; }
+.exercise-progress {
+    background: linear-gradient(135deg, #E0E7FF, #C7D2FE);
+    color: var(--primary);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-block;
+    margin-top: 4px;
+}
 .practice-stats { display: flex; gap: 16px; }
 .mini-stat { text-align: center; padding: 8px 16px; background: var(--light); border-radius: 10px; }
 .mini-stat-value { font-size: 24px; font-weight: 700; color: var(--primary); }
@@ -387,6 +430,7 @@ body {
     line-height: 2; margin-bottom: 20px; min-height: 100px; letter-spacing: 2px;
     max-height: 200px; overflow-y: auto; overflow-x: hidden;
     word-wrap: break-word; white-space: pre-wrap;
+    scroll-behavior: smooth;
 }
 .char { transition: all 0.1s ease; }
 .char.current { background: var(--warning); color: white; padding: 2px 4px; border-radius: 4px; }
