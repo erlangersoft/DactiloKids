@@ -218,6 +218,14 @@ function startPractice() {
     
     document.getElementById('practiceTitle').textContent = `Nivel ${state.selectedLevel}: ${levelNames[state.selectedLevel]}`;
     
+    // Mostrar/ocultar badge de ayuda según el nivel
+    const helperBadge = document.getElementById('helperBadge');
+    if (state.selectedLevel <= 3) {
+        helperBadge.style.display = 'block';
+    } else {
+        helperBadge.style.display = 'none';
+    }
+    
     // Generar ejercicio más largo combinando múltiples textos
     const texts = levelTexts[state.selectedLevel];
     const shuffled = [...texts].sort(() => Math.random() - 0.5); // Mezclar el array
@@ -251,10 +259,28 @@ function renderText() {
         else if (i === state.currentPosition) cls += ' current';
         return `<span class="${cls}">${char === ' ' ? '&nbsp;' : char}</span>`;
     }).join('');
+    
+    // Resaltar la tecla siguiente en el teclado (solo niveles 1-3)
+    highlightNextKey();
+}
+
+function highlightNextKey() {
+    // Limpiar cualquier resaltado anterior
+    document.querySelectorAll('.key.next-key').forEach(k => k.classList.remove('next-key'));
+    
+    // Solo resaltar en niveles 1-3 (modo ayuda para principiantes)
+    if (state.selectedLevel <= 3 && state.currentPosition < state.practiceText.length) {
+        const nextChar = state.practiceText[state.currentPosition];
+        const nextKey = document.querySelector(`[data-key="${nextChar.toLowerCase()}"]`);
+        if (nextKey) {
+            nextKey.classList.add('next-key');
+        }
+    }
 }
 
 function generatePracticeKeyboard() {
     document.getElementById('practiceKeyboard').innerHTML = generateKeyboardHTML();
+    highlightNextKey(); // Resaltar la primera tecla al iniciar
 }
 
 function handleTyping(e) {
