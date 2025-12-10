@@ -103,12 +103,18 @@ let state = {
 function loadUserData() {
     const saved = localStorage.getItem('dactiloKidsData');
     return saved ? JSON.parse(saved) : {
-        points: 0, exercisesCompleted: 0, bestWpm: 0,
-        totalAccuracy: 0, accuracyCount: 0
+        userName: '',
+        points: 0,
+        exercisesCompleted: 0,
+        bestWpm: 0,
+        totalAccuracy: 0,
+        accuracyCount: 0,
+        createdAt: new Date().toISOString()
     };
 }
 
 function saveUserData() {
+    state.userData.lastModified = new Date().toISOString();
     localStorage.setItem('dactiloKidsData', JSON.stringify(state.userData));
 }
 
@@ -121,7 +127,15 @@ document.addEventListener('DOMContentLoaded', () => {
     initPractice();
     initLevelsDisplay();
     initSessionCards();
+    initUserProfile();
     updateUI();
+    
+    // Cerrar modales con tecla ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeAllModals();
+        }
+    });
 });
 
 // ========== NAVEGACIÓN ==========
@@ -134,6 +148,9 @@ function initNavigation() {
             document.getElementById(section).classList.add('active');
             btn.classList.add('active');
             if (section === 'practica') endPractice();
+            
+            // Cerrar modal de perfil si está abierto
+            closeAllModals();
         });
     });
 }
@@ -562,4 +579,282 @@ function updateUI() {
     
     // Actualizar niveles
     initLevelsDisplay();
+    
+    // Actualizar nombre de usuario en header
+    updateUserNameDisplay();
 }
+
+// ========== GESTIÓN DE PERFIL Y PROGRESO ==========
+function closeAllModals() {
+    const userProfileModal = document.getElementById('userProfileModal');
+    const confirmModal = document.getElementById('confirmModal');
+    const messageModal = document.getElementById('messageModal');
+    
+    if (userProfileModal) userProfileModal.style.display = 'none';
+    if (confirmModal) confirmModal.style.display = 'none';
+    if (messageModal) messageModal.style.display = 'none';
+}
+
+function initUserProfile() {
+    const accountBtn = document.getElementById('accountBtn');
+    const userProfileModal = document.getElementById('userProfileModal');
+    const closeProfileModal = document.getElementById('closeProfileModal');
+    const saveUserNameBtn = document.getElementById('saveUserNameBtn');
+    const userNameInput = document.getElementById('userNameInput');
+    const exportBtn = document.getElementById('exportBtn');
+    const importBtn = document.getElementById('importBtn');
+    const fileInput = document.getElementById('fileInput');
+    
+    // Validar que todos los elementos existen
+    if (!accountBtn || !userProfileModal || !closeProfileModal || !saveUserNameBtn || 
+        !userNameInput || !exportBtn || !importBtn || !fileInput) {
+        console.error('Error: No se encontraron todos los elementos del perfil');
+        return;
+    }
+    
+    // Abrir modal de perfil
+    accountBtn.addEventListener('click', () => {
+        console.log('Click en botón de cuenta');
+        userNameInput.value = state.userData.userName || '';
+        updateProfileData();
+        userProfileModal.style.display = 'flex';
+    });
+    
+    // Cerrar modal de perfil
+    closeProfileModal.addEventListener('click', () => {
+        userProfileModal.style.display = 'none';
+    });
+    
+    // Guardar nombre de usuario
+    saveUserNameBtn.addEventListener('click', () => {
+        const name = userNameInput.value.trim();
+        if (name) {
+            state.userData.userName = name;
+            saveUserData();
+            updateUserNameDisplay();
+            showMessage('✅ Éxito', `Nombre guardado: ${name}`, 'success');
+        } else {
+            showMessage('⚠️ Error', 'Por favor ingresa un nombre válido', 'error');
+        }
+    });
+    
+    // Exportar progreso
+    exportBtn.addEventListener('click', exportarProgreso);
+    
+    // Importar progreso
+    importBtn.addEventListener('click', () => {
+        fileInput.click();
+    });
+    
+    fileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            importarProgreso(file);
+        }
+        fileInput.value = ''; // Reset input
+    });
+    
+    // Cerrar modal al hacer clic en el fondo oscuro (fuera del contenido)
+    userProfileModal.addEventListener('click', (e) => {
+        // currentTarget es siempre el modal, target es donde hiciste clic
+        // Si son el mismo, significa que hiciste clic en el fondo, no en el contenido
+        if (e.target === e.currentTarget) {
+            userProfileModal.style.display = 'none';
+        }
+    });
+    
+    // Listener global para cerrar modal al hacer clic en cualquier lugar fuera del modal
+    document.addEventListener('click', (e) => {
+        // Si el modal está visible
+        if (userProfileModal.style.display === 'flex') {
+            // Si el clic no fue dentro del modal-content ni en el botón de cuenta
+            const modalContent = userProfileModal.querySelector('.modal-content');
+            const isClickInsideModal = modalContent && modalContent.contains(e.target);
+            const isClickOnAccountBtn = accountBtn.contains(e.target);
+            
+            if (!isClickInsideModal && !isClickOnAccountBtn) {
+                userProfileModal.style.display = 'none';
+            }
+        }
+    });
+    
+    // Solicitar nombre en primera carga
+    if (!state.userData.userName) {
+        setTimeout(() => {
+            userProfileModal.style.display = 'flex';
+            showMessage('👋 ¡Bienvenido!', 'Por favor ingresa tu nombre para comenzar', 'info');
+        }, 500);
+    }
+}
+
+function updateUserNameDisplay() {
+    const userNameDisplay = document.getElementById('userNameDisplay');
+    const userName = document.getElementById('userName');
+    
+    if (state.userData.userName) {
+        userName.textContent = state.userData.userName;
+        userNameDisplay.style.display = 'flex';
+    } else {
+        userNameDisplay.style.display = 'none';
+    }
+}
+
+function updateProfileData() {
+    document.getElementById('profilePoints').textContent = state.userData.points;
+    document.getElementById('profileExercises').textContent = state.userData.exercisesCompleted;
+    document.getElementById('profileWPM').textContent = state.userData.bestWpm;
+    const avgAccuracy = state.userData.accuracyCount > 0 
+        ? Math.round(state.userData.totalAccuracy / state.userData.accuracyCount) 
+        : 0;
+    document.getElementById('profileAccuracy').textContent = `${avgAccuracy}%`;
+}
+
+function exportarProgreso() {
+    const exportData = {
+        version: '1.0',
+        appName: 'DactiloKids',
+        exportDate: new Date().toISOString(),
+        userData: state.userData
+    };
+    
+    const jsonString = JSON.stringify(exportData, null, 2);
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    
+    const userName = state.userData.userName || 'Usuario';
+    const date = new Date().toISOString().split('T')[0];
+    const fileName = `DactiloKids_${userName.replace(/\s+/g, '_')}_${date}.json`;
+    
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    showMessage('✅ Exportación Exitosa', `Archivo descargado: ${fileName}`, 'success');
+}
+
+function importarProgreso(file) {
+    const reader = new FileReader();
+    
+    reader.onload = (e) => {
+        try {
+            const data = JSON.parse(e.target.result);
+            
+            // Validar formato
+            if (!validateImportData(data)) {
+                showMessage('❌ Error', 'El archivo no tiene el formato correcto', 'error');
+                return;
+            }
+            
+            // Confirmar sobrescritura
+            showConfirmation(
+                '¿Deseas importar este progreso? Se reemplazarán tus datos actuales.',
+                () => {
+                    state.userData = data.userData;
+                    saveUserData();
+                    updateUI();
+                    updateUserNameDisplay();
+                    updateProfileData();
+                    document.getElementById('userProfileModal').style.display = 'none';
+                    showMessage('✅ Importación Exitosa', 'Progreso cargado correctamente', 'success');
+                }
+            );
+        } catch (error) {
+            showMessage('❌ Error', 'No se pudo leer el archivo. Verifica que sea un archivo JSON válido.', 'error');
+        }
+    };
+    
+    reader.readAsText(file);
+}
+
+function validateImportData(data) {
+    return data && 
+           data.appName === 'DactiloKids' && 
+           data.userData && 
+           typeof data.userData.points === 'number' &&
+           typeof data.userData.exercisesCompleted === 'number';
+}
+
+function showMessage(title, message, type) {
+    const messageModal = document.getElementById('messageModal');
+    const messageContent = document.getElementById('messageContent');
+    const closeMessageModal = document.getElementById('closeMessageModal');
+    
+    if (!messageModal || !messageContent) return;
+    
+    const typeColors = {
+        success: '#10b981',
+        error: '#ef4444',
+        info: '#3b82f6'
+    };
+    
+    messageContent.innerHTML = `
+        <h3 style="color: ${typeColors[type] || '#6366f1'};">${title}</h3>
+        <p>${message}</p>
+    `;
+    
+    messageModal.style.display = 'flex';
+    
+    // Cerrar manualmente
+    if (closeMessageModal) {
+        closeMessageModal.onclick = () => {
+            messageModal.style.display = 'none';
+        };
+    }
+    
+    // Cerrar automáticamente después de 3 segundos
+    setTimeout(() => {
+        messageModal.style.display = 'none';
+    }, 3000);
+    
+    // Cerrar al hacer clic en el fondo oscuro
+    messageModal.onclick = (e) => {
+        if (e.target === e.currentTarget) {
+            messageModal.style.display = 'none';
+        }
+    };
+}
+
+function showConfirmation(message, onConfirm) {
+    const confirmModal = document.getElementById('confirmModal');
+    const confirmMessage = document.getElementById('confirmMessage');
+    const confirmBtn = document.getElementById('confirmBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+    
+    if (!confirmModal || !confirmMessage || !confirmBtn || !cancelBtn) return;
+    
+    confirmMessage.textContent = message;
+    confirmModal.style.display = 'flex';
+    
+    const handleConfirm = () => {
+        onConfirm();
+        confirmModal.style.display = 'none';
+        cleanup();
+    };
+    
+    const handleCancel = () => {
+        confirmModal.style.display = 'none';
+        cleanup();
+    };
+    
+    const handleOutsideClick = (e) => {
+        if (e.target === e.currentTarget) {
+            confirmModal.style.display = 'none';
+            cleanup();
+        }
+    };
+    
+    const cleanup = () => {
+        confirmBtn.removeEventListener('click', handleConfirm);
+        cancelBtn.removeEventListener('click', handleCancel);
+        confirmModal.removeEventListener('click', handleOutsideClick);
+    };
+    
+    confirmBtn.addEventListener('click', handleConfirm);
+    cancelBtn.addEventListener('click', handleCancel);
+    confirmModal.addEventListener('click', handleOutsideClick);
+}
+

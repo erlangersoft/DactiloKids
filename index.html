@@ -13,6 +13,10 @@
             <span class="logo-text">DactiloKids</span>
         </div>
         <div class="user-stats">
+            <div class="stat-badge user-name" id="userNameDisplay" style="display: none;">
+                <span>👤</span>
+                <span id="userName"></span>
+            </div>
             <div class="stat-badge level">
                 <span id="currentLevel">🐣</span>
                 <span id="levelName">Pollito</span>
@@ -22,6 +26,9 @@
                 <span id="totalPoints">0</span>
                 <span>pts</span>
             </div>
+            <button class="account-btn" id="accountBtn" title="Mi Cuenta">
+                <span>⚙️</span>
+            </button>
         </div>
     </header>
     
@@ -338,6 +345,80 @@
                 <button class="btn primary" id="retryBtn">🔄 Practicar de nuevo</button>
                 <button class="btn secondary" id="closeModalBtn">✓ Continuar</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Modal de Perfil de Usuario -->
+    <div id="userProfileModal" class="modal" style="display: none;">
+        <div class="modal-content profile-modal">
+            <span class="close-modal" id="closeProfileModal">&times;</span>
+            <h2>👤 Mi Cuenta</h2>
+            
+            <div class="profile-section">
+                <label for="userNameInput">Nombre del Estudiante:</label>
+                <input type="text" id="userNameInput" placeholder="Ingresa tu nombre" maxlength="30">
+                <button class="btn-primary" id="saveUserNameBtn">Guardar Nombre</button>
+            </div>
+            
+            <div class="profile-section">
+                <h3>🔄 Gestión de Progreso</h3>
+                <p class="info-text">Exporta tu progreso para guardarlo como respaldo o importa un archivo para continuar desde otro dispositivo.</p>
+                
+                <div class="button-group">
+                    <button class="btn-export" id="exportBtn">
+                        <span>📥</span>
+                        <span>Exportar Progreso</span>
+                    </button>
+                    <button class="btn-import" id="importBtn">
+                        <span>📤</span>
+                        <span>Importar Progreso</span>
+                    </button>
+                </div>
+                
+                <input type="file" id="fileInput" accept=".json" style="display: none;">
+            </div>
+            
+            <div class="profile-section" id="currentDataSection">
+                <h3>📊 Datos Actuales</h3>
+                <div class="data-grid">
+                    <div class="data-item">
+                        <span class="data-label">Puntos:</span>
+                        <span class="data-value" id="profilePoints">0</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">Ejercicios:</span>
+                        <span class="data-value" id="profileExercises">0</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">Mejor WPM:</span>
+                        <span class="data-value" id="profileWPM">0</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">Precisión Prom.:</span>
+                        <span class="data-value" id="profileAccuracy">0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmación -->
+    <div id="confirmModal" class="modal" style="display: none;">
+        <div class="modal-content confirm-modal">
+            <h3>⚠️ Confirmar Acción</h3>
+            <p id="confirmMessage"></p>
+            <div class="button-group">
+                <button class="btn-cancel" id="cancelBtn">Cancelar</button>
+                <button class="btn-confirm" id="confirmBtn">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Mensaje -->
+    <div id="messageModal" class="modal" style="display: none;">
+        <div class="modal-content message-modal">
+            <span class="close-modal" id="closeMessageModal">&times;</span>
+            <div id="messageContent"></div>
         </div>
     </div>
     

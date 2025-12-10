@@ -41,6 +41,38 @@ DactiloKids es una aplicación web educativa interactiva diseñada para enseñar
 - **Diseño responsive** adaptado a diferentes dispositivos
 - **Feedback visual inmediato** en todas las interacciones
 
+### Gestión de Progreso
+- **Perfil de usuario** con nombre personalizable
+- **Exportación de progreso** en formato JSON para respaldo
+- **Importación de datos** desde archivo para continuar en otro dispositivo
+- **Guardado automático** en LocalStorage del navegador
+- **Sincronización manual** mediante archivos de progreso
+- **Validación de datos** al importar archivos
+- **Confirmación de sobrescritura** para evitar pérdida accidental de datos
+
+#### Cómo Exportar tu Progreso
+1. Haz clic en el botón **⚙️ Mi Cuenta** en el header
+2. En la sección "Gestión de Progreso", pulsa **📥 Exportar Progreso**
+3. Se descargará un archivo JSON con tu nombre y fecha: `DactiloKids_TuNombre_2025-12-09.json`
+4. Guarda este archivo en un lugar seguro (USB, nube, correo, etc.)
+
+#### Cómo Importar tu Progreso
+1. Abre DactiloKids en cualquier navegador o dispositivo
+2. Haz clic en **⚙️ Mi Cuenta** en el header
+3. En la sección "Gestión de Progreso", pulsa **📤 Importar Progreso**
+4. Selecciona tu archivo JSON previamente exportado
+5. Confirma la importación (esto reemplazará tus datos actuales)
+6. Tu progreso se restaurará completamente
+
+#### Datos que se Guardan
+- Nombre del estudiante
+- Puntos acumulados
+- Ejercicios completados
+- Mejor registro de PPM (palabras por minuto)
+- Precisión promedio
+- Fecha de creación de la cuenta
+- Fecha de última modificación
+
 ## Contenido Educativo
 
 ### Sección Teoría
@@ -152,9 +184,12 @@ El curso está diseñado con una progresión pedagógica cuidadosa:
 - Feedback de estado en todas las acciones
 
 ### Persistencia
-- Guardado automático del progreso
+- **Guardado automático** del progreso en LocalStorage
+- **Exportación/Importación** de datos en formato JSON
+- **Portabilidad** entre dispositivos mediante archivos
+- **Respaldo manual** para seguridad de datos
 - Conservación de estadísticas entre sesiones
-- No requiere cuenta de usuario
+- Sistema de usuario con nombre personalizable
 
 ## Métricas de Rendimiento
 
@@ -167,11 +202,12 @@ El sistema mide y calcula:
 ## Futuras Mejoras Sugeridas
 
 - Modo oscuro para reducir fatiga visual
-- Exportación de estadísticas en PDF
-- Certificado de finalización del curso
+- Certificado de finalización del curso en PDF
 - Ejercicios con mayúsculas y signos de puntuación
 - Modo multijugador para competencias
 - Soporte para diferentes idiomas y layouts de teclado
+- Integración con Google Drive o Dropbox para sincronización automática
+- Gráficos de progreso histórico
 
 ## Compatibilidad
 
