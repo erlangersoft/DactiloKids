@@ -36,6 +36,11 @@ body {
 }
 
 .logo { display: flex; align-items: center; gap: 12px; }
+.logo-image { 
+    height: 40px; 
+    width: auto;
+    object-fit: contain;
+}
 .logo-icon { font-size: 28px; }
 .logo-text { font-size: 20px; font-weight: 700; color: var(--primary); }
 
@@ -91,9 +96,19 @@ body {
 .slides-container {
     background: white; border-radius: 20px; overflow: hidden;
     box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 250px);
 }
 
-.slide { display: none; padding: 40px; min-height: 500px; }
+.slide { 
+    display: none; 
+    padding: 40px; 
+    min-height: 400px;
+    max-height: calc(100vh - 350px);
+    overflow-y: auto;
+    flex: 1;
+}
 .slide.active { display: block; animation: slideIn 0.5s ease; }
 
 @keyframes slideIn {
@@ -119,12 +134,25 @@ body {
 .slide-title { font-size: 32px; color: var(--primary); margin-bottom: 24px; text-align: center; }
 
 .slide-controls {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 16px 24px; background: var(--light); border-top: 1px solid #E5E7EB;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 16px 24px; 
+    background: var(--light); 
+    border-top: 1px solid #E5E7EB;
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
 }
 .slide-btn {
-    padding: 12px 24px; border: none; border-radius: 10px;
-    font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;
+    padding: 12px 24px; 
+    border: none; 
+    border-radius: 10px;
+    font-size: 14px; 
+    font-weight: 600; 
+    cursor: pointer; 
+    transition: all 0.3s ease;
+    white-space: nowrap;
 }
 .slide-btn.prev { background: var(--muted); color: white; }
 .slide-btn.next { background: var(--primary); color: white; }
@@ -765,14 +793,218 @@ div.modal[style*="display:none"] {
 }
 
 /* ========== RESPONSIVE ========== */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 1024px) {
+    .content { padding: 16px; }
+    .slide { padding: 30px 20px; }
+    .main-title { font-size: 36px; }
+    .slide-title { font-size: 28px; }
+    .big-emoji { font-size: 60px; }
+    .huge-emoji { font-size: 100px; }
+}
+
+/* Tablets pequeñas y móviles grandes */
 @media (max-width: 768px) {
+    .header { padding: 10px 16px; flex-wrap: wrap; }
+    .logo-image { height: 36px; }
+    .logo-text { font-size: 18px; }
+    .logo-icon { font-size: 24px; }
+    
+    .user-stats { 
+        gap: 8px; 
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+    .stat-badge { 
+        padding: 6px 12px; 
+        font-size: 13px;
+    }
+    .account-btn { 
+        width: 40px; 
+        height: 40px; 
+        font-size: 18px; 
+    }
+    
+    .main-nav { 
+        gap: 8px; 
+        padding: 12px; 
+        flex-wrap: wrap;
+    }
+    .nav-btn { 
+        padding: 10px 16px; 
+        font-size: 14px; 
+    }
+    
+    .content { padding: 12px; }
+    
+    .slide { 
+        padding: 24px 16px;
+        min-height: 300px;
+        max-height: calc(100vh - 320px);
+    }
+    .slide-center { padding: 20px 0; }
+    
+    .main-title { font-size: 28px; }
+    .subtitle { font-size: 18px; }
+    .slide-title { font-size: 24px; }
+    .big-emoji { font-size: 48px; }
+    .huge-emoji { font-size: 80px; }
+    
+    .slide-controls { padding: 12px 16px; }
+    .slide-btn { 
+        padding: 10px 16px; 
+        font-size: 13px; 
+    }
+    .slide-counter { font-size: 14px; }
+    
     .two-columns, .tips-grid, .finger-guide { grid-template-columns: 1fr; }
     .sessions-grid { grid-template-columns: repeat(2, 1fr); }
     .special-keys-grid { grid-template-columns: repeat(2, 1fr); }
-    .key { min-width: 28px; height: 28px; font-size: 10px; }
-    .key.space { min-width: 150px; }
     .thumbs-section { flex-direction: column; }
     .data-grid { grid-template-columns: 1fr; }
     .button-group { flex-direction: column; }
-    .account-btn { width: 40px; height: 40px; font-size: 18px; }
+    
+    .key { min-width: 28px; height: 28px; font-size: 10px; }
+    .key.space { min-width: 150px; }
+    
+    .info-box, .gradient-box { padding: 16px; }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .header { padding: 8px 12px; }
+    .logo-image { height: 32px; }
+    .logo-text { font-size: 16px; }
+    .logo-icon { font-size: 20px; }
+    
+    .user-stats { gap: 6px; }
+    .stat-badge { 
+        padding: 5px 10px; 
+        font-size: 12px;
+        gap: 4px;
+    }
+    .stat-badge.user-name {
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .account-btn { 
+        width: 36px; 
+        height: 36px; 
+        font-size: 16px; 
+    }
+    
+    .main-nav { 
+        padding: 8px; 
+        gap: 6px;
+    }
+    .nav-btn { 
+        padding: 8px 12px; 
+        font-size: 13px;
+        flex: 1;
+    }
+    
+    .content { padding: 8px; }
+    
+    .slides-container {
+        max-height: calc(100vh - 220px);
+        border-radius: 12px;
+    }
+    
+    .slide { 
+        padding: 16px 12px;
+        min-height: 250px;
+        max-height: calc(100vh - 300px);
+    }
+    .slide-center { padding: 16px 0; }
+    
+    .main-title { font-size: 24px; margin-bottom: 8px; }
+    .subtitle { font-size: 16px; margin-bottom: 20px; }
+    .slide-title { font-size: 20px; margin-bottom: 16px; }
+    .big-emoji { font-size: 40px; margin-bottom: 16px; }
+    .huge-emoji { font-size: 64px; }
+    .footer-text { 
+        margin-top: 24px; 
+        font-size: 13px; 
+        line-height: 1.5;
+    }
+    
+    .tags { 
+        flex-wrap: wrap; 
+        gap: 8px;
+    }
+    .tag { 
+        padding: 8px 16px; 
+        font-size: 13px;
+    }
+    
+    .slide-controls { 
+        padding: 10px 12px;
+        gap: 8px;
+    }
+    .slide-btn { 
+        padding: 8px 12px; 
+        font-size: 12px;
+    }
+    .slide-counter { font-size: 13px; }
+    
+    .sessions-grid { 
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .special-keys-grid { 
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .card { 
+        padding: 16px;
+        border-radius: 16px;
+    }
+    .card-title { 
+        font-size: 20px;
+        gap: 8px;
+    }
+    
+    .info-box, .gradient-box { 
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .modal-content, .profile-modal { 
+        padding: 24px 16px;
+        max-width: 95%;
+    }
+    
+    .key { 
+        min-width: 24px; 
+        height: 24px; 
+        font-size: 9px; 
+    }
+    .key.space { min-width: 100px; }
+}
+
+/* Altura muy pequeña (landscape en móviles) */
+@media (max-height: 600px) {
+    .slides-container {
+        max-height: calc(100vh - 180px);
+    }
+    
+    .slide { 
+        padding: 16px;
+        min-height: 200px;
+        max-height: calc(100vh - 240px);
+    }
+    
+    .header { padding: 6px 12px; }
+    .main-nav { padding: 8px; }
+    .slide-controls { padding: 8px 12px; }
+    
+    .big-emoji { font-size: 36px; margin-bottom: 12px; }
+    .huge-emoji { font-size: 56px; }
+    .main-title { font-size: 22px; }
+    .subtitle { font-size: 15px; }
 }
