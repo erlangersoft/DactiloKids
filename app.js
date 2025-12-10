@@ -120,6 +120,17 @@ function saveUserData() {
 
 // ========== INICIALIZACIÓN ==========
 document.addEventListener('DOMContentLoaded', () => {
+    // Registro del Service Worker para PWA
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/DactiloKids/sw.js')
+            .then(registration => {
+                console.log('Service Worker registrado correctamente:', registration.scope);
+            })
+            .catch(error => {
+                console.log('Error al registrar Service Worker:', error);
+            });
+    }
+    
     initNavigation();
     initSlides();
     initKeyboard();

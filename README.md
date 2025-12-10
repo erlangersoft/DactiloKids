@@ -102,19 +102,59 @@ DactiloKids es una aplicación web educativa interactiva diseñada para enseñar
 - **CSS3**: Diseño moderno con animaciones y gradientes
 - **JavaScript (Vanilla)**: Lógica de aplicación sin dependencias
 - **LocalStorage**: Persistencia de datos del usuario
+- **PWA (Progressive Web App)**: Instalable como aplicación nativa
+- **Service Worker**: Funcionamiento offline y caché inteligente
+
+## Acceso a la Aplicación
+
+### En Línea (Recomendado)
+La aplicación está disponible en línea a través de GitHub Pages:
+**URL**: https://erlangersoft.github.io/DactiloKids/
+
+### Como Aplicación Instalable (PWA)
+DactiloKids puede instalarse como una aplicación nativa en tu dispositivo:
+
+#### En Escritorio (Chrome/Edge):
+1. Visita la URL de la aplicación
+2. Busca el icono de instalación en la barra de direcciones (o menú de tres puntos)
+3. Haz clic en "Instalar DactiloKids"
+4. La aplicación se instalará y aparecerá en tu escritorio/menú de inicio
+
+#### En Android:
+1. Abre la aplicación en Chrome
+2. Toca el menú de tres puntos
+3. Selecciona "Agregar a pantalla de inicio" o "Instalar app"
+4. La aplicación funcionará como una app nativa
+
+#### En iOS:
+1. Abre la aplicación en Safari
+2. Toca el botón de compartir
+3. Selecciona "Agregar a pantalla de inicio"
+4. La aplicación aparecerá en tu pantalla de inicio
+
+### Ventajas de la Versión Instalable:
+- Funciona sin conexión a internet después de la primera carga
+- Acceso rápido desde el escritorio o pantalla de inicio
+- Experiencia de pantalla completa sin barras del navegador
+- Actualizaciones automáticas en segundo plano
+- Menor consumo de recursos que una pestaña del navegador
+
+### Local
+También puede ejecutarse localmente descargando el repositorio.
 
 ## Instalación y Uso
 
 ### Requisitos
 - Navegador web moderno (Chrome, Firefox, Safari, Edge)
 - No requiere instalación de software adicional
-- No requiere conexión a internet después de la carga inicial
+- Funciona completamente offline después de la primera carga
 
 ### Instrucciones
 1. Abrir el archivo `index.html` en un navegador web
 2. La aplicación cargará automáticamente
-3. Seleccionar una sección (Teoría, Práctica, Mi Progreso)
-4. Comenzar a aprender
+3. Ingresar nombre de usuario en la primera carga
+4. Seleccionar una sección (Teoría, Práctica, Mi Progreso)
+5. Comenzar a aprender
 
 ### Uso del Sistema de Práctica
 1. En la sección "Práctica", hacer clic en cualquier nivel
@@ -188,8 +228,17 @@ El curso está diseñado con una progresión pedagógica cuidadosa:
 - **Exportación/Importación** de datos en formato JSON
 - **Portabilidad** entre dispositivos mediante archivos
 - **Respaldo manual** para seguridad de datos
+- **Caché inteligente** con Service Worker para funcionamiento offline
 - Conservación de estadísticas entre sesiones
 - Sistema de usuario con nombre personalizable
+
+### Progressive Web App (PWA)
+- **Instalable** como aplicación nativa en cualquier dispositivo
+- **Funciona offline** después de la primera carga
+- **Actualizaciones automáticas** en segundo plano
+- **Icono en escritorio/pantalla de inicio** como app nativa
+- **Modo standalone** sin barras del navegador
+- **Optimización de recursos** mediante caché inteligente
 
 ## Métricas de Rendimiento
 
@@ -198,6 +247,49 @@ El sistema mide y calcula:
 - **Precisión**: Porcentaje de aciertos sobre total de caracteres
 - **Aciertos y Errores**: Conteo detallado para análisis
 - **Tiempo**: Duración de cada ejercicio
+
+## Novedades Versión 2.0
+
+### Gestión de Usuario
+- Sistema de perfil de usuario con nombre personalizable
+- Modal de configuración de cuenta accesible desde el header
+- Visualización del nombre de usuario en la interfaz
+
+### Sistema de Importación/Exportación
+- Exportación de progreso en formato JSON con nombre y fecha
+- Importación de datos desde archivo para portabilidad entre dispositivos
+- Validación de formato de archivos importados
+- Confirmación antes de sobrescribir datos existentes
+- Mensajes informativos de éxito y error
+
+### Mejoras de Interfaz
+- Logo corporativo en el header
+- Favicon personalizado de la aplicación
+- Botón de configuración de cuenta en el header
+- Modal de perfil con gestión completa de datos
+
+### Mejoras de Responsividad
+- Optimización para múltiples tamaños de pantalla (desktop, tablet, móvil)
+- Breakpoints específicos: 1024px, 768px, 480px
+- Ajustes para modo landscape en dispositivos móviles
+- Controles de navegación siempre visibles con posición sticky
+- Contenedores con scroll interno para evitar pérdida de controles
+
+### Mejoras de Usabilidad
+- Cierre de modales con tecla ESC
+- Cierre de modales al hacer clic fuera del contenido
+- Cierre automático de modales al cambiar de sección
+- Mejor manejo de eventos para dispositivos táctiles
+
+### Progressive Web App (PWA)
+- Implementación completa de PWA con manifest.json
+- Service Worker para funcionamiento offline
+- Caché inteligente de recursos (Cache First strategy)
+- Instalable como aplicación nativa en todos los dispositivos
+- Iconos PWA en múltiples tamaños (72px a 512px)
+- Modo standalone para experiencia inmersiva
+- Actualizaciones automáticas en segundo plano
+- Soporte para iOS con meta tags específicos de Apple
 
 ## Futuras Mejoras Sugeridas
 
@@ -242,6 +334,6 @@ Agradecimientos especiales a todos los estudiantes del curso vacacional 2025 por
 
 ---
 
-**Versión**: 1.0.0  
-**Última actualización**: Diciembre 2025  
+**Versión**: 2.0.0  
+**Última actualización**: 10 de Diciembre de 2025  
 **Institución**: UCATEC - Curso Vacacional 2025
