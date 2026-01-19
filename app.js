@@ -430,10 +430,21 @@ function startPractice() {
         helperBadge.style.display = 'none';
     }
     
-    // Generar ejercicio más largo combinando múltiples textos
+    // Generar ejercicio combinando múltiples textos
     const texts = levelTexts[state.selectedLevel];
-    const shuffled = [...texts].sort(() => Math.random() - 0.5); // Mezclar el array
-    const selectedTexts = shuffled.slice(0, Math.min(15, texts.length)); // Tomar hasta 15 textos
+    let selectedTexts;
+
+    // Para niveles 10-15 (cuentos), mantener orden secuencial
+    // Para niveles 1-9 (ejercicios), mezclar aleatoriamente
+    if (state.selectedLevel >= 10) {
+        // Orden secuencial para cuentos
+        selectedTexts = texts.slice(0, Math.min(15, texts.length));
+    } else {
+        // Orden aleatorio para ejercicios de teclas
+        const shuffled = [...texts].sort(() => Math.random() - 0.5);
+        selectedTexts = shuffled.slice(0, Math.min(15, texts.length));
+    }
+
     state.practiceText = selectedTexts.join('  '); // Unir con doble espacio para separación
     
     state.currentPosition = 0;
