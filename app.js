@@ -53,19 +53,90 @@ const levelTexts = {
         '1111 2222 3333 4444', '5555 6666 7777 8888', '9999 0000 1234 5678', '147 258 369 159 753',
         '112 223 334 445 556', '667 778 889 990 001', '135 246 357 468 579', '159 267 348 426 537',
         '100 200 300 400 500', '111 333 555 777 999', '1357 2468 1590 3570', '1029 3847 5647 8290',
-        '12345 67890 09876 54321', '13579 24680 86420 97531', '11223 44556 77889 90012']
+        '12345 67890 09876 54321', '13579 24680 86420 97531', '11223 44556 77889 90012'],
+    10: ['uno dos tres cuatro cinco', 'seis siete ocho nueve diez', 'once doce trece catorce quince',
+        'dieciséis diecisiete dieciocho diecinueve veinte', 'veintiuno veintidós veintitrés veinticuatro veinticinco',
+        'veintiséis veintisiete veintiocho veintinueve treinta', 'treinta y uno treinta y dos treinta y tres',
+        'treinta y cuatro treinta y cinco treinta y seis', 'treinta y siete treinta y ocho treinta y nueve',
+        'cuarenta cuarenta y uno cuarenta y dos cuarenta y tres cuarenta y cuatro', 'cuarenta y cinco',
+        'cuarenta y seis cuarenta y siete cuarenta y ocho cuarenta y nueve', 'cincuenta cincuenta y uno',
+        'cincuenta y dos cincuenta y tres cincuenta y cuatro cincuenta y cinco', 'cincuenta y seis',
+        'cincuenta y siete cincuenta y ocho cincuenta y nueve sesenta', 'sesenta y uno sesenta y dos',
+        'sesenta y tres sesenta y cuatro sesenta y cinco', 'sesenta y seis sesenta y siete sesenta y ocho',
+        'sesenta y nueve setenta', 'setenta y uno setenta y dos setenta y tres', 'setenta y cuatro',
+        'setenta y cinco setenta y seis setenta y siete setenta y ocho', 'setenta y nueve ochenta',
+        'ochenta y uno ochenta y dos ochenta y tres ochenta y cuatro ochenta y cinco', 'ochenta y seis',
+        'ochenta y siete ochenta y ocho ochenta y nueve noventa', 'noventa y uno noventa y dos noventa y tres',
+        'noventa y cuatro noventa y cinco noventa y seis noventa y siete noventa y ocho noventa y nueve',
+        'cien ciento uno ciento dos ciento tres ciento cuatro ciento cinco', 
+        'ciento seis ciento siete ciento ocho ciento nueve doscientos',],
+    11: ['Había una vez en un bosque muy lejano', 'vivía un pequeño conejo llamado Saltarín',
+        'que soñaba con conocer el mundo entero', 'Un día decidió salir de su madriguera',
+        'y emprender una gran aventura', 'El sol brillaba con fuerza aquella mañana',
+        'cuando Saltarín dio sus primeros pasos', 'por el sendero del bosque encantado',
+        'Las flores le saludaban al pasar', 'y los pájaros cantaban melodías alegres',
+        'Saltarín estaba muy emocionado', 'por descubrir nuevos lugares y amigos',
+        'En su camino encontró una mariposa', 'de colores brillantes y alas hermosas',
+        'que le mostró el camino hacia el río', 'donde los peces jugaban felices',
+        'El pequeño conejo aprendió que la amistad', 'es el tesoro más valioso del mundo',
+        'Y desde ese día Saltarín compartió', 'sus aventuras con todos sus nuevos amigos',
+        'Colorín colorado este cuento ha terminado'],
+    12: ['Caperucita Roja iba por el bosque', 'llevando una cesta para su abuelita',
+        'con pasteles y miel muy dulce', 'Su mamá le dijo no hables con extraños',
+        'pero ella era muy curiosa', 'El lobo feroz la vio pasar',
+        'y pensó en un plan malvado', 'Caperucita siguió su camino',
+        'cantando una canción muy bonita', 'Las flores del bosque eran preciosas',
+        'y los árboles muy altos', 'El viento soplaba suavemente',
+        'moviendo las hojas con cariño', 'La casa de la abuelita estaba cerca',
+        'detrás de la colina verde', 'Caperucita tocó la puerta',
+        'y una voz extraña respondió adelante', 'El cazador llegó justo a tiempo',
+        'para salvar a Caperucita y su abuelita', 'Y todos vivieron felices para siempre'],
+    13: ['Los tres cerditos construyeron sus casas', 'el primero la hizo de paja',
+        'el segundo de madera resistente', 'y el tercero de ladrillos fuertes',
+        'Un día llegó el lobo malo', 'y sopló la casa de paja',
+        'que voló por los aires rápidamente', 'El cerdito corrió a casa de su hermano',
+        'pero el lobo también sopló esa casa', 'Los dos corrieron muy asustados',
+        'hacia la casa de ladrillos', 'El lobo sopló y sopló',
+        'pero no pudo derribarla', 'Los tres cerditos estaban a salvo',
+        'y el lobo se fue muy cansado', 'Aprendieron que el trabajo bien hecho',
+        'siempre da buenos resultados', 'Desde entonces construyen juntos',
+        'casas fuertes y seguras', 'Y viven felices los tres hermanitos'],
+    14: ['Pinocho era un muñeco de madera', 'que quería ser un niño de verdad',
+        'Su papá Gepetto lo quería mucho', 'y le enseñó a ser bueno y honesto',
+        'Un hada azul le dio vida', 'pero tenía una nariz especial',
+        'que crecía cuando decía mentiras', 'Pinocho aprendió muchas lecciones',
+        'sobre la importancia de decir la verdad', 'y de escuchar a los mayores',
+        'Tuvo aventuras en el mar', 'y conoció a un grillo sabio',
+        'que le daba buenos consejos', 'Después de demostrar su bondad',
+        'el hada lo convirtió en un niño real', 'Gepetto lloró de alegría',
+        'al abrazar a su querido hijo', 'Y juntos fueron muy felices',
+        'en su pequeño taller de juguetes', 'Fin de esta hermosa historia'],
+    15: ['El patito feo era diferente', 'a todos sus hermanos del estanque',
+        'Los demás patos se burlaban de él', 'porque no era igual que ellos',
+        'El patito se sentía muy triste', 'y decidió buscar un nuevo hogar',
+        'Caminó por campos y montañas', 'pasando frío y mucha hambre',
+        'Pero nunca perdió la esperanza', 'de encontrar donde pertenecer',
+        'Un día llegó a un lago hermoso', 'donde nadaban cisnes elegantes',
+        'Para su sorpresa vio su reflejo', 'y descubrió que era un cisne',
+        'el más hermoso de todos', 'Los otros cisnes lo recibieron',
+        'con mucho cariño y alegría', 'El patito feo había encontrado',
+        'su verdadera familia y hogar', 'Y fue feliz para siempre jamás']
 };
 
 const levelNames = {
     1: 'Fila Base - ASDF', 2: 'Fila Base - JKLÑ', 3: 'Fila Base Completa',
     4: 'Fila Superior - QWERT', 5: 'Fila Superior - YUIOP',
-    6: 'Fila Inferior - ZXCVB', 7: 'Fila Inferior - NM', 8: 'Palabras Completas', 9: 'Números'
+    6: 'Fila Inferior - ZXCVB', 7: 'Fila Inferior - NM', 8: 'Palabras Completas', 9: 'Números',
+    10: 'Números Escritos', 11: 'Cuento - Saltarín', 12: 'Cuento - Caperucita',
+    13: 'Cuento - Los Tres Cerditos', 14: 'Cuento - Pinocho', 15: 'Cuento - El Patito Feo'
 };
 
 const levelKeys = {
     1: ['A', 'S', 'D', 'F'], 2: ['J', 'K', 'L', 'Ñ'], 3: ['A', 'S', 'D', 'F', 'J', 'K', 'L', 'Ñ'],
     4: ['Q', 'W', 'E', 'R', 'T'], 5: ['Y', 'U', 'I', 'O', 'P'],
-    6: ['Z', 'X', 'C', 'V', 'B'], 7: ['N', 'M'], 8: ['Palabras'], 9: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    6: ['Z', 'X', 'C', 'V', 'B'], 7: ['N', 'M'], 8: ['Palabras'], 9: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+    10: ['Números'], 11: ['📖 Cuento'], 12: ['📖 Cuento'],
+    13: ['📖 Cuento'], 14: ['📖 Cuento'], 15: ['📖 Cuento']
 };
 
 const levelColors = [
@@ -73,7 +144,10 @@ const levelColors = [
     'linear-gradient(135deg, #00D4AA, #00E6B8)', 'linear-gradient(135deg, #F59E0B, #FBBF24)',
     'linear-gradient(135deg, #8B5CF6, #A78BFA)', 'linear-gradient(135deg, #EC4899, #F472B6)',
     'linear-gradient(135deg, #14B8A6, #2DD4BF)', 'linear-gradient(135deg, #EF4444, #F87171)',
-    'linear-gradient(135deg, #F59E0B, #FBBF24)'
+    'linear-gradient(135deg, #F59E0B, #FBBF24)', 'linear-gradient(135deg, #3B82F6, #60A5FA)',
+    'linear-gradient(135deg, #10B981, #34D399)', 'linear-gradient(135deg, #F97316, #FB923C)',
+    'linear-gradient(135deg, #6366F1, #818CF8)', 'linear-gradient(135deg, #EC4899, #F472B6)',
+    'linear-gradient(135deg, #8B5CF6, #A78BFA)', 'linear-gradient(135deg, #14B8A6, #5EEAD4)'
 ];
 
 const ranks = [
