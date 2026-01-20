@@ -36,6 +36,9 @@
                 <span>👤</span>
                 <span id="userName"></span>
             </div>
+            <div class="stat-badge streak" id="streakDisplay" style="display: none;">
+                <span>🔥 0 días</span>
+            </div>
             <div class="stat-badge level">
                 <span id="currentLevel">🐣</span>
                 <span id="levelName">Pollito</span>
@@ -45,6 +48,9 @@
                 <span id="totalPoints">0</span>
                 <span>pts</span>
             </div>
+            <button class="dark-mode-btn" id="darkModeBtn" title="Modo oscuro">
+                <span>🌙</span>
+            </button>
             <button class="sound-btn" id="soundToggleBtn" onclick="toggleSound()" title="Sonido activado">
                 <span>🔊</span>
             </button>
@@ -296,6 +302,17 @@
         
         <!-- SECCIÓN PRÁCTICA -->
         <section id="practica" class="section">
+            <!-- Barra de progreso del rango -->
+            <div class="rank-progress-container">
+                <div class="rank-progress-info">
+                    <span class="rank-progress-label">Progreso al siguiente nivel:</span>
+                    <span class="rank-progress-text" id="rankProgressText">150 pts para Tortuga 🐢</span>
+                </div>
+                <div class="rank-progress-track">
+                    <div class="rank-progress-bar" id="rankProgressBar" style="width: 0%"></div>
+                </div>
+            </div>
+
             <div class="card" id="levelSelection">
                 <h2 class="card-title">🎯 Selecciona un nivel de práctica</h2>
                 <div class="practice-goal-badge">
@@ -303,7 +320,10 @@
                     <span class="goal-text"><strong>Meta:</strong> Completa 5 ejercicios por nivel para dominar las teclas</span>
                 </div>
                 <div class="level-grid" id="levelGrid"></div>
-                <button class="start-btn" id="startPracticeBtn">🚀 ¡Comenzar Práctica!</button>
+                <div class="practice-buttons">
+                    <button class="start-btn" id="startPracticeBtn">🚀 ¡Comenzar Práctica!</button>
+                    <button class="free-practice-btn" id="freePracticeBtn">🎲 Práctica Libre</button>
+                </div>
             </div>
             
             <div class="practice-area" id="practiceArea" style="display: none;">

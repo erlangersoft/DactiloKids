@@ -554,6 +554,214 @@ function loadSoundPreference() {
     updateSoundButton();
 }
 
+// Sonido de celebración al completar ejercicio
+function playCelebrationSound() {
+    if (!soundEnabled || !audioContext) return;
+    if (audioContext.state === 'suspended') audioContext.resume();
+
+    const notes = [523.25, 659.25, 783.99, 1046.50]; // Do, Mi, Sol, Do alto
+    notes.forEach((freq, i) => {
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        osc.connect(gain);
+        gain.connect(audioContext.destination);
+        osc.frequency.setValueAtTime(freq, audioContext.currentTime + i * 0.15);
+        osc.type = 'sine';
+        gain.gain.setValueAtTime(0.15, audioContext.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + i * 0.15 + 0.3);
+        osc.start(audioContext.currentTime + i * 0.15);
+        osc.stop(audioContext.currentTime + i * 0.15 + 0.3);
+    });
+}
+
+// Sonido de fanfarria al subir de rango
+function playRankUpSound() {
+    if (!soundEnabled || !audioContext) return;
+    if (audioContext.state === 'suspended') audioContext.resume();
+
+    const notes = [392, 440, 494, 523, 587, 659, 784, 880]; // Escala ascendente
+    notes.forEach((freq, i) => {
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        osc.connect(gain);
+        gain.connect(audioContext.destination);
+        osc.frequency.setValueAtTime(freq, audioContext.currentTime + i * 0.1);
+        osc.type = 'triangle';
+        gain.gain.setValueAtTime(0.12, audioContext.currentTime + i * 0.1);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + i * 0.1 + 0.2);
+        osc.start(audioContext.currentTime + i * 0.1);
+        osc.stop(audioContext.currentTime + i * 0.1 + 0.2);
+    });
+}
+
+// ========== SISTEMA DE CONFETI ==========
+function createConfetti() {
+    const container = document.createElement('div');
+    container.id = 'confettiContainer';
+    container.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;overflow:hidden;';
+    document.body.appendChild(container);
+
+    const colors = ['#FFD700', '#FF6B9D', '#00D4AA', '#6C63FF', '#F59E0B', '#EC4899'];
+    const confettiCount = 150;
+
+    for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const size = Math.random() * 10 + 5;
+        const left = Math.random() * 100;
+        const animDuration = Math.random() * 3 + 2;
+        const delay = Math.random() * 0.5;
+
+        confetti.style.cssText = `
+            position:absolute;
+            width:${size}px;
+            height:${size}px;
+            background:${color};
+            left:${left}%;
+            top:-20px;
+            border-radius:${Math.random() > 0.5 ? '50%' : '0'};
+            animation:confettiFall ${animDuration}s ease-out ${delay}s forwards;
+            transform:rotate(${Math.random() * 360}deg);
+        `;
+        container.appendChild(confetti);
+    }
+
+    // Añadir estilos de animación si no existen
+    if (!document.getElementById('confettiStyles')) {
+        const style = document.createElement('style');
+        style.id = 'confettiStyles';
+        style.textContent = `
+            @keyframes confettiFall {
+                0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+                100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    // Limpiar después de la animación
+    setTimeout(() => container.remove(), 5000);
+}
+
+// ========== SISTEMA DE RACHAS (STREAKS) ==========
+function checkAndUpdateStreak() {
+    const today = new Date().toDateString();
+    const lastPractice = state.userData.lastPracticeDate;
+
+    if (!lastPractice) {
+        state.userData.currentStreak = 1;
+        state.userData.bestStreak = 1;
+    } else if (lastPractice === today) {
+        // Ya practicó hoy, no cambiar racha
+        return;
+    } else {
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        if (lastPractice === yesterday.toDateString()) {
+            // Día consecutivo
+            state.userData.currentStreak = (state.userData.currentStreak || 0) + 1;
+            if (state.userData.currentStreak > (state.userData.bestStreak || 0)) {
+                state.userData.bestStreak = state.userData.currentStreak;
+            }
+        } else {
+            // Racha perdida
+            state.userData.currentStreak = 1;
+        }
+    }
+    state.userData.lastPracticeDate = today;
+    saveUserData();
+}
+
+function getStreakBonus() {
+    const streak = state.userData.currentStreak || 0;
+    if (streak >= 7) return 5;
+    if (streak >= 3) return 2;
+    return 0;
+}
+
+// ========== ESTADÍSTICAS POR NIVEL ==========
+function saveLevelStats(level, wpm, accuracy) {
+    if (!state.userData.levelStats) {
+        state.userData.levelStats = {};
+    }
+    if (!state.userData.levelStats[level]) {
+        state.userData.levelStats[level] = { bestWpm: 0, bestAccuracy: 0, attempts: 0 };
+    }
+
+    const stats = state.userData.levelStats[level];
+    stats.attempts++;
+    if (wpm > stats.bestWpm) stats.bestWpm = wpm;
+    if (accuracy > stats.bestAccuracy) stats.bestAccuracy = accuracy;
+    saveUserData();
+}
+
+// ========== MODO OSCURO ==========
+let darkMode = false;
+
+function initDarkMode() {
+    const saved = localStorage.getItem('dactiloKidsDarkMode');
+    darkMode = saved === 'true';
+    applyDarkMode();
+}
+
+function toggleDarkMode() {
+    darkMode = !darkMode;
+    localStorage.setItem('dactiloKidsDarkMode', darkMode);
+    applyDarkMode();
+}
+
+function applyDarkMode() {
+    document.body.classList.toggle('dark-mode', darkMode);
+    const btn = document.getElementById('darkModeBtn');
+    if (btn) {
+        btn.innerHTML = darkMode ? '☀️' : '🌙';
+        btn.title = darkMode ? 'Modo claro' : 'Modo oscuro';
+    }
+}
+
+// ========== MODO PRÁCTICA LIBRE ==========
+let freePracticeMode = false;
+
+function startFreePractice() {
+    freePracticeMode = true;
+    document.getElementById('levelSelection').style.display = 'none';
+    document.getElementById('practiceArea').style.display = 'block';
+    document.getElementById('practiceTitle').textContent = 'Práctica Libre';
+    document.getElementById('currentExercise').textContent = '∞';
+    document.getElementById('totalExercises').textContent = '∞';
+
+    // Ocultar badge de ayuda
+    document.getElementById('helperBadge').style.display = 'none';
+
+    // Generar texto aleatorio de varios niveles
+    const allTexts = [];
+    for (let i = 8; i <= 20; i++) {
+        if (levelTexts[i]) {
+            allTexts.push(...levelTexts[i].slice(0, 5));
+        }
+    }
+    const shuffled = allTexts.sort(() => Math.random() - 0.5);
+    state.practiceText = shuffled.slice(0, 10).join(' ');
+
+    state.currentPosition = 0;
+    state.errors = 0;
+    state.totalChars = 0;
+    state.startTime = null;
+
+    renderText();
+    generatePracticeKeyboard();
+
+    const input = document.getElementById('inputArea');
+    input.value = '';
+    input.focus();
+
+    document.getElementById('wpmDisplay').textContent = '0';
+    document.getElementById('accuracyDisplay').textContent = '100%';
+    document.getElementById('timeDisplay').textContent = '0:00';
+
+    if (state.timerInterval) clearInterval(state.timerInterval);
+}
+
 // ========== ESTADO DE LA APLICACIÓN ==========
 let state = {
     currentSlide: 1,
@@ -611,8 +819,21 @@ document.addEventListener('DOMContentLoaded', () => {
     initUserProfile();
     initAudio();
     loadSoundPreference();
+    initDarkMode();
     updateUI();
-    
+
+    // Botón de práctica libre
+    const freePracticeBtn = document.getElementById('freePracticeBtn');
+    if (freePracticeBtn) {
+        freePracticeBtn.addEventListener('click', startFreePractice);
+    }
+
+    // Botón de modo oscuro
+    const darkModeBtn = document.getElementById('darkModeBtn');
+    if (darkModeBtn) {
+        darkModeBtn.addEventListener('click', toggleDarkMode);
+    }
+
     // Cerrar modales con tecla ESC
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
@@ -1095,7 +1316,7 @@ function updateStats() {
 
 function finishPractice() {
     clearInterval(state.timerInterval);
-    
+
     const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
     const mins = Math.floor(elapsed / 60);
     const secs = elapsed % 60;
@@ -1103,42 +1324,88 @@ function finishPractice() {
     const words = state.practiceText.length / 5;
     const minutes = elapsed / 60;
     const wpm = minutes > 0 ? Math.round(words / minutes) : 0;
-    
-    // Calcular puntos
+
+    // Guardar rango anterior para detectar subida de nivel
+    const previousRank = ranks.find(r => state.userData.points >= r.min && state.userData.points <= r.max) || ranks[0];
+
+    // Calcular puntos base
     let points = 10;
     if (accuracy === 100) points += 5;
     if (wpm > state.userData.bestWpm) { points += 15; state.userData.bestWpm = wpm; }
-    
+
+    // Bonus por racha
+    const streakBonus = getStreakBonus();
+    points += streakBonus;
+
+    // Actualizar racha
+    checkAndUpdateStreak();
+
     // Actualizar datos
     state.userData.points += points;
     state.userData.exercisesCompleted++;
     state.userData.totalAccuracy += accuracy;
     state.userData.accuracyCount++;
+
+    // Guardar estadísticas del nivel (si no es práctica libre)
+    if (!freePracticeMode) {
+        saveLevelStats(state.selectedLevel, wpm, accuracy);
+    }
+
     saveUserData();
-    
+
+    // Detectar subida de rango
+    const newRank = ranks.find(r => state.userData.points >= r.min && state.userData.points <= r.max) || ranks[0];
+    const rankUp = newRank.name !== previousRank.name;
+
     // Calcular aciertos y errores
     const correct = state.totalChars - state.errors;
     const errors = state.errors;
-    
+
+    // Reproducir sonido de celebración
+    playCelebrationSound();
+
+    // Si subió de rango, mostrar confeti y sonido especial
+    if (rankUp) {
+        setTimeout(() => {
+            createConfetti();
+            playRankUpSound();
+        }, 500);
+    }
+
     // Mostrar modal
     document.getElementById('resultWpm').textContent = wpm;
     document.getElementById('resultAccuracy').textContent = `${accuracy}%`;
     document.getElementById('resultTime').textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
     document.getElementById('resultCorrect').textContent = correct;
     document.getElementById('resultErrors').textContent = errors;
-    document.getElementById('pointsEarned').textContent = `+${points} puntos`;
-    
+
+    // Mostrar puntos con desglose
+    let pointsText = `+${points} puntos`;
+    if (streakBonus > 0) {
+        pointsText += ` (🔥 +${streakBonus} racha)`;
+    }
+    document.getElementById('pointsEarned').textContent = pointsText;
+
     document.getElementById('resultIcon').textContent = accuracy >= 90 ? '🎉' : accuracy >= 70 ? '👍' : '💪';
-    document.getElementById('resultTitle').textContent = accuracy >= 90 ? '¡Excelente!' : accuracy >= 70 ? '¡Buen trabajo!' : '¡Sigue practicando!';
-    
+
+    // Título especial si subió de rango
+    if (rankUp) {
+        document.getElementById('resultTitle').textContent = `¡Subiste a ${newRank.name}! ${newRank.icon}`;
+    } else {
+        document.getElementById('resultTitle').textContent = accuracy >= 90 ? '¡Excelente!' : accuracy >= 70 ? '¡Buen trabajo!' : '¡Sigue practicando!';
+    }
+
     // Actualizar subtítulo con progreso de ejercicios
     const subtitle = document.getElementById('resultSubtitle');
-    if (state.currentExercise < state.totalExercises) {
+    if (freePracticeMode) {
+        subtitle.textContent = 'Modo práctica libre completado';
+        freePracticeMode = false;
+    } else if (state.currentExercise < state.totalExercises) {
         subtitle.textContent = `Ejercicio ${state.currentExercise} de ${state.totalExercises} completado`;
     } else {
         subtitle.textContent = `🎊 ¡Has completado todos los ejercicios del nivel! 🎊`;
     }
-    
+
     document.getElementById('resultsModal').classList.add('active');
     updateUI();
 }
@@ -1182,21 +1449,66 @@ function updateUI() {
     document.getElementById('currentLevel').textContent = currentRank.icon;
     document.getElementById('levelName').textContent = currentRank.name;
     document.getElementById('totalPoints').textContent = state.userData.points;
-    
+
+    // Actualizar barra de progreso del rango
+    updateRankProgress(currentRank);
+
     // Actualizar estadísticas
     document.getElementById('statPoints').textContent = state.userData.points;
     document.getElementById('statExercises').textContent = state.userData.exercisesCompleted;
     document.getElementById('statBestWpm').textContent = state.userData.bestWpm;
-    const avgAccuracy = state.userData.accuracyCount > 0 
-        ? Math.round(state.userData.totalAccuracy / state.userData.accuracyCount) 
+    const avgAccuracy = state.userData.accuracyCount > 0
+        ? Math.round(state.userData.totalAccuracy / state.userData.accuracyCount)
         : 0;
     document.getElementById('statAccuracy').textContent = `${avgAccuracy}%`;
-    
+
+    // Actualizar racha
+    updateStreakDisplay();
+
     // Actualizar niveles
     initLevelsDisplay();
-    
+
     // Actualizar nombre de usuario en header
     updateUserNameDisplay();
+}
+
+function updateRankProgress(currentRank) {
+    const progressBar = document.getElementById('rankProgressBar');
+    const progressText = document.getElementById('rankProgressText');
+    if (!progressBar) return;
+
+    const currentIndex = ranks.indexOf(currentRank);
+    const nextRank = ranks[currentIndex + 1];
+
+    if (!nextRank || currentRank.max === Infinity) {
+        // Ya está en el rango máximo
+        progressBar.style.width = '100%';
+        progressBar.style.background = currentRank.color;
+        if (progressText) progressText.textContent = '¡Nivel máximo alcanzado!';
+    } else {
+        const pointsInRank = state.userData.points - currentRank.min;
+        const rankRange = nextRank.min - currentRank.min;
+        const progress = Math.min(100, Math.round((pointsInRank / rankRange) * 100));
+        progressBar.style.width = `${progress}%`;
+        progressBar.style.background = currentRank.color;
+        if (progressText) {
+            const pointsNeeded = nextRank.min - state.userData.points;
+            progressText.textContent = `${pointsNeeded} pts para ${nextRank.name} ${nextRank.icon}`;
+        }
+    }
+}
+
+function updateStreakDisplay() {
+    const streakElement = document.getElementById('streakDisplay');
+    if (!streakElement) return;
+
+    const streak = state.userData.currentStreak || 0;
+    if (streak > 0) {
+        streakElement.innerHTML = `🔥 ${streak} día${streak > 1 ? 's' : ''}`;
+        streakElement.style.display = 'flex';
+    } else {
+        streakElement.style.display = 'none';
+    }
 }
 
 // ========== GESTIÓN DE PERFIL Y PROGRESO ==========

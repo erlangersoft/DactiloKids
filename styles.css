@@ -744,6 +744,89 @@ body {
     transform: scale(1.1); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.5);
 }
 
+/* ========== BOTÓN DE MODO OSCURO ========== */
+.dark-mode-btn {
+    background: linear-gradient(135deg, #6366F1, #818CF8);
+    border: none; border-radius: 50%; width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.3s ease;
+    font-size: 20px; color: white; box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+}
+.dark-mode-btn:hover {
+    transform: scale(1.1); box-shadow: 0 4px 12px rgba(99, 102, 241, 0.5);
+}
+
+/* ========== BADGE DE RACHA ========== */
+.stat-badge.streak {
+    background: linear-gradient(135deg, #F59E0B, #FBBF24);
+    color: white;
+    font-weight: 600;
+}
+
+/* ========== BARRA DE PROGRESO DEL RANGO ========== */
+.rank-progress-container {
+    background: white;
+    border-radius: 16px;
+    padding: 16px 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.rank-progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.rank-progress-label {
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+}
+.rank-progress-text {
+    font-size: 14px;
+    color: var(--primary);
+    font-weight: 600;
+}
+.rank-progress-track {
+    height: 12px;
+    background: #E5E7EB;
+    border-radius: 6px;
+    overflow: hidden;
+}
+.rank-progress-bar {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.5s ease, background 0.3s ease;
+    background: linear-gradient(135deg, #FFD93D, #F59E0B);
+}
+
+/* ========== BOTONES DE PRÁCTICA ========== */
+.practice-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+.free-practice-btn {
+    background: linear-gradient(135deg, #8B5CF6, #A78BFA);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 16px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+.free-practice-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+}
+
 /* ========== PERFIL DE USUARIO ========== */
 .account-btn {
     background: linear-gradient(135deg, #1B5FAD, #3B8DD8);
@@ -1275,4 +1358,222 @@ body {
     }
     .helper-badge { font-size: 10px; padding: 6px 10px; }
     .btn { font-size: 12px; padding: 8px; }
+}
+
+/* ========== MODO OSCURO ========== */
+body.dark-mode {
+    --bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+    background: var(--bg-gradient);
+}
+
+body.dark-mode .header {
+    background: rgba(26, 26, 46, 0.95);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+body.dark-mode .main-nav {
+    background: rgba(22, 33, 62, 0.9);
+}
+
+body.dark-mode .nav-btn {
+    background: rgba(255,255,255,0.05);
+    color: #a0aec0;
+}
+
+body.dark-mode .nav-btn:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+body.dark-mode .nav-btn.active {
+    background: linear-gradient(135deg, #4F46E5, #7C3AED);
+    color: white;
+}
+
+body.dark-mode .card,
+body.dark-mode .slide,
+body.dark-mode .practice-area,
+body.dark-mode .rank-progress-container {
+    background: rgba(26, 26, 46, 0.9);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+body.dark-mode .card-title,
+body.dark-mode .slide-title,
+body.dark-mode .practice-title,
+body.dark-mode .main-title {
+    color: #f0f0f0;
+}
+
+body.dark-mode .subtitle,
+body.dark-mode p,
+body.dark-mode .info-item span,
+body.dark-mode .benefit-item span {
+    color: #a0aec0;
+}
+
+body.dark-mode .text-display {
+    background: rgba(15, 15, 35, 0.8);
+    border-color: rgba(255,255,255,0.1);
+    color: #e2e8f0;
+}
+
+body.dark-mode .input-area {
+    background: rgba(15, 15, 35, 0.8);
+    border-color: rgba(255,255,255,0.2);
+    color: white;
+}
+
+body.dark-mode .input-area:focus {
+    border-color: #7C3AED;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+}
+
+body.dark-mode .level-card {
+    background: rgba(30, 30, 50, 0.8);
+    border-color: rgba(255,255,255,0.1);
+}
+
+body.dark-mode .level-card:hover {
+    border-color: rgba(255,255,255,0.3);
+}
+
+body.dark-mode .level-name {
+    color: #e2e8f0;
+}
+
+body.dark-mode .level-key {
+    background: rgba(255,255,255,0.1);
+    color: #a0aec0;
+}
+
+body.dark-mode .mini-stat {
+    background: rgba(255,255,255,0.05);
+}
+
+body.dark-mode .mini-stat-value {
+    color: white;
+}
+
+body.dark-mode .mini-stat-label {
+    color: #a0aec0;
+}
+
+body.dark-mode .helper-badge {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(251, 191, 36, 0.2));
+    border-color: rgba(245, 158, 11, 0.5);
+}
+
+body.dark-mode .stat-card {
+    background: rgba(30, 30, 50, 0.8);
+    border-color: rgba(255,255,255,0.1);
+}
+
+body.dark-mode .stat-value {
+    color: white;
+}
+
+body.dark-mode .stat-label {
+    color: #a0aec0;
+}
+
+body.dark-mode .rank-item {
+    background: rgba(30, 30, 50, 0.8);
+    border-color: rgba(255,255,255,0.1);
+}
+
+body.dark-mode .rank-points {
+    color: #a0aec0;
+}
+
+body.dark-mode .modal-content,
+body.dark-mode .modal,
+body.dark-mode .profile-modal {
+    background: rgba(26, 26, 46, 0.98);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+body.dark-mode .modal-content h2,
+body.dark-mode .profile-modal h2 {
+    color: white;
+}
+
+body.dark-mode .modal-content p,
+body.dark-mode .profile-modal label {
+    color: #a0aec0;
+}
+
+body.dark-mode .profile-modal input {
+    background: rgba(15, 15, 35, 0.8);
+    border-color: rgba(255,255,255,0.2);
+    color: white;
+}
+
+body.dark-mode .rank-progress-track {
+    background: rgba(255,255,255,0.1);
+}
+
+body.dark-mode .rank-progress-label {
+    color: #a0aec0;
+}
+
+body.dark-mode .practice-goal-badge {
+    background: rgba(79, 70, 229, 0.2);
+    border-color: rgba(79, 70, 229, 0.5);
+}
+
+body.dark-mode .practice-goal-badge .goal-text {
+    color: #a0aec0;
+}
+
+body.dark-mode .slide-nav-btn {
+    background: rgba(255,255,255,0.1);
+    color: #a0aec0;
+}
+
+body.dark-mode .slide-nav-btn:hover {
+    background: rgba(255,255,255,0.2);
+    color: white;
+}
+
+body.dark-mode .slide-dots .dot {
+    background: rgba(255,255,255,0.3);
+}
+
+body.dark-mode .slide-dots .dot.active {
+    background: #7C3AED;
+}
+
+/* Responsive para nuevos botones en modo oscuro */
+@media (max-width: 768px) {
+    body.dark-mode .rank-progress-container {
+        padding: 12px 16px;
+    }
+    .dark-mode-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dark-mode-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+    .rank-progress-container {
+        padding: 10px 14px;
+    }
+    .rank-progress-label,
+    .rank-progress-text {
+        font-size: 12px;
+    }
+    .practice-buttons {
+        flex-direction: column;
+    }
+    .free-practice-btn {
+        padding: 14px 24px;
+        font-size: 16px;
+    }
 }
