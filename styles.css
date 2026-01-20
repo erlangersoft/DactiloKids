@@ -207,16 +207,21 @@ body {
 /* Contenedor del teclado SVG */
 .keyboard-svg-container {
     width: 100%;
-    max-width: 900px;
-    margin: 16px auto;
-    border-radius: 12px;
+    max-width: 950px;
+    margin: 12px auto;
+    border-radius: 16px;
     overflow: hidden;
+    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.25);
+    border: 2px solid rgba(108, 99, 255, 0.2);
+    background: transparent;
 }
 
 .keyboard-svg-container object {
     width: 100%;
     height: auto;
     display: block;
+    border-radius: 14px;
+    background: transparent;
 }
 .keyboard-row { display: flex; justify-content: center; gap: 4px; margin-bottom: 6px; }
 
@@ -826,6 +831,13 @@ div.modal[style*="display:none"] {
     .slide-title { font-size: 28px; }
     .big-emoji { font-size: 60px; }
     .huge-emoji { font-size: 100px; }
+
+    /* Practice area */
+    .practice-area { padding: 24px; }
+    .practice-title { font-size: 22px; }
+    .mini-stat-value { font-size: 20px; }
+    .text-display { font-size: 20px; padding: 14px 18px; }
+    .input-area { font-size: 20px; padding: 16px; }
 }
 
 /* Tablets pequeñas y móviles grandes */
@@ -896,8 +908,52 @@ div.modal[style*="display:none"] {
     
     .key { min-width: 28px; height: 28px; font-size: 10px; }
     .key.space { min-width: 150px; }
-    
+
     .info-box, .gradient-box { padding: 16px; }
+
+    /* Practice area - tablets pequeñas */
+    .practice-area { padding: 20px; border-radius: 16px; }
+    .practice-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+    .practice-stats {
+        width: 100%;
+        justify-content: space-between;
+        gap: 8px;
+    }
+    .mini-stat {
+        padding: 6px 12px;
+        flex: 1;
+        min-width: 0;
+    }
+    .mini-stat-value { font-size: 18px; }
+    .mini-stat-label { font-size: 10px; }
+    .practice-title { font-size: 18px; }
+    .exercise-progress { font-size: 11px; padding: 4px 10px; }
+    .text-display {
+        font-size: 18px;
+        padding: 12px 14px;
+        height: 75px;
+        max-height: 75px;
+        line-height: 1.6;
+    }
+    .input-area {
+        font-size: 18px;
+        padding: 14px;
+        margin-bottom: 12px;
+        letter-spacing: 1px;
+    }
+    .helper-badge {
+        padding: 10px 14px;
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
+    .practice-buttons { gap: 8px; margin-top: 12px; }
+    .btn { padding: 12px; font-size: 14px; }
+    .keyboard-svg-container { margin: 8px auto; }
 }
 
 /* Móviles pequeños */
@@ -1013,12 +1069,77 @@ div.modal[style*="display:none"] {
         max-width: 95%;
     }
     
-    .key { 
-        min-width: 24px; 
-        height: 24px; 
-        font-size: 9px; 
+    .key {
+        min-width: 24px;
+        height: 24px;
+        font-size: 9px;
     }
     .key.space { min-width: 100px; }
+
+    /* Practice area - móviles pequeños */
+    .practice-area { padding: 14px; border-radius: 14px; }
+    .practice-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+    .practice-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+    }
+    .mini-stat {
+        padding: 6px 8px;
+        border-radius: 8px;
+    }
+    .mini-stat-value { font-size: 16px; }
+    .mini-stat-label { font-size: 9px; }
+    .practice-title { font-size: 16px; margin-bottom: 2px; }
+    .exercise-progress { font-size: 10px; padding: 3px 8px; }
+    .text-display {
+        font-size: 16px;
+        padding: 10px 12px;
+        height: 65px;
+        max-height: 65px;
+        line-height: 1.5;
+        letter-spacing: 0.5px;
+        margin-bottom: 10px;
+    }
+    .input-area {
+        font-size: 16px;
+        padding: 12px;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+        border-width: 2px;
+        border-radius: 10px;
+    }
+    .helper-badge {
+        padding: 8px 12px;
+        font-size: 11px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+    .practice-buttons { gap: 6px; margin-top: 10px; }
+    .btn {
+        padding: 10px;
+        font-size: 13px;
+        border-radius: 10px;
+    }
+    .keyboard-svg-container {
+        margin: 6px auto;
+        border-radius: 12px;
+    }
+
+    /* Level cards en móviles */
+    .level-grid { gap: 10px; }
+    .level-card { padding: 14px; border-radius: 12px; }
+    .level-header { margin-bottom: 8px; }
+    .level-number { width: 32px; height: 32px; font-size: 14px; }
+    .level-name { font-size: 15px; }
+    .level-description { font-size: 12px; }
+    .level-keys { gap: 4px; margin-top: 8px; }
+    .level-key { padding: 3px 8px; font-size: 12px; }
 }
 
 /* Altura muy pequeña (landscape en móviles) */
@@ -1026,19 +1147,61 @@ div.modal[style*="display:none"] {
     .slides-container {
         max-height: calc(100vh - 180px);
     }
-    
-    .slide { 
+
+    .slide {
         padding: 16px;
         min-height: 200px;
         max-height: calc(100vh - 240px);
     }
-    
+
     .header { padding: 6px 12px; }
     .main-nav { padding: 8px; }
     .slide-controls { padding: 8px 12px; }
-    
+
     .big-emoji { font-size: 36px; margin-bottom: 12px; }
     .huge-emoji { font-size: 56px; }
     .main-title { font-size: 22px; }
     .subtitle { font-size: 15px; }
+
+    /* Practice area en landscape */
+    .practice-area { padding: 12px; }
+    .practice-header { margin-bottom: 8px; gap: 8px; }
+    .mini-stat { padding: 4px 10px; }
+    .mini-stat-value { font-size: 16px; }
+    .text-display {
+        height: 55px;
+        max-height: 55px;
+        font-size: 16px;
+        padding: 8px 12px;
+        margin-bottom: 8px;
+    }
+    .input-area {
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    .helper-badge { padding: 6px 10px; margin-bottom: 8px; font-size: 11px; }
+    .practice-buttons { margin-top: 8px; }
+    .btn { padding: 8px; }
+}
+
+/* Pantallas muy pequeñas (menos de 360px) */
+@media (max-width: 360px) {
+    .practice-area { padding: 10px; }
+    .practice-title { font-size: 14px; }
+    .exercise-progress { font-size: 9px; padding: 2px 6px; }
+    .mini-stat-value { font-size: 14px; }
+    .mini-stat-label { font-size: 8px; }
+    .text-display {
+        font-size: 14px;
+        height: 55px;
+        max-height: 55px;
+        padding: 8px 10px;
+    }
+    .input-area {
+        font-size: 14px;
+        padding: 10px;
+    }
+    .helper-badge { font-size: 10px; padding: 6px 10px; }
+    .btn { font-size: 12px; padding: 8px; }
 }
