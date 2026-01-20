@@ -501,53 +501,167 @@ function renderText() {
     highlightNextKey();
 }
 
+// Mapeo de caracteres a IDs del SVG
+const charToSvgId = {
+    'a': 'k-A', 'b': 'k-B', 'c': 'k-C', 'd': 'k-D', 'e': 'k-E', 'f': 'k-F', 'g': 'k-G',
+    'h': 'k-H', 'i': 'k-I', 'j': 'k-J', 'k': 'k-K', 'l': 'k-L', 'm': 'k-M', 'n': 'k-N',
+    'ñ': 'k-Ñ', 'o': 'k-O', 'p': 'k-P', 'q': 'k-Q', 'r': 'k-R', 's': 'k-S', 't': 'k-T',
+    'u': 'k-U', 'v': 'k-V', 'w': 'k-W', 'x': 'k-X', 'y': 'k-Y', 'z': 'k-Z',
+    '0': 'k-0', '1': 'k-1', '2': 'k-2', '3': 'k-3', '4': 'k-4',
+    '5': 'k-5', '6': 'k-6', '7': 'k-7', '8': 'k-8', '9': 'k-9',
+    ' ': 'k-Space', ',': 'k-Comma', '.': 'k-Period', '-': 'k-Hyphen',
+    '+': 'k-Plus', '´': 'k-Acute', "'": 'k-Apostrophe', '¡': 'k-ExclInv',
+    '{': 'k-BraceL', '}': 'k-BraceR', '<': 'k-LTGT', '>': 'k-LTGT',
+    'á': 'k-A', 'é': 'k-E', 'í': 'k-I', 'ó': 'k-O', 'ú': 'k-U'
+};
+
+// Variable para almacenar referencia al SVG
+let svgDoc = null;
+let lastHighlightedKey = null;
+
+function getSvgDocument() {
+    const svgObject = document.getElementById('keyboardSvg');
+    if (svgObject && svgObject.contentDocument) {
+        return svgObject.contentDocument;
+    }
+    return null;
+}
+
 function highlightNextKey() {
-    // Limpiar cualquier resaltado anterior
-    document.querySelectorAll('.key.next-key').forEach(k => k.classList.remove('next-key'));
-    
+    // Obtener documento SVG
+    const svg = getSvgDocument();
+    if (!svg) return;
+
+    // Limpiar resaltado anterior
+    if (lastHighlightedKey) {
+        lastHighlightedKey.classList.remove('key-highlight');
+        lastHighlightedKey = null;
+    }
+
     // Solo resaltar en niveles 1-3 (modo ayuda para principiantes)
     if (state.selectedLevel <= 3 && state.currentPosition < state.practiceText.length) {
-        const nextChar = state.practiceText[state.currentPosition];
-        const nextKey = document.querySelector(`[data-key="${nextChar.toLowerCase()}"]`);
-        if (nextKey) {
-            nextKey.classList.add('next-key');
+        const nextChar = state.practiceText[state.currentPosition].toLowerCase();
+        const keyId = charToSvgId[nextChar];
+
+        if (keyId) {
+            const keyElement = svg.getElementById(keyId);
+            if (keyElement) {
+                keyElement.classList.add('key-highlight');
+                lastHighlightedKey = keyElement;
+            }
+        }
+    }
+}
+
+function highlightKeyFeedback(char, isCorrect) {
+    const svg = getSvgDocument();
+    if (!svg) return;
+
+    const keyId = charToSvgId[char.toLowerCase()];
+    if (keyId) {
+        const keyElement = svg.getElementById(keyId);
+        if (keyElement) {
+            const feedbackClass = isCorrect ? 'key-correct' : 'key-wrong';
+            keyElement.classList.add(feedbackClass);
+            setTimeout(() => keyElement.classList.remove(feedbackClass), 200);
         }
     }
 }
 
 function generatePracticeKeyboard() {
-    document.getElementById('practiceKeyboard').innerHTML = generateKeyboardHTML();
-    highlightNextKey(); // Resaltar la primera tecla al iniciar
+    // El SVG ya está cargado en el HTML, solo necesitamos esperar a que cargue
+    const svgObject = document.getElementById('keyboardSvg');
+
+    svgObject.onload = function() {
+        // Inyectar estilos de resaltado en el SVG
+        const svg = svgObject.contentDocument;
+        if (svg) {
+            const style = svg.createElementNS('http://www.w3.org/2000/svg', 'style');
+            style.textContent = `
+                .key-highlight {
+                    fill: #FFD93D !important;
+                    stroke: #F59E0B !important;
+                    stroke-width: 4 !important;
+                    filter: drop-shadow(0 0 10px rgba(255, 217, 61, 0.8));
+                    animation: svgPulse 1s ease-in-out infinite;
+                }
+                .key-correct {
+                    fill: #10B981 !important;
+                    transition: fill 0.1s ease;
+                }
+                .key-wrong {
+                    fill: #EF4444 !important;
+                    transition: fill 0.1s ease;
+                }
+                @keyframes svgPulse {
+                    0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 217, 61, 0.8)); }
+                    50% { filter: drop-shadow(0 0 20px rgba(255, 217, 61, 1)); }
+                }
+            `;
+            svg.querySelector('svg').appendChild(style);
+            highlightNextKey();
+        }
+    };
+
+    // Si ya está cargado, ejecutar directamente
+    if (svgObject.contentDocument && svgObject.contentDocument.querySelector('svg')) {
+        const svg = svgObject.contentDocument;
+        if (!svg.querySelector('style[data-custom]')) {
+            const style = svg.createElementNS('http://www.w3.org/2000/svg', 'style');
+            style.setAttribute('data-custom', 'true');
+            style.textContent = `
+                .key-highlight {
+                    fill: #FFD93D !important;
+                    stroke: #F59E0B !important;
+                    stroke-width: 4 !important;
+                    filter: drop-shadow(0 0 10px rgba(255, 217, 61, 0.8));
+                    animation: svgPulse 1s ease-in-out infinite;
+                }
+                .key-correct {
+                    fill: #10B981 !important;
+                    transition: fill 0.1s ease;
+                }
+                .key-wrong {
+                    fill: #EF4444 !important;
+                    transition: fill 0.1s ease;
+                }
+                @keyframes svgPulse {
+                    0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 217, 61, 0.8)); }
+                    50% { filter: drop-shadow(0 0 20px rgba(255, 217, 61, 1)); }
+                }
+            `;
+            svg.querySelector('svg').appendChild(style);
+        }
+        highlightNextKey();
+    }
 }
 
 function handleTyping(e) {
     const input = e.target;
     const typed = input.value;
-    
+
     if (!state.startTime) {
         state.startTime = Date.now();
         state.timerInterval = setInterval(updateTimer, 1000);
     }
-    
+
     if (typed.length > state.currentPosition) {
         const expectedChar = state.practiceText[state.currentPosition];
         const typedChar = typed[typed.length - 1];
-        
+
         state.totalChars++;
-        
-        const key = document.querySelector(`[data-key="${expectedChar.toLowerCase()}"]`);
-        
+
         if (typedChar === expectedChar) {
             state.currentPosition++;
-            if (key) { key.classList.add('correct'); setTimeout(() => key.classList.remove('correct'), 200); }
+            highlightKeyFeedback(expectedChar, true);
         } else {
             state.errors++;
-            if (key) { key.classList.add('wrong'); setTimeout(() => key.classList.remove('wrong'), 200); }
+            highlightKeyFeedback(expectedChar, false);
         }
-        
+
         renderText();
         updateStats();
-        
+
         if (state.currentPosition >= state.practiceText.length) {
             finishPractice();
         }

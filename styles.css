@@ -203,6 +203,21 @@ body {
 
 /* ========== KEYBOARD ========== */
 .keyboard-display { background: #2D3748; border-radius: 16px; padding: 20px; margin: 20px 0; }
+
+/* Contenedor del teclado SVG */
+.keyboard-svg-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 16px auto;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.keyboard-svg-container object {
+    width: 100%;
+    height: auto;
+    display: block;
+}
 .keyboard-row { display: flex; justify-content: center; gap: 4px; margin-bottom: 6px; }
 
 .key {
@@ -478,10 +493,10 @@ body {
 .mini-stat-label { font-size: 11px; color: var(--muted); }
 
 .text-display {
-    background: #F8FAFC; border-radius: 12px; padding: 24px;
-    font-family: 'Courier New', monospace; font-size: 24px;
-    line-height: 2; margin-bottom: 20px; min-height: 100px; letter-spacing: 2px;
-    max-height: 200px; overflow-y: auto; overflow-x: hidden;
+    background: #F8FAFC; border-radius: 12px; padding: 16px 20px;
+    font-family: 'Courier New', monospace; font-size: 22px;
+    line-height: 1.8; margin-bottom: 16px; letter-spacing: 1px;
+    height: 85px; max-height: 85px; overflow-y: auto; overflow-x: hidden;
     word-wrap: break-word; white-space: pre-wrap;
     scroll-behavior: smooth;
 }
