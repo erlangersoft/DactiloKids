@@ -417,6 +417,7 @@ body {
 
 /* ========== SESSIONS GRID ========== */
 .sessions-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.sessions-grid-20 { grid-template-columns: repeat(4, 1fr); gap: 10px; }
 .session-card {
     border-radius: 14px; padding: 16px; text-align: center; color: white;
     transition: all 0.3s ease; cursor: pointer;
@@ -439,14 +440,19 @@ body {
 .session-card:hover::before { opacity: 0.8; }
 .session-card:active { transform: translateY(-2px) scale(1.01); }
 .session-number {
-    width: 32px; height: 32px; border-radius: 50%;
+    width: 28px; height: 28px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     font-weight: bold; background: rgba(255,255,255,0.3);
-    margin: 0 auto 8px; font-size: 14px;
+    margin: 0 auto 6px; font-size: 12px;
 }
-.session-name { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
-.session-desc { font-size: 10px; opacity: 0.9; }
-.session-icon { font-size: 20px; margin-top: 8px; }
+.session-name { font-size: 12px; font-weight: 600; margin-bottom: 2px; }
+.session-desc { font-size: 9px; opacity: 0.9; }
+.session-icon { font-size: 18px; margin-top: 6px; }
+.sessions-grid-20 .session-card { padding: 12px 8px; }
+.sessions-grid-20 .session-number { width: 26px; height: 26px; font-size: 11px; margin-bottom: 4px; }
+.sessions-grid-20 .session-name { font-size: 11px; }
+.sessions-grid-20 .session-desc { font-size: 8px; }
+.sessions-grid-20 .session-icon { font-size: 16px; margin-top: 4px; }
 
 .progress-container { margin-top: 24px; }
 .progress-label { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 600; }
@@ -1042,6 +1048,7 @@ body {
     
     .two-columns, .tips-grid, .finger-guide { grid-template-columns: 1fr; }
     .sessions-grid { grid-template-columns: repeat(2, 1fr); }
+    .sessions-grid-20 { grid-template-columns: repeat(4, 1fr); gap: 8px; }
     .special-keys-grid { grid-template-columns: repeat(2, 1fr); }
     .keyboard-parts-grid { grid-template-columns: repeat(2, 1fr); }
     .keyboard-part { font-size: 12px; padding: 8px 10px; }
@@ -1187,6 +1194,15 @@ body {
         grid-template-columns: 1fr;
         gap: 12px;
     }
+    .sessions-grid-20 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    .sessions-grid-20 .session-card { padding: 10px 6px; }
+    .sessions-grid-20 .session-number { width: 24px; height: 24px; font-size: 10px; }
+    .sessions-grid-20 .session-name { font-size: 10px; }
+    .sessions-grid-20 .session-desc { font-size: 8px; }
+    .sessions-grid-20 .session-icon { font-size: 14px; }
 
     .keyboard-parts-grid {
         grid-template-columns: 1fr;
