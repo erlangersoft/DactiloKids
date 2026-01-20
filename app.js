@@ -304,8 +304,13 @@ function initSessionCards() {
 
 // ========== TECLADO VISUAL ==========
 function initKeyboard() {
-    const keyboardHTML = generateKeyboardHTML();
-    document.getElementById('keyboardTheory').innerHTML = keyboardHTML;
+    // El teclado de teoría ahora usa el SVG directamente en el HTML
+    // Esta función se mantiene para compatibilidad pero ya no genera el teclado HTML
+    const keyboardTheory = document.getElementById('keyboardTheory');
+    if (keyboardTheory) {
+        const keyboardHTML = generateKeyboardHTML();
+        keyboardTheory.innerHTML = keyboardHTML;
+    }
 }
 
 function generateKeyboardHTML() {
