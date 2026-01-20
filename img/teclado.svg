@@ -1,0 +1,297 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1620 780" width="1620" height="780">
+  <style>
+    :root{
+      --bg:#f6f7f9;
+      --shell:#d8d8dc;
+      --shell-stroke:#9a9aa3;
+      --key-stroke:rgba(0,0,0,.25);
+      --key-text:#111;
+      --muted:#7a7575;
+    }
+    .title{font:800 54px system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;fill:#111}
+    .label{font:700 18px system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;fill:var(--muted)}
+    .shell{fill:var(--shell);stroke:var(--shell-stroke);stroke-width:6}
+    .key{stroke:var(--key-stroke);stroke-width:2;rx:12;ry:12}
+    .key-home{stroke:#fff;stroke-width:5}
+    .ktext{font:700 16px system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;fill:#fff;pointer-events:none;user-select:none}
+    .ktextSmall{font:700 12px system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;fill:#fff;pointer-events:none;user-select:none}
+    .c-red{fill:#e53935}.c-green{fill:#43a047}.c-yellow{fill:#fbc02d}.c-blue{fill:#1e88e5}.c-purple{fill:#7e57c2}.c-gray{fill:#6d6d72}
+  </style>
+
+  <rect width="1620" height="780" fill="var(--bg)"/>
+
+  <!-- Title -->
+  <g transform="translate(60,30)">
+    <rect x="0" y="0" width="1500" height="80" rx="36" ry="36" fill="#c7d7df" opacity=".9"/>
+    <text x="750" y="55" text-anchor="middle" class="title">¡Escribe sin mirar como un experto!</text>
+  </g>
+
+  <!-- Keyboard shell -->
+  <g id="keyboard" transform="translate(30,135)">
+    <path class="shell"
+      d="M60,0 H1440
+         c60,0 90,35 90,90
+         v310
+         c0,70 -35,110 -110,110
+         H160
+         C70,510 20,470 20,390
+         V90
+         C20,35 40,0 60,0 Z" />
+
+    <!-- Layout constants -->
+    <!-- key: 54x54 gap: 8 -->
+    <!-- left block width aligned to 15u-ish -->
+
+    <g id="allKeys" transform="translate(70,45)">
+
+      <!-- ===== Top function row ===== -->
+      <g id="funcRow" transform="translate(0,0)">
+        <rect id="k-Esc" class="key c-gray" x="0" y="0" width="70" height="54" data-hand="none" data-finger="none"/>
+        <text class="ktext" x="35" y="34" text-anchor="middle">Esc</text>
+
+        <g transform="translate(90,0)">
+          <!-- F1..F12 -->
+          <g id="fkeys">
+            <rect id="k-F1"  class="key c-gray" x="0"   y="0" width="54" height="54"/><text class="ktext" x="27"  y="34" text-anchor="middle">F1</text>
+            <rect id="k-F2"  class="key c-gray" x="62"  y="0" width="54" height="54"/><text class="ktext" x="89"  y="34" text-anchor="middle">F2</text>
+            <rect id="k-F3"  class="key c-gray" x="124" y="0" width="54" height="54"/><text class="ktext" x="151" y="34" text-anchor="middle">F3</text>
+            <rect id="k-F4"  class="key c-gray" x="186" y="0" width="54" height="54"/><text class="ktext" x="213" y="34" text-anchor="middle">F4</text>
+
+            <rect id="k-F5"  class="key c-gray" x="272" y="0" width="54" height="54"/><text class="ktext" x="299" y="34" text-anchor="middle">F5</text>
+            <rect id="k-F6"  class="key c-gray" x="334" y="0" width="54" height="54"/><text class="ktext" x="361" y="34" text-anchor="middle">F6</text>
+            <rect id="k-F7"  class="key c-gray" x="396" y="0" width="54" height="54"/><text class="ktext" x="423" y="34" text-anchor="middle">F7</text>
+            <rect id="k-F8"  class="key c-gray" x="458" y="0" width="54" height="54"/><text class="ktext" x="485" y="34" text-anchor="middle">F8</text>
+
+            <rect id="k-F9"  class="key c-gray" x="544" y="0" width="54" height="54"/><text class="ktext" x="571" y="34" text-anchor="middle">F9</text>
+            <rect id="k-F10" class="key c-gray" x="606" y="0" width="54" height="54"/><text class="ktext" x="633" y="34" text-anchor="middle">F10</text>
+            <rect id="k-F11" class="key c-gray" x="668" y="0" width="54" height="54"/><text class="ktext" x="695" y="34" text-anchor="middle">F11</text>
+            <rect id="k-F12" class="key c-gray" x="730" y="0" width="54" height="54"/><text class="ktext" x="757" y="34" text-anchor="middle">F12</text>
+          </g>
+
+          <!-- Nav cluster (Print/Scroll/Pause simplified) -->
+          <g id="sysKeys" transform="translate(850,0)">
+            <rect id="k-PrtSc" class="key c-gray" x="0" y="0" width="54" height="54"/><text class="ktextSmall" x="27" y="24" text-anchor="middle">Prt</text><text class="ktextSmall" x="27" y="40" text-anchor="middle">Sc</text>
+            <rect id="k-Scroll" class="key c-gray" x="62" y="0" width="54" height="54"/><text class="ktextSmall" x="89" y="32" text-anchor="middle">Scroll</text>
+            <rect id="k-Pause" class="key c-gray" x="124" y="0" width="54" height="54"/><text class="ktextSmall" x="151" y="32" text-anchor="middle">Pause</text>
+          </g>
+        </g>
+      </g>
+
+      <!-- ===== Row 1: ` 1..0 '¡? + Backspace ===== -->
+      <g id="row1" transform="translate(0,70)">
+        <rect id="k-Backtick" class="key c-red" x="0" y="0" width="54" height="54" data-hand="left" data-finger="pinky"/>
+        <text class="ktext" x="27" y="34" text-anchor="middle">º</text>
+
+        <g transform="translate(62,0)">
+          <rect id="k-1" class="key c-red" x="0" y="0" width="54" height="54" data-hand="left" data-finger="pinky"/><text class="ktext" x="27" y="34" text-anchor="middle">1</text>
+          <rect id="k-2" class="key c-green" x="62" y="0" width="54" height="54" data-hand="left" data-finger="ring"/><text class="ktext" x="89" y="34" text-anchor="middle">2</text>
+          <rect id="k-3" class="key c-yellow" x="124" y="0" width="54" height="54" data-hand="left" data-finger="middle"/><text class="ktext" x="151" y="34" text-anchor="middle">3</text>
+          <rect id="k-4" class="key c-blue" x="186" y="0" width="54" height="54" data-hand="left" data-finger="index"/><text class="ktext" x="213" y="34" text-anchor="middle">4</text>
+          <rect id="k-5" class="key c-blue" x="248" y="0" width="54" height="54" data-hand="left" data-finger="index"/><text class="ktext" x="275" y="34" text-anchor="middle">5</text>
+          <rect id="k-6" class="key c-blue" x="310" y="0" width="54" height="54" data-hand="right" data-finger="index"/><text class="ktext" x="337" y="34" text-anchor="middle">6</text>
+          <rect id="k-7" class="key c-blue" x="372" y="0" width="54" height="54" data-hand="right" data-finger="index"/><text class="ktext" x="399" y="34" text-anchor="middle">7</text>
+          <rect id="k-8" class="key c-yellow" x="434" y="0" width="54" height="54" data-hand="right" data-finger="middle"/><text class="ktext" x="461" y="34" text-anchor="middle">8</text>
+          <rect id="k-9" class="key c-green" x="496" y="0" width="54" height="54" data-hand="right" data-finger="ring"/><text class="ktext" x="523" y="34" text-anchor="middle">9</text>
+          <rect id="k-0" class="key c-red" x="558" y="0" width="54" height="54" data-hand="right" data-finger="pinky"/><text class="ktext" x="585" y="34" text-anchor="middle">0</text>
+
+          <rect id="k-Apostrophe" class="key c-red" x="620" y="0" width="54" height="54" data-hand="right" data-finger="pinky"/><text class="ktext" x="647" y="34" text-anchor="middle">'</text>
+          <rect id="k-ExclInv" class="key c-red" x="682" y="0" width="54" height="54" data-hand="right" data-finger="pinky"/><text class="ktext" x="709" y="34" text-anchor="middle">¡</text>
+
+          <rect id="k-Backspace" class="key c-red" x="744" y="0" width="115" height="54" data-hand="right" data-finger="pinky"/>
+          <text class="ktext" x="813" y="34" text-anchor="middle">Backspace</text>
+
+          <!-- Insert/Home/PgUp -->
+          <g id="edit1" transform="translate(880,0)">
+            <rect id="k-Insert" class="key c-gray" x="0" y="0" width="54" height="54"/><text class="ktextSmall" x="27" y="32" text-anchor="middle">Ins</text>
+            <rect id="k-Home" class="key c-gray" x="62" y="0" width="54" height="54"/><text class="ktextSmall" x="89" y="32" text-anchor="middle">Home</text>
+            <rect id="k-PageUp" class="key c-gray" x="124" y="0" width="54" height="54"/><text class="ktextSmall" x="151" y="26" text-anchor="middle">Pg</text><text class="ktextSmall" x="151" y="40" text-anchor="middle">Up</text>
+          </g>
+
+          <!-- Numpad row -->
+          <g id="np1" transform="translate(1076,0)">
+            <rect id="k-NumLock" class="key c-blue" x="0" y="0" width="54" height="54"/><text class="ktextSmall" x="27" y="26" text-anchor="middle">Num</text><text class="ktextSmall" x="27" y="40" text-anchor="middle">Lock</text>
+            <rect id="k-NPDivide" class="key c-yellow" x="62" y="0" width="54" height="54"/><text class="ktext" x="89" y="34" text-anchor="middle">/</text>
+            <rect id="k-NPMultiply" class="key c-green" x="124" y="0" width="54" height="54"/><text class="ktext" x="151" y="34" text-anchor="middle">*</text>
+            <rect id="k-NPMinus" class="key c-red" x="186" y="0" width="54" height="54"/><text class="ktext" x="213" y="34" text-anchor="middle">-</text>
+          </g>
+        </g>
+      </g>
+
+      <!-- ===== Row 2: Tab + QWERTY + ´ + + ===== -->
+      <g id="row2" transform="translate(0,132)">
+        <rect id="k-Tab" class="key c-red" x="0" y="0" width="80" height="54" data-hand="left" data-finger="pinky"/>
+        <text class="ktext" x="45" y="34" text-anchor="middle">Tab</text>
+
+        <g transform="translate(90,0)">
+          <!-- QWERTYUIOP -->
+          <rect id="k-Q" class="key c-red" x="0" y="0" width="54" height="54" data-hand="left" data-finger="pinky"/><text class="ktext" x="27" y="34" text-anchor="middle">Q</text>
+          <rect id="k-W" class="key c-green" x="62" y="0" width="54" height="54" data-hand="left" data-finger="ring"/><text class="ktext" x="89" y="34" text-anchor="middle">W</text>
+          <rect id="k-E" class="key c-yellow" x="124" y="0" width="54" height="54" data-hand="left" data-finger="middle"/><text class="ktext" x="151" y="34" text-anchor="middle">E</text>
+          <rect id="k-R" class="key c-blue" x="186" y="0" width="54" height="54" data-hand="left" data-finger="index"/><text class="ktext" x="213" y="34" text-anchor="middle">R</text>
+          <rect id="k-T" class="key c-blue" x="248" y="0" width="54" height="54" data-hand="left" data-finger="index"/><text class="ktext" x="275" y="34" text-anchor="middle">T</text>
+
+          <rect id="k-Y" class="key c-blue" x="310" y="0" width="54" height="54" data-hand="right" data-finger="index"/><text class="ktext" x="337" y="34" text-anchor="middle">Y</text>
+          <rect id="k-U" class="key c-blue" x="372" y="0" width="54" height="54" data-hand="right" data-finger="index"/><text class="ktext" x="399" y="34" text-anchor="middle">U</text>
+          <rect id="k-I" class="key c-yellow" x="434" y="0" width="54" height="54" data-hand="right" data-finger="middle"/><text class="ktext" x="461" y="34" text-anchor="middle">I</text>
+          <rect id="k-O" class="key c-green" x="496" y="0" width="54" height="54" data-hand="right" data-finger="ring"/><text class="ktext" x="523" y="34" text-anchor="middle">O</text>
+          <rect id="k-P" class="key c-red" x="558" y="0" width="54" height="54" data-hand="right" data-finger="pinky"/><text class="ktext" x="585" y="34" text-anchor="middle">P</text>
+
+          <!-- [ ] equivalents for ES: ´ and + (approx) -->
+          <rect id="k-Acute" class="key c-red" x="620" y="0" width="54" height="54" data-hand="right" data-finger="pinky"/><text class="ktext" x="647" y="34" text-anchor="middle">´</text>
+          <rect id="k-Plus" class="key c-red" x="682" y="0" width="54" height="54" data-hand="right" data-finger="pinky"/><text class="ktext" x="709" y="34" text-anchor="middle">+</text>
+
+          <!-- Enter grande estilo ISO (ocupa 2 filas visualmente representado en fila 3) -->
+
+          <!-- Delete/End/PgDn -->
+          <g id="edit2" transform="translate(853,0)">
+            <rect id="k-Delete" class="key c-gray" x="0" y="0" width="54" height="54"/><text class="ktextSmall" x="27" y="32" text-anchor="middle">Del</text>
+            <rect id="k-End" class="key c-gray" x="62" y="0" width="54" height="54"/><text class="ktextSmall" x="89" y="32" text-anchor="middle">End</text>
+            <rect id="k-PageDown" class="key c-gray" x="124" y="0" width="54" height="54"/><text class="ktextSmall" x="151" y="26" text-anchor="middle">Pg</text><text class="ktextSmall" x="151" y="40" text-anchor="middle">Dn</text>
+          </g>
+
+          <!-- Numpad 7 8 9 + -->
+          <g id="np2" transform="translate(1049,0)">
+            <rect id="k-NP7" class="key c-blue" x="0" y="0" width="54" height="54"/><text class="ktext" x="27" y="34" text-anchor="middle">7</text>
+            <rect id="k-NP8" class="key c-yellow" x="62" y="0" width="54" height="54"/><text class="ktext" x="89" y="34" text-anchor="middle">8</text>
+            <rect id="k-NP9" class="key c-green" x="124" y="0" width="54" height="54"/><text class="ktext" x="151" y="34" text-anchor="middle">9</text>
+
+            <rect id="k-NPPlus" class="key c-red" x="186" y="0" width="54" height="116"/>
+            <text class="ktext" x="213" y="66" text-anchor="middle">+</text>
+          </g>
+        </g>
+      </g>
+
+      <!-- ===== Row 3: Caps + ASDFGHJKLÑ + { } ===== -->
+      <g id="row3" transform="translate(0,194)">
+        <rect id="k-CapsLock" class="key c-red" x="0" y="0" width="95" height="54" data-hand="left" data-finger="pinky"/>
+        <text class="ktext" x="45" y="34" text-anchor="middle">Caps</text>
+
+        <g transform="translate(105,0)">
+          <rect id="k-A" class="key key-home c-red" x="0" y="0" width="54" height="54" data-hand="left" data-finger="pinky"/><text class="ktext" x="27" y="34" text-anchor="middle">A</text>
+          <rect id="k-S" class="key key-home c-green" x="62" y="0" width="54" height="54" data-hand="left" data-finger="ring"/><text class="ktext" x="89" y="34" text-anchor="middle">S</text>
+          <rect id="k-D" class="key key-home c-yellow" x="124" y="0" width="54" height="54" data-hand="left" data-finger="middle"/><text class="ktext" x="151" y="34" text-anchor="middle">D</text>
+          <rect id="k-F" class="key key-home c-blue" x="186" y="0" width="54" height="54" data-hand="left" data-finger="index"/><text class="ktext" x="213" y="34" text-anchor="middle">F</text>
+          <rect id="k-G" class="key c-blue" x="248" y="0" width="54" height="54" data-hand="left" data-finger="index"/><text class="ktext" x="275" y="34" text-anchor="middle">G</text>
+
+          <rect id="k-H" class="key c-blue" x="310" y="0" width="54" height="54" data-hand="right" data-finger="index"/><text class="ktext" x="337" y="34" text-anchor="middle">H</text>
+          <rect id="k-J" class="key key-home c-blue" x="372" y="0" width="54" height="54" data-hand="right" data-finger="index"/><text class="ktext" x="399" y="34" text-anchor="middle">J</text>
+          <rect id="k-K" class="key key-home c-yellow" x="434" y="0" width="54" height="54" data-hand="right" data-finger="middle"/><text class="ktext" x="461" y="34" text-anchor="middle">K</text>
+          <rect id="k-L" class="key key-home c-green" x="496" y="0" width="54" height="54" data-hand="right" data-finger="ring"/><text class="ktext" x="523" y="34" text-anchor="middle">L</text>
+          <rect id="k-Ñ" class="key key-home c-red" x="558" y="0" width="54" height="54" data-hand="right" data-finger="pinky"/><text class="ktext" x="585" y="34" text-anchor="middle">Ñ</text>
+
+          <rect id="k-BraceL" class="key c-red" x="620" y="0" width="54" height="54" data-hand="right" data-finger="pinky"/><text class="ktext" x="647" y="34" text-anchor="middle">{</text>
+          <rect id="k-BraceR" class="key c-red" x="682" y="0" width="54" height="54" data-hand="right" data-finger="pinky"/><text class="ktext" x="709" y="34" text-anchor="middle">}</text>
+
+          <rect id="k-Enter" class="key c-red" x="745" y="-61" width="70" height="115" data-hand="right" data-finger="pinky"/>
+          <text class="ktext" x="780" y="34" text-anchor="middle">Enter</text>
+
+          <!-- Numpad 4 5 6 -->
+          <g id="np3" transform="translate(1034,0)">
+            <rect id="k-NP4" class="key c-blue" x="0" y="0" width="54" height="54"/><text class="ktext" x="27" y="34" text-anchor="middle">4</text>
+            <rect id="k-NP5" class="key c-yellow" x="62" y="0" width="54" height="54"/><text class="ktext" x="89" y="34" text-anchor="middle">5</text>
+            <rect id="k-NP6" class="key c-green" x="124" y="0" width="54" height="54"/><text class="ktext" x="151" y="34" text-anchor="middle">6</text>
+          </g>
+        </g>
+      </g>
+
+      <!-- ===== Row 4: Shift + <ZXCVBNM,.;- > + Shift ===== -->
+      <g id="row4" transform="translate(0,256)">
+        <rect id="k-ShiftL" class="key c-red" x="0" y="0" width="65" height="54" data-hand="left" data-finger="pinky"/>
+        <text class="ktext" x="35" y="34" text-anchor="middle">Shift</text>
+
+        <g transform="translate(75,0)">
+          <rect id="k-LTGT" class="key c-red" x="0" y="0" width="54" height="54" data-hand="left" data-finger="pinky"/><text class="ktext" x="27" y="34" text-anchor="middle">&lt;</text>
+          <rect id="k-Z" class="key c-red" x="62" y="0" width="54" height="54" data-hand="left" data-finger="pinky"/><text class="ktext" x="89" y="34" text-anchor="middle">Z</text>
+          <rect id="k-X" class="key c-green" x="124" y="0" width="54" height="54" data-hand="left" data-finger="ring"/><text class="ktext" x="151" y="34" text-anchor="middle">X</text>
+          <rect id="k-C" class="key c-yellow" x="186" y="0" width="54" height="54" data-hand="left" data-finger="middle"/><text class="ktext" x="213" y="34" text-anchor="middle">C</text>
+          <rect id="k-V" class="key c-blue" x="248" y="0" width="54" height="54" data-hand="left" data-finger="index"/><text class="ktext" x="275" y="34" text-anchor="middle">V</text>
+          <rect id="k-B" class="key c-blue" x="310" y="0" width="54" height="54" data-hand="left" data-finger="index"/><text class="ktext" x="337" y="34" text-anchor="middle">B</text>
+
+          <rect id="k-N" class="key c-blue" x="372" y="0" width="54" height="54" data-hand="right" data-finger="index"/><text class="ktext" x="399" y="34" text-anchor="middle">N</text>
+          <rect id="k-M" class="key c-blue" x="434" y="0" width="54" height="54" data-hand="right" data-finger="index"/><text class="ktext" x="461" y="34" text-anchor="middle">M</text>
+
+          <rect id="k-Comma" class="key c-yellow" x="496" y="0" width="54" height="54" data-hand="right" data-finger="middle"/><text class="ktext" x="523" y="34" text-anchor="middle">,</text>
+          <rect id="k-Period" class="key c-green" x="558" y="0" width="54" height="54" data-hand="right" data-finger="ring"/><text class="ktext" x="585" y="34" text-anchor="middle">.</text>
+          <rect id="k-Hyphen" class="key c-red" x="620" y="0" width="54" height="54" data-hand="right" data-finger="pinky"/><text class="ktext" x="647" y="34" text-anchor="middle">-</text>
+
+          <rect id="k-ShiftR" class="key c-red" x="682" y="0" width="160" height="54" data-hand="right" data-finger="pinky"/>
+          <text class="ktext" x="782" y="34" text-anchor="middle">Shift</text>
+
+          <!-- Arrow cluster -->
+          <g id="arrows" transform="translate(868,0)">
+            <rect id="k-Up" class="key c-gray" x="62" y="0" width="54" height="54"/><text class="ktext" x="89" y="34" text-anchor="middle">↑</text>
+          </g>
+
+          <!-- Numpad 1 2 3 + Enter -->
+          <g id="np4" transform="translate(1064,0)">
+            <rect id="k-NP1" class="key c-blue" x="0" y="0" width="54" height="54"/><text class="ktext" x="27" y="34" text-anchor="middle">1</text>
+            <rect id="k-NP2" class="key c-yellow" x="62" y="0" width="54" height="54"/><text class="ktext" x="89" y="34" text-anchor="middle">2</text>
+            <rect id="k-NP3" class="key c-green" x="124" y="0" width="54" height="54"/><text class="ktext" x="151" y="34" text-anchor="middle">3</text>
+
+            <rect id="k-NPEnter" class="key c-red" x="186" y="0" width="54" height="116"/>
+            <text class="ktextSmall" x="213" y="66" text-anchor="middle">Enter</text>
+          </g>
+        </g>
+      </g>
+
+      <!-- ===== Row 5: Ctrl Win Alt Space AltGr Menu Ctrl + arrows + numpad 0 . ===== -->
+      <g id="row5" transform="translate(0,318)">
+        <rect id="k-CtrlL" class="key c-gray" x="0" y="0" width="80" height="54" data-hand="left" data-finger="pinky"/>
+        <text class="ktext" x="40" y="34" text-anchor="middle">Ctrl</text>
+
+        <rect id="k-Win" class="key c-gray" x="88" y="0" width="70" height="54" data-hand="left" data-finger="thumb"/>
+        <text class="ktext" x="123" y="34" text-anchor="middle">Win</text>
+
+        <rect id="k-AltL" class="key c-gray" x="166" y="0" width="70" height="54" data-hand="left" data-finger="thumb"/>
+        <text class="ktext" x="201" y="34" text-anchor="middle">Alt</text>
+
+        <rect id="k-Space" class="key c-purple" x="244" y="0" width="420" height="54" data-hand="both" data-finger="thumb"/>
+        <text class="ktext" x="454" y="34" text-anchor="middle">Space</text>
+
+        <rect id="k-AltGr" class="key c-gray" x="672" y="0" width="80" height="54" data-hand="right" data-finger="thumb"/>
+        <text class="ktext" x="712" y="34" text-anchor="middle">AltGr</text>
+
+        <rect id="k-Menu" class="key c-gray" x="760" y="0" width="70" height="54" data-hand="right" data-finger="thumb"/>
+        <text class="ktext" x="795" y="34" text-anchor="middle">Menu</text>
+
+        <rect id="k-CtrlR" class="key c-gray" x="838" y="0" width="80" height="54" data-hand="right" data-finger="pinky"/>
+        <text class="ktext" x="878" y="34" text-anchor="middle">Ctrl</text>
+
+        <!-- Arrow cluster (Left/Down/Right) -->
+        <g id="arrows2" transform="translate(944,0)">
+          <rect id="k-Left" class="key c-gray" x="0" y="0" width="54" height="54"/><text class="ktext" x="27" y="34" text-anchor="middle">←</text>
+          <rect id="k-Down" class="key c-gray" x="62" y="0" width="54" height="54"/><text class="ktext" x="89" y="34" text-anchor="middle">↓</text>
+          <rect id="k-Right" class="key c-gray" x="124" y="0" width="54" height="54"/><text class="ktext" x="151" y="34" text-anchor="middle">→</text>
+        </g>
+
+        <!-- Numpad 0 . -->
+        <g id="np5" transform="translate(1140,0)">
+          <rect id="k-NP0" class="key c-purple" x="0" y="0" width="116" height="54"/><text class="ktext" x="58" y="34" text-anchor="middle">0</text>
+          <rect id="k-NPDot" class="key c-green" x="124" y="0" width="54" height="54"/><text class="ktext" x="151" y="34" text-anchor="middle">.</text>
+        </g>
+      </g>
+
+    </g>
+
+    <!-- Labels -->
+    <text x="440" y="630" class="label" text-anchor="middle">Mano Izquierda</text>
+    <text x="710" y="630" class="label" text-anchor="middle">Mano Derecha</text>
+  </g>
+
+  <!-- Home row legend -->
+  <g id="homeLegend" transform="translate(330,640)">
+    <rect x="0" y="23" width="540" height="80" rx="10" ry="10" fill="none" stroke="#222" stroke-width="3" stroke-dasharray="8 8"/>
+    <text x="270" y="45" class="label" text-anchor="middle">INICIO DE FILA</text>
+    <g transform="translate(30,0)">
+      <rect class="key key-home c-red" x="0" y="50" width="44" height="44"/><text class="ktext" x="22" y="79" text-anchor="middle">A</text>
+      <rect class="key key-home c-green" x="54" y="50" width="44" height="44"/><text class="ktext" x="76" y="79" text-anchor="middle">S</text>
+      <rect class="key key-home c-yellow" x="108" y="50" width="44" height="44"/><text class="ktext" x="130" y="79" text-anchor="middle">D</text>
+      <rect class="key key-home c-blue" x="162" y="50" width="44" height="44"/><text class="ktext" x="184" y="79" text-anchor="middle">F</text>
+
+      <rect class="key key-home c-blue" x="270" y="50" width="44" height="44"/><text class="ktext" x="292" y="79" text-anchor="middle">J</text>
+      <rect class="key key-home c-yellow" x="324" y="50" width="44" height="44"/><text class="ktext" x="346" y="79" text-anchor="middle">K</text>
+      <rect class="key key-home c-green" x="378" y="50" width="44" height="44"/><text class="ktext" x="400" y="79" text-anchor="middle">L</text>
+      <rect class="key key-home c-red" x="432" y="50" width="44" height="44"/><text class="ktext" x="454" y="79" text-anchor="middle">Ñ</text>
+    </g>
+  </g>
+</svg>
