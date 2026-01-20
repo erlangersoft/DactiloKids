@@ -732,6 +732,18 @@ body {
     transform: rotate(90deg);
 }
 
+/* ========== BOTÓN DE SONIDO ========== */
+.sound-btn {
+    background: linear-gradient(135deg, #10B981, #34D399);
+    border: none; border-radius: 50%; width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.3s ease;
+    font-size: 20px; color: white; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+.sound-btn:hover {
+    transform: scale(1.1); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.5);
+}
+
 /* ========== PERFIL DE USUARIO ========== */
 .account-btn {
     background: linear-gradient(135deg, #1B5FAD, #3B8DD8);
@@ -907,10 +919,10 @@ body {
         padding: 6px 12px; 
         font-size: 13px;
     }
-    .account-btn { 
-        width: 40px; 
-        height: 40px; 
-        font-size: 18px; 
+    .account-btn, .sound-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
     }
     
     .main-nav { 
@@ -1028,10 +1040,10 @@ body {
         text-overflow: ellipsis;
         white-space: nowrap;
     }
-    .account-btn { 
-        width: 36px; 
-        height: 36px; 
-        font-size: 16px; 
+    .account-btn, .sound-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
     }
     
     .main-nav { 

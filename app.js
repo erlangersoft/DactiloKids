@@ -477,12 +477,82 @@ const levelColors = [
 ];
 
 const ranks = [
-    { name: 'Pollito', icon: '🐣', min: 0, max: 99, color: '#FFD93D' },
-    { name: 'Tortuga', icon: '🐢', min: 100, max: 299, color: '#6BCB77' },
-    { name: 'Conejo', icon: '🐇', min: 300, max: 499, color: '#4D96FF' },
-    { name: 'Águila', icon: '🦅', min: 500, max: 799, color: '#FF6B9D' },
-    { name: 'Cohete', icon: '🚀', min: 800, max: Infinity, color: '#A78BFA' }
+    { name: 'Pollito', icon: '🐣', min: 0, max: 149, color: '#FFD93D' },
+    { name: 'Tortuga', icon: '🐢', min: 150, max: 349, color: '#6BCB77' },
+    { name: 'Conejo', icon: '🐇', min: 350, max: 599, color: '#4D96FF' },
+    { name: 'Águila', icon: '🦅', min: 600, max: 899, color: '#FF6B9D' },
+    { name: 'Cohete', icon: '🚀', min: 900, max: 1299, color: '#A78BFA' },
+    { name: 'Leyenda', icon: '👑', min: 1300, max: Infinity, color: '#FFD700' }
 ];
+
+// ========== SISTEMA DE SONIDO ==========
+let audioContext = null;
+let soundEnabled = true;
+
+function initAudio() {
+    try {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    } catch (e) {
+        console.log('Web Audio API no disponible');
+        soundEnabled = false;
+    }
+}
+
+function playKeySound(isCorrect) {
+    if (!soundEnabled || !audioContext) return;
+
+    // Reanudar el contexto si está suspendido (requerido por algunos navegadores)
+    if (audioContext.state === 'suspended') {
+        audioContext.resume();
+    }
+
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+
+    if (isCorrect) {
+        // Sonido agradable para tecla correcta - tono suave
+        oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+        oscillator.type = 'sine';
+        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.1);
+    } else {
+        // Sonido de error - tono más grave y corto
+        oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
+        oscillator.type = 'square';
+        gainNode.gain.setValueAtTime(0.15, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.15);
+    }
+}
+
+function toggleSound() {
+    soundEnabled = !soundEnabled;
+    updateSoundButton();
+    // Guardar preferencia
+    localStorage.setItem('dactiloKidsSoundEnabled', soundEnabled);
+}
+
+function updateSoundButton() {
+    const btn = document.getElementById('soundToggleBtn');
+    if (btn) {
+        btn.innerHTML = soundEnabled ? '🔊' : '🔇';
+        btn.title = soundEnabled ? 'Sonido activado' : 'Sonido desactivado';
+    }
+}
+
+function loadSoundPreference() {
+    const saved = localStorage.getItem('dactiloKidsSoundEnabled');
+    if (saved !== null) {
+        soundEnabled = saved === 'true';
+    }
+    updateSoundButton();
+}
 
 // ========== ESTADO DE LA APLICACIÓN ==========
 let state = {
@@ -539,6 +609,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initLevelsDisplay();
     initSessionCards();
     initUserProfile();
+    initAudio();
+    loadSoundPreference();
     updateUI();
     
     // Cerrar modales con tecla ESC
@@ -776,7 +848,7 @@ function startPractice() {
         selectedTexts = shuffled.slice(0, Math.min(15, texts.length));
     }
 
-    state.practiceText = selectedTexts.join('  '); // Unir con doble espacio para separación
+    state.practiceText = selectedTexts.join(' '); // Unir con un solo espacio
     
     state.currentPosition = 0;
     state.errors = 0;
@@ -985,9 +1057,11 @@ function handleTyping(e) {
         if (typedChar === expectedChar) {
             state.currentPosition++;
             highlightKeyFeedback(expectedChar, true);
+            playKeySound(true);
         } else {
             state.errors++;
             highlightKeyFeedback(expectedChar, false);
+            playKeySound(false);
         }
 
         renderText();
