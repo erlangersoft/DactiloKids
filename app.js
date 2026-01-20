@@ -1,59 +1,249 @@
 // ========== DATOS Y CONFIGURACIÓN ==========
 const levelTexts = {
-    1: ['asdf asdf asdf asdf', 'fdsa fdsa fdsa fdsa', 'asdf fdsa asdf fdsa', 'asd dsa fds sdf asd', 'dad sad fad asa dad', 
-        'asdf asdf fdsa fdsa', 'aaa sss ddd fff', 'fas das sas fas', 'fad sad dad fad', 'asdf fdsa asdf fdsa',
-        'dasa fasa safa dafa', 'sadf fasddasf safd', 'afds sfda dfas asfd', 'dsaf asfd fdas sadf',
-        'asd fds sad fad', 'ddd aaa sss fff', 'fds sdf asd dsa', 'fas saf das sad', 'asdf asdf asdf',
-        'fdsa fdsa fdsa', 'afd sfd daf saf', 'sada fada dada safa', 'asfd fdas sadf dfas',
-        'ada fafa dada sasa', 'fsdf asds dfdf sdsd', 'afas dfdf sasas fafaf'],
-    2: ['jklñ jklñ jklñ jklñ', 'ñlkj ñlkj ñlkj ñlkj', 'jkl lkj kjl jkl lkj', 'jñj klk lñl ñkj jlñ',
-        'jklñ ñlkj jklñ ñlkj', 'jjj kkk lll ñññ', 'ñlj klj lkj ñlj', 'jañ lañ kañ jañ', 'jklñ lkjñ jklñ lkjñ',
-        'laja kaña jala ñaka', 'jañl kñlj lñjk ñlkj', 'añjk lñkj jñlk kñlj', 'ñjkl jlkñ klñj lkjñ',
-        'jkl klj lkj jkl', 'ñññ jjj kkk lll', 'lkñ jkl ñlk kjl', 'jala kala laja ñaja', 'klñj jlñk ñjkl',
-        'jaja kaka lala ñaña', 'jkjk lñlñ klkl ñjñj', 'laja jala kaña ñaka', 'jlkñ klñj ñjkl lkjñ',
-        'kjkj lñlñ jñjñ klkl', 'ñaña jaja kaka lala', 'jklñ jklñ ñlkj ñlkj'],
-    3: ['asdf jklñ asdf jklñ', 'fdsa ñlkj fdsa ñlkj', 'aj sk dl fñ aj sk dl', 'afjñ sldkfjñ alskdfjñ',
-        'asdf jklñ fdsa ñlkj', 'aj fk sl dñ aj fk sl', 'alas faja sala kaj', 'lasa daka faja sañ',
-        'asdf jklñ asdf jklñ', 'fdsa ñlkj fdsa ñlkj', 'asjk dflñ sadk fjlñ', 'jfas kñds ljaf ñksd',
-        'afjk sldñ dkañ fslj', 'jfad ksañ ldfj añsk', 'alfa safa laja daja', 'kasa faja lasa sañ',
-        'añsk jfld ksañ dflj', 'jask fdlñsakj fñld', 'lañ kaj faj saj', 'daf jal sañ fañ',
-        'afjs dklñ sajf ñldk', 'jafs ñldk sajf kdñl', 'asdf jklñ fdsa ñlkj', 'ajsk dflñ sajk fñld'],
-    4: ['qwert qwert qwert', 'trewq trewq trewq', 'qwe rew ter qwe rew', 'aq sw de fr gt aq sw',
-        'qwert trewq qwert trewq', 'qqq www eee rrr ttt', 'qwer rewq terw wqer', 'aqe swe dre frt gtr',
-        'qeta reta seta feta', 'qrew trew drew frew', 'trew qrew erew rrew', 'qwer trew qrew ertw',
-        'qwe ewq wer rew', 'qqq eee www rrr', 'trew wert retw qwer', 'aqwr swer deqw frte',
-        'teta reta qeta weta', 'eqwr rtew qwre wetr', 'qrqr wew tete', 'aqsa dqwe frqw gtew',
-        'qwer qwer trewq trewq', 'reqw terw qrew wert', 'eret qwqw trtrt ewew', 'qwert trewq ewrt'],
-    5: ['yuiop yuiop yuiop', 'poiuy poiuy poiuy', 'yui uio iop yui uio', 'jy ku li oñ jy ku li',
-        'yuiop poiuy yuiop poiuy', 'yyy uuu iii ooo ppp', 'yuio poiu uiop ioyu', 'jyui kuio lipo ñoui',
-        'yoyo pupi uiui oyoy', 'yupi pipo uopi ypui', 'poyo yupi uipo oyui', 'iyop uyop pyop oyui',
-        'yui iuy oiu pui', 'yyy iii uuu ooo', 'poiu yuio uiop ioyu', 'jyuo kuip liyo ñopu',
-        'yoyo pipi uiui opop', 'uyui ioyu poiy yuio', 'pypy uyuy ioio', 'yuop iopu pyui oyui',
-        'yuiop yuiop poiuy poiuy', 'iyop pyui uyoi opyu', 'yoyo yuyu pipi pupu', 'yuiop poiuy ioyu'],
-    6: ['zxcvb zxcvb zxcvb', 'bvcxz bvcxz bvcxz', 'zxc xcv cvb zxc xcv', 'az sx dc fv gb az sx',
-        'zxcvb bvcxz zxcvb bvcxz', 'zzz xxx ccc vvv bbb', 'zxcv vcxz cvbx xzvc', 'azx sxc dcv fvb gbc',
-        'zaca vaca baza caza', 'zxvb cxbv bxcz vzxc', 'baza caza vaza xaza', 'zxcv bvcx cxbv vxzc',
-        'zxc xcz cvb bvc', 'zzz xxx ccc vvv', 'bvcz zxcv cvbx xzcv', 'azxc sxcv dvcb fvbz',
-        'zaza xaxa caca vava', 'vxcz bxcv zvcx czbv', 'zbzb xcxc vcvc', 'azcv sxbz dcxv fvbz',
-        'zxcvb zxcvb bvcxz bvcxz', 'cxzv bvxc zbvc vxcz', 'zaza xcxc vcvc baba', 'zxcvb bvcxz cvbx'],
-    7: ['nm nm nm nm nm nm', 'mn mn mn mn mn mn', 'jn km lñ jn km lñ', 'nmb bmn jnm nmb bmn',
-        'nmnm mnmn nmnm mnmn', 'nnn mmm nnn mmm', 'nman mnan jman kman', 'nmbn mnbm bnmn mbnm',
-        'mana nana mona noma', 'nmon mnom ñnom jnom', 'nmnm mnmn nmbn mbnm', 'jnmn kmnm lnmñ ñmnm',
-        'nmn mnm bmn nbm', 'nnn mmm nnn mmm', 'mnbm nmbm bmnm nbmn', 'jnmb knmn lnmñ mnmñ',
-        'mano noma nana mama', 'nmon mnon bnmn mnbn', 'mnmn nmnm bmbn', 'jnma knmo lnmu mnmñ',
-        'nmnm nmnm mnmn mnmn', 'bmnm nbmn mnbn nmbm', 'nana mama mona noma', 'nmnm mnmn bnmb'],
-    8: ['sal las ala sol los', 'casa masa pasa rasa', 'luna nube sol cielo', 'el sol sale bonito', 'mi mama me mima',
-        'la luna sale hoy', 'el mar esta azul', 'mi perro corre rapido', 'las aves vuelan alto', 'mi familia es grande',
-        'la vida es bella', 'el pan esta rico', 'los niños juegan felices', 'el viento sopla fuerte', 'la casa es blanca',
-        'la mesa esta limpia', 'los gatos duermen mucho', 'mi hermano es alto', 'el agua esta fria', 'la flor es roja',
-        'el libro tiene hojas', 'la silla es comoda', 'mi papa trabaja bien', 'el cielo es hermoso', 'la tierra es redonda',
-        'los peces nadan rapido', 'el bosque es verde', 'la luz brilla fuerte', 'mi amigo es bueno'],
-    9: ['123 456 789 012 345', '111 222 333 444 555', '1234 5678 9012 3456', '0987 6543 2109 8765',
-        '123 321 456 654 789', '101 202 303 404 505', '12 23 34 45 56 67', '10 20 30 40 50 60',
-        '1111 2222 3333 4444', '5555 6666 7777 8888', '9999 0000 1234 5678', '147 258 369 159 753',
-        '112 223 334 445 556', '667 778 889 990 001', '135 246 357 468 579', '159 267 348 426 537',
-        '100 200 300 400 500', '111 333 555 777 999', '1357 2468 1590 3570', '1029 3847 5647 8290',
-        '12345 67890 09876 54321', '13579 24680 86420 97531', '11223 44556 77889 90012'],
+    1: [
+        // Ejercicios básicos de repetición
+        'asdf asdf asdf asdf', 'fdsa fdsa fdsa fdsa', 'asdf fdsa asdf fdsa',
+        'aaa sss ddd fff aaa', 'fff ddd sss aaa fff', 'asdf asdf fdsa fdsa',
+        'aaaa ssss dddd ffff', 'ffff dddd ssss aaaa', 'asas dfdf asas dfdf',
+        'afaf sdsd afaf sdsd', 'dada fafa dada fafa', 'sasa dfdf sasa dfdf',
+        // Combinaciones de dos letras
+        'as as as as as as', 'sa sa sa sa sa sa', 'df df df df df df',
+        'fd fd fd fd fd fd', 'ad ad ad ad ad ad', 'da da da da da da',
+        'sf sf sf sf sf sf', 'fs fs fs fs fs fs', 'af af af af af af',
+        'fa fa fa fa fa fa', 'sd sd sd sd sd sd', 'ds ds ds ds ds ds',
+        // Palabras cortas con ASDF
+        'dad dad dad dad dad', 'sad sad sad sad sad', 'fad fad fad fad fad',
+        'ads ads ads ads ads', 'das das das das das', 'fas fas fas fas fas',
+        'saf saf saf saf saf', 'daf daf daf daf daf', 'afd afd afd afd afd',
+        // Secuencias progresivas
+        'a s d f a s d f', 'f d s a f d s a', 'as df as df as df',
+        'fd sa fd sa fd sa', 'asd fds asd fds asd', 'dsf ads dsf ads dsf',
+        // Patrones rítmicos
+        'asdf fdsa asdf fdsa', 'afsd dfas afsd dfas', 'sadf fdas sadf fdas',
+        'dafs sfad dafs sfad', 'fads sdaf fads sdaf', 'sdfa afds sdfa afds',
+        // Ejercicios de velocidad
+        'asdfasdf asdfasdf', 'fdsafdsa fdsafdsa', 'asdffdsa asdffdsa',
+        'asdfsadf asdfsadf', 'fdsaasdf fdsaasdf', 'sadffdas sadffdas'
+    ],
+    2: [
+        // Ejercicios básicos de repetición
+        'jklñ jklñ jklñ jklñ', 'ñlkj ñlkj ñlkj ñlkj', 'jklñ ñlkj jklñ ñlkj',
+        'jjj kkk lll ñññ jjj', 'ñññ lll kkk jjj ñññ', 'jklñ jklñ ñlkj ñlkj',
+        'jjjj kkkk llll ññññ', 'ññññ llll kkkk jjjj', 'jkjk lñlñ jkjk lñlñ',
+        'jñjñ klkl jñjñ klkl', 'ljlj kñkñ ljlj kñkñ', 'klkl jñjñ klkl jñjñ',
+        // Combinaciones de dos letras
+        'jk jk jk jk jk jk', 'kj kj kj kj kj kj', 'lñ lñ lñ lñ lñ lñ',
+        'ñl ñl ñl ñl ñl ñl', 'jl jl jl jl jl jl', 'lj lj lj lj lj lj',
+        'kñ kñ kñ kñ kñ kñ', 'ñk ñk ñk ñk ñk ñk', 'jñ jñ jñ jñ jñ jñ',
+        'ñj ñj ñj ñj ñj ñj', 'kl kl kl kl kl kl', 'lk lk lk lk lk lk',
+        // Palabras cortas con JKLÑ
+        'ñ ñ ñ ñ ñ ñ ñ ñ', 'jk lñ jk lñ jk lñ', 'lñ jk lñ jk lñ jk',
+        'kjl kjl kjl kjl kjl', 'ljk ljk ljk ljk ljk', 'ñkl ñkl ñkl ñkl ñkl',
+        'klñ klñ klñ klñ klñ', 'jñl jñl jñl jñl jñl', 'lñj lñj lñj lñj lñj',
+        // Secuencias progresivas
+        'j k l ñ j k l ñ', 'ñ l k j ñ l k j', 'jk lñ jk lñ jk lñ',
+        'ñl kj ñl kj ñl kj', 'jkl ñlk jkl ñlk jkl', 'lkñ jñk lkñ jñk lkñ',
+        // Patrones rítmicos
+        'jklñ ñlkj jklñ ñlkj', 'jñlk klñj jñlk klñj', 'kjlñ ñljk kjlñ ñljk',
+        'ljkñ ñkjl ljkñ ñkjl', 'ñjkl lkjñ ñjkl lkjñ', 'klñj jñlk klñj jñlk',
+        // Ejercicios de velocidad
+        'jklñjklñ jklñjklñ', 'ñlkjñlkj ñlkjñlkj', 'jklññlkj jklññlkj',
+        'jklñkjlñ jklñkjlñ', 'ñlkjjklñ ñlkjjklñ', 'kjlññljk kjlññljk'
+    ],
+    3: [
+        // Combinación de ambas manos - básico
+        'asdf jklñ asdf jklñ', 'fdsa ñlkj fdsa ñlkj', 'aj sk dl fñ aj sk',
+        'fñ dl sk aj fñ dl', 'asdf jklñ fdsa ñlkj', 'jklñ asdf ñlkj fdsa',
+        'afjñ afjñ afjñ afjñ', 'ñjfa ñjfa ñjfa ñjfa', 'skdl skdl skdl skdl',
+        'ldks ldks ldks ldks', 'asjk asjk asjk asjk', 'kjsa kjsa kjsa kjsa',
+        // Alternancia de manos
+        'aj aj aj aj aj aj', 'sk sk sk sk sk sk', 'dl dl dl dl dl dl',
+        'fñ fñ fñ fñ fñ fñ', 'ja ja ja ja ja ja', 'ks ks ks ks ks ks',
+        'ld ld ld ld ld ld', 'ñf ñf ñf ñf ñf ñf', 'ak ak ak ak ak ak',
+        'sl sl sl sl sl sl', 'dj dj dj dj dj dj', 'fk fk fk fk fk fk',
+        // Palabras con fila base completa
+        'ala ala ala ala ala', 'sala sala sala sala', 'faja faja faja faja',
+        'dada dada dada dada', 'lasa lasa lasa lasa', 'kasa kasa kasa kasa',
+        'alfa alfa alfa alfa', 'saja saja saja saja', 'laja laja laja laja',
+        'dala dala dala dala', 'jala jala jala jala', 'ñaña ñaña ñaña ñaña',
+        // Secuencias largas
+        'asdf jklñ asdf jklñ asdf', 'jklñ asdf jklñ asdf jklñ',
+        'asdfjklñ asdfjklñ asdfjklñ', 'ñlkjfdsa ñlkjfdsa ñlkjfdsa',
+        'aj sk dl fñ fñ dl sk aj', 'fñ dl sk aj aj sk dl fñ',
+        // Patrones complejos
+        'askjdlfñ askjdlfñ', 'ñfldkjas ñfldkjas', 'ajskdlfñ ajskdlfñ',
+        'ñfldksja ñfldksja', 'aksjdflñ aksjdflñ', 'ñlfdksaj ñlfdksaj',
+        // Ejercicios de fluidez
+        'asdfjklñasdfjklñ', 'ñlkjfdsañlkjfdsa', 'asdfñlkjasdfñlkj',
+        'jklñfdsajklñfdsa', 'askjdlfñaskjdlfñ', 'ñfldkjasñfldkjas'
+    ],
+    4: [
+        // Ejercicios básicos QWERT
+        'qwert qwert qwert', 'trewq trewq trewq', 'qwert trewq qwert',
+        'qqq www eee rrr ttt', 'ttt rrr eee www qqq', 'qwer qwer qwer qwer',
+        'rewq rewq rewq rewq', 'qqqq wwww eeee rrrr', 'tttt rrrr eeee wwww',
+        'qwqw erer twtw qwqw', 'wqwq rere wtwt wqwq', 'qeqe wrwr tqtq qeqe',
+        // Combinaciones de dos letras
+        'qw qw qw qw qw qw', 'wq wq wq wq wq wq', 'we we we we we we',
+        'ew ew ew ew ew ew', 'er er er er er er', 're re re re re re',
+        'rt rt rt rt rt rt', 'tr tr tr tr tr tr', 'qe qe qe qe qe qe',
+        'eq eq eq eq eq eq', 'qt qt qt qt qt qt', 'tq tq tq tq tq tq',
+        // Combinación con fila base
+        'qa qa qa qa qa qa', 'ws ws ws ws ws ws', 'ed ed ed ed ed ed',
+        'rf rf rf rf rf rf', 'tg tg tg tg tg tg', 'aq aq aq aq aq aq',
+        'sw sw sw sw sw sw', 'de de de de de de', 'fr fr fr fr fr fr',
+        'gt gt gt gt gt gt', 'qas qas qas qas qas', 'wed wed wed wed wed',
+        // Palabras y secuencias
+        'rew rew rew rew rew', 'wet wet wet wet wet', 'ter ter ter ter ter',
+        'wer wer wer wer wer', 'qwer qwer qwer qwer', 'wert wert wert wert',
+        'tree tree tree tree', 'were were were were', 'rete rete rete rete',
+        // Patrones rítmicos
+        'qwert trewq qwert', 'qwer rewq qwer rewq', 'qwe ewq qwe ewq qwe',
+        'wer rew wer rew wer', 'ert tre ert tre ert', 'qwerttrewq qwerttrewq',
+        // Ejercicios de velocidad
+        'qwertqwert qwertqwert', 'trewqtrewq trewqtrewq',
+        'qwertrewq qwertrewq', 'qwqwerer twtwtqtq', 'wewertrt qwqwerer'
+    ],
+    5: [
+        // Ejercicios básicos YUIOP
+        'yuiop yuiop yuiop', 'poiuy poiuy poiuy', 'yuiop poiuy yuiop',
+        'yyy uuu iii ooo ppp', 'ppp ooo iii uuu yyy', 'yuio yuio yuio yuio',
+        'oiuy oiuy oiuy oiuy', 'yyyy uuuu iiii oooo', 'pppp oooo iiii uuuu',
+        'yuyu ioio pupu yuyu', 'uyuy oioi upup uyuy', 'yoyo uiui pipi yoyo',
+        // Combinaciones de dos letras
+        'yu yu yu yu yu yu', 'uy uy uy uy uy uy', 'ui ui ui ui ui ui',
+        'iu iu iu iu iu iu', 'io io io io io io', 'oi oi oi oi oi oi',
+        'op op op op op op', 'po po po po po po', 'yi yi yi yi yi yi',
+        'iy iy iy iy iy iy', 'yp yp yp yp yp yp', 'py py py py py py',
+        // Combinación con fila base
+        'yj yj yj yj yj yj', 'uk uk uk uk uk uk', 'il il il il il il',
+        'oñ oñ oñ oñ oñ oñ', 'jy jy jy jy jy jy', 'ku ku ku ku ku ku',
+        'li li li li li li', 'ño ño ño ño ño ño', 'yuj yuj yuj yuj yuj',
+        'iko iko iko iko iko', 'opñ opñ opñ opñ opñ', 'jyu jyu jyu jyu jyu',
+        // Palabras y secuencias
+        'opio opio opio opio', 'yoyo yoyo yoyo yoyo', 'pipi pipi pipi pipi',
+        'yupi yupi yupi yupi', 'pupu pupu pupu pupu', 'uiui uiui uiui uiui',
+        'pio pio pio pio pio', 'poi poi poi poi poi', 'ipo ipo ipo ipo ipo',
+        // Patrones rítmicos
+        'yuiop poiuy yuiop', 'yuio oiuy yuio oiuy', 'yui iuy yui iuy yui',
+        'uio oiu uio oiu uio', 'iop poi iop poi iop', 'yuioppoiuy yuioppoiuy',
+        // Ejercicios de velocidad
+        'yuiopyuiop yuiopyuiop', 'poiuypoiuy poiuypoiuy',
+        'yuioppoiuy yuioppoiuy', 'yuyuioio pupuopop', 'uiuiyoyo ipipouou'
+    ],
+    6: [
+        // Ejercicios básicos ZXCVB
+        'zxcvb zxcvb zxcvb', 'bvcxz bvcxz bvcxz', 'zxcvb bvcxz zxcvb',
+        'zzz xxx ccc vvv bbb', 'bbb vvv ccc xxx zzz', 'zxcv zxcv zxcv zxcv',
+        'vcxz vcxz vcxz vcxz', 'zzzz xxxx cccc vvvv', 'bbbb vvvv cccc xxxx',
+        'zxzx cvcv bxbx zxzx', 'xzxz vcvc xbxb xzxz', 'zcvc xvxv bzbz zcvc',
+        // Combinaciones de dos letras
+        'zx zx zx zx zx zx', 'xz xz xz xz xz xz', 'xc xc xc xc xc xc',
+        'cx cx cx cx cx cx', 'cv cv cv cv cv cv', 'vc vc vc vc vc vc',
+        'vb vb vb vb vb vb', 'bv bv bv bv bv bv', 'zc zc zc zc zc zc',
+        'cz cz cz cz cz cz', 'zb zb zb zb zb zb', 'bz bz bz bz bz bz',
+        // Combinación con fila base
+        'za za za za za za', 'xs xs xs xs xs xs', 'cd cd cd cd cd cd',
+        'vf vf vf vf vf vf', 'bg bg bg bg bg bg', 'az az az az az az',
+        'sx sx sx sx sx sx', 'dc dc dc dc dc dc', 'fv fv fv fv fv fv',
+        'gb gb gb gb gb gb', 'zas zas zas zas zas', 'xcd xcd xcd xcd xcd',
+        // Palabras y secuencias
+        'vaca vaca vaca vaca', 'baza baza baza baza', 'caza caza caza caza',
+        'zxcv zxcv zxcv zxcv', 'cvbx cvbx cvbx cvbx', 'xcvb xcvb xcvb xcvb',
+        'vaz vaz vaz vaz vaz', 'bac bac bac bac bac', 'cab cab cab cab cab',
+        // Patrones rítmicos
+        'zxcvb bvcxz zxcvb', 'zxcv vcxz zxcv vcxz', 'zxc cxz zxc cxz zxc',
+        'xcv vcx xcv vcx xcv', 'cvb bvc cvb bvc cvb', 'zxcvbbvcxz zxcvbbvcxz',
+        // Ejercicios de velocidad
+        'zxcvbzxcvb zxcvbzxcvb', 'bvcxzbvcxz bvcxzbvcxz',
+        'zxcvbbvcxz zxcvbbvcxz', 'zxzxcvcv bxbxvzvz', 'xcxcvbvb zxzxcbcb'
+    ],
+    7: [
+        // Ejercicios básicos NM
+        'nm nm nm nm nm nm', 'mn mn mn mn mn mn', 'nm mn nm mn nm mn',
+        'nnn mmm nnn mmm nnn', 'mmm nnn mmm nnn mmm', 'nmnm nmnm nmnm nmnm',
+        'mnmn mnmn mnmn mnmn', 'nnnn mmmm nnnn mmmm', 'mmmm nnnn mmmm nnnn',
+        'nmn mnm nmn mnm nmn', 'mnm nmn mnm nmn mnm', 'nnmm nnmm nnmm nnmm',
+        // Combinación con fila base
+        'nj nj nj nj nj nj', 'mk mk mk mk mk mk', 'jn jn jn jn jn jn',
+        'km km km km km km', 'nl nl nl nl nl nl', 'mñ mñ mñ mñ mñ mñ',
+        'ln ln ln ln ln ln', 'ñm ñm ñm ñm ñm ñm', 'njm njm njm njm njm',
+        'mkn mkn mkn mkn mkn', 'jnm jnm jnm jnm jnm', 'kmn kmn kmn kmn kmn',
+        // Combinación con teclas cercanas
+        'nb nb nb nb nb nb', 'mb mb mb mb mb mb', 'bn bn bn bn bn bn',
+        'bm bm bm bm bm bm', 'nh nh nh nh nh nh', 'mh mh mh mh mh mh',
+        'nv nv nv nv nv nv', 'mv mv mv mv mv mv', 'nmb nmb nmb nmb nmb',
+        'bmn bmn bmn bmn bmn', 'mnb mnb mnb mnb mnb', 'bnm bnm bnm bnm bnm',
+        // Palabras cortas
+        'mama mama mama mama', 'nana nana nana nana', 'mano mano mano mano',
+        'mono mono mono mono', 'mina mina mina mina', 'noma noma noma noma',
+        'man man man man man', 'nam nam nam nam nam', 'nom nom nom nom nom',
+        // Patrones rítmicos
+        'nm mn nm mn nm mn', 'nmn mnm nmn mnm nmn', 'nmnm mnmn nmnm mnmn',
+        'nnmm mmnn nnmm mmnn', 'nmmnmn nmmnmn nmmnmn', 'mnnnmm mnnnmm mnnnmm',
+        // Ejercicios de velocidad
+        'nmnmnmnm nmnmnmnm', 'mnmnmnmn mnmnmnmn', 'nmmnnmmn nmmnnmmn',
+        'mnnmmnnm mnnmmnnm', 'nmbnmb nmbnmb nmbnmb', 'bmnbmn bmnbmn bmnbmn'
+    ],
+    8: [
+        // Palabras simples
+        'sol sol sol sol sol', 'sal sal sal sal sal', 'ala ala ala ala ala',
+        'las las las las las', 'los los los los los', 'mas mas mas mas mas',
+        'mal mal mal mal mal', 'pan pan pan pan pan', 'paz paz paz paz paz',
+        'luz luz luz luz luz', 'mar mar mar mar mar', 'dar dar dar dar dar',
+        // Frases cortas
+        'el sol sale hoy', 'la luna es bella', 'mi casa es grande',
+        'el pan esta rico', 'la flor es roja', 'el agua esta fria',
+        'mi mama me ama', 'el cielo es azul', 'la mesa es alta',
+        'el libro es mio', 'la silla es nueva', 'mi perro es fiel',
+        // Frases con más palabras
+        'el sol brilla mucho hoy', 'mi familia es muy grande',
+        'la luna sale por la noche', 'el viento sopla muy fuerte',
+        'los pajaros cantan alegres', 'las flores son muy bonitas',
+        'mi hermano juega futbol', 'el gato duerme en el sofa',
+        'la escuela es divertida', 'mis amigos son muy buenos',
+        // Frases descriptivas
+        'el bosque es verde y grande', 'la playa tiene arena dorada',
+        'el rio corre entre las piedras', 'las nubes flotan en el cielo',
+        'el arbol tiene muchas hojas', 'la casa tiene ventanas grandes',
+        'el jardin esta lleno de flores', 'la cocina huele muy bien',
+        // Frases con verbos variados
+        'yo como frutas frescas', 'tu caminas por el parque',
+        'ella canta muy bonito', 'nosotros jugamos juntos',
+        'ellos estudian mucho', 'el perro corre rapido',
+        'la nina salta la cuerda', 'el nino lee un libro',
+        // Frases completas
+        'hoy es un dia muy especial', 'me gusta mucho la escuela',
+        'mi color favorito es el azul', 'tengo muchos amigos buenos',
+        'la vida es muy hermosa', 'siempre hay que ser amable'
+    ],
+    9: [
+        // Secuencias básicas
+        '123 123 123 123 123', '456 456 456 456 456', '789 789 789 789 789',
+        '012 012 012 012 012', '345 345 345 345 345', '678 678 678 678 678',
+        '901 901 901 901 901', '234 234 234 234 234', '567 567 567 567 567',
+        '890 890 890 890 890', '111 222 333 444 555', '666 777 888 999 000',
+        // Números repetidos
+        '1111 2222 3333 4444', '5555 6666 7777 8888', '9999 0000 1111 2222',
+        '11 22 33 44 55 66', '77 88 99 00 11 22', '111 111 111 111 111',
+        '222 222 222 222 222', '333 333 333 333 333', '444 444 444 444 444',
+        '555 555 555 555 555', '666 666 666 666 666', '777 777 777 777 777',
+        // Secuencias ascendentes y descendentes
+        '1234 5678 9012 3456', '9876 5432 1098 7654', '12345 67890 12345',
+        '09876 54321 09876', '13579 24680 13579', '08642 97531 08642',
+        '123456 789012 345678', '987654 321098 765432', '1234567890 1234567890',
+        // Patrones matemáticos
+        '10 20 30 40 50 60', '11 22 33 44 55 66', '12 24 36 48 60 72',
+        '15 30 45 60 75 90', '100 200 300 400 500', '101 202 303 404 505',
+        '110 220 330 440 550', '111 222 333 444 555', '123 246 369 492 615',
+        // Números mezclados
+        '147 258 369 147 258', '159 267 348 159 267', '135 246 357 468 579',
+        '192 384 576 768 951', '102 204 306 408 510', '321 654 987 321 654',
+        // Secuencias largas
+        '12345 54321 12345 54321', '67890 09876 67890 09876',
+        '13579 97531 13579 97531', '24680 08642 24680 08642',
+        '11223 34455 66778 89900', '99887 76655 44332 21100'
+    ],
     10: ['uno dos tres cuatro cinco', 'seis siete ocho nueve diez', 'once doce trece catorce quince',
         'dieciséis diecisiete dieciocho diecinueve veinte', 'veintiuno veintidós veintitrés veinticuatro veinticinco',
         'veintiséis veintisiete veintiocho veintinueve treinta', 'treinta y uno treinta y dos treinta y tres',
@@ -120,7 +310,136 @@ const levelTexts = {
         'Para su sorpresa vio su reflejo', 'y descubrió que era un cisne',
         'el más hermoso de todos', 'Los otros cisnes lo recibieron',
         'con mucho cariño y alegría', 'El patito feo había encontrado',
-        'su verdadera familia y hogar', 'Y fue feliz para siempre jamás']
+        'su verdadera familia y hogar', 'Y fue feliz para siempre jamás'],
+    16: ['Hola, me llamo Juan. Tengo 10 años y vivo en Bolivia.',
+        'Mi mascota favorita es un perro llamado Max, que es muy juguetón.',
+        'En la escuela, mis materias preferidas son matemáticas y ciencias.',
+        'Los fines de semana, me gusta jugar fútbol con mis amigos del barrio.',
+        'Mi mamá cocina muy rico, especialmente su sopa de maní y su arroz con pollo.',
+        'Mi papá trabaja como ingeniero y siempre me ayuda con las tareas.',
+        'Tengo una hermana menor que se llama Sofía, ella tiene 7 años.',
+        'En vacaciones, visitamos a mis abuelos que viven en el campo.',
+        'Me encanta leer libros de aventuras y ver películas de animación.',
+        'Cuando sea grande, quiero ser programador y crear videojuegos.',
+        'También me gustaría viajar por todo el mundo y conocer nuevas culturas.',
+        'La tecnología me parece fascinante, especialmente las computadoras.',
+        'Todos los días practico mecanografía para escribir más rápido.',
+        'Mis amigos dicen que soy muy bueno resolviendo problemas difíciles.',
+        'El próximo año participaré en la olimpiada de matemáticas de mi colegio.',
+        'Estoy muy emocionado porque será mi primera competencia importante.',
+        'Mi profesora dice que con esfuerzo y dedicación puedo lograr grandes cosas.',
+        'Creo que tiene razón, porque la práctica hace al maestro.',
+        'Cada día aprendo algo nuevo y eso me hace muy feliz.',
+        'El conocimiento es el tesoro más valioso que podemos tener.',
+        'Por eso me esfuerzo mucho en mis estudios y en mejorar cada día.',
+        'Sé que el camino es largo, pero estoy dispuesto a recorrerlo.',
+        'Con paciencia y perseverancia, alcanzaré todas mis metas.',
+        'El futuro está lleno de posibilidades increíbles para quienes se preparan.'],
+    17: ['El sistema solar está formado por el Sol y ocho planetas principales.',
+        'Mercurio es el planeta más cercano al Sol y también el más pequeño.',
+        'Venus es conocido como el lucero del alba por su brillo intenso.',
+        'La Tierra es el único planeta donde sabemos que existe vida.',
+        'Marte, el planeta rojo, tiene montañas más altas que el Everest.',
+        'Júpiter es el planeta más grande y tiene una gran mancha roja.',
+        'Saturno destaca por sus hermosos anillos de hielo y roca.',
+        'Urano gira de lado, como una pelota rodando por el espacio.',
+        'Neptuno es el planeta más lejano y tiene vientos muy fuertes.',
+        'La Luna es el satélite natural de la Tierra y controla las mareas.',
+        'Los asteroides son rocas espaciales que orbitan principalmente entre Marte y Júpiter.',
+        'Los cometas están hechos de hielo y polvo, y tienen colas brillantes.',
+        'Las estrellas son enormes bolas de gas que producen luz y calor.',
+        'Las galaxias contienen millones de estrellas, planetas y otros cuerpos celestes.',
+        'La Vía Láctea es nuestra galaxia y tiene forma de espiral.',
+        'Los telescopios nos permiten observar objetos muy lejanos en el universo.',
+        'Los astronautas viajan al espacio en cohetes y naves espaciales.',
+        'La gravedad es la fuerza que mantiene a los planetas en órbita.',
+        'La luz del Sol tarda aproximadamente 8 minutos en llegar a la Tierra.',
+        'El espacio exterior es casi completamente vacío y silencioso.',
+        'Las constelaciones son grupos de estrellas que forman figuras en el cielo.',
+        'Orión, la Osa Mayor y la Cruz del Sur son constelaciones famosas.',
+        'Los científicos buscan señales de vida en otros planetas.',
+        'Quizás algún día los humanos podrán vivir en Marte o en la Luna.',
+        'El universo es infinito y está lleno de misterios por descubrir.'],
+    18: ['Bolivia es un país ubicado en el corazón de América del Sur.',
+        'La Paz es la sede de gobierno más alta del mundo, a 3640 metros.',
+        'El Salar de Uyuni es el desierto de sal más grande del planeta.',
+        'El Lago Titicaca está compartido entre Bolivia y Perú.',
+        'Simón Bolívar fue el libertador que dio nombre a nuestro país.',
+        'Antonio José de Sucre fue el primer presidente de Bolivia.',
+        'Potosí fue una de las ciudades más ricas del mundo colonial.',
+        'El Carnaval de Oruro es Patrimonio de la Humanidad de la UNESCO.',
+        'La Diablada es una danza tradicional muy colorida y espectacular.',
+        'El charango y la quena son instrumentos musicales típicos bolivianos.',
+        'La quinua es un superalimento que se cultiva en el altiplano.',
+        'El Parque Nacional Madidi tiene una biodiversidad increíble.',
+        'Los Yungas conectan el altiplano con la selva amazónica.',
+        'Santa Cruz de la Sierra es la ciudad más poblada de Bolivia.',
+        'Cochabamba es conocida como la ciudad de la eterna primavera.',
+        'Tarija produce los mejores vinos de altura del continente.',
+        'El Ekeko es una figura de la abundancia en la cultura andina.',
+        'La Alasita es una feria donde se compran miniaturas para pedir deseos.',
+        'El Tiwanaku fue una civilización preincaica muy avanzada.',
+        'La Puerta del Sol es un monumento arqueológico impresionante.',
+        'Los pueblos originarios conservan tradiciones milenarias.',
+        'El quechua y el aymara son idiomas oficiales junto al castellano.',
+        'Bolivia tiene 36 grupos étnicos reconocidos oficialmente.',
+        'La diversidad cultural de Bolivia es una de sus mayores riquezas.',
+        'Cada región tiene sus propias costumbres, música y gastronomía.'],
+    19: ['En un rincón olvidado del viejo continente, existía un pequeño pueblo llamado Esperanza.',
+        'Sus habitantes eran personas sencillas que vivían de la agricultura y la artesanía.',
+        'Todas las mañanas, el sol pintaba de dorado las montañas que rodeaban el valle.',
+        'Los niños corrían por las calles empedradas, jugando y riendo sin preocupaciones.',
+        'La plaza central tenía una fuente antigua donde las palomas bebían agua fresca.',
+        'El panadero, don Manuel, horneaba el pan más delicioso de toda la región.',
+        'Su secreto era usar trigo cultivado con cariño en los campos cercanos.',
+        'La bibliotecaria, doña Carmen, guardaba libros de historias maravillosas.',
+        'Cada tarde, los niños la visitaban para escuchar cuentos de tierras lejanas.',
+        'El herrero, don Pedro, forjaba herramientas con el fuego de su fragua ancestral.',
+        'Sus martillazos resonaban como una melodía que marcaba el ritmo del pueblo.',
+        'La costurera, doña Rosa, tejía vestidos con hilos de todos los colores del arcoíris.',
+        'Sus creaciones eran tan hermosas que la gente venía de lejos a admirarlas.',
+        'El médico, don Arturo, curaba a los enfermos con remedios naturales y mucha paciencia.',
+        'Conocía cada planta medicinal que crecía en los bosques de los alrededores.',
+        'La maestra, doña Lucía, enseñaba a leer y escribir con dedicación infinita.',
+        'Creía que la educación era la llave para abrir todas las puertas del mundo.',
+        'El alcalde, don Francisco, gobernaba con justicia y escuchaba a todos por igual.',
+        'Bajo su liderazgo, el pueblo prosperaba y vivía en armonía constante.',
+        'Las fiestas del pueblo reunían a todas las familias alrededor de la música.',
+        'Los ancianos contaban historias mientras los jóvenes bailaban hasta el amanecer.',
+        'Así transcurrían los días en Esperanza, un lugar donde el tiempo parecía detenerse.',
+        'Donde la felicidad no se medía en riquezas, sino en sonrisas compartidas.',
+        'Un pueblo que nos recuerda que lo más valioso está en las cosas simples.',
+        'Y que la verdadera riqueza se encuentra en el corazón de las personas.'],
+    20: ['La tecnología ha transformado completamente nuestra forma de vivir, trabajar y comunicarnos.',
+        'Hace apenas 50 años, las computadoras ocupaban habitaciones enteras y eran muy lentas.',
+        'Hoy llevamos en el bolsillo teléfonos más potentes que aquellas máquinas gigantes.',
+        'Internet conecta a miles de millones de personas en todo el planeta instantáneamente.',
+        'Podemos enviar mensajes, fotos y videos a cualquier parte del mundo en segundos.',
+        'Las redes sociales nos permiten mantener contacto con amigos y familiares lejanos.',
+        'Sin embargo, también debemos aprender a usar la tecnología de manera responsable.',
+        'Es importante proteger nuestra privacidad y no compartir información personal.',
+        'El ciberacoso es un problema serio que afecta a muchos jóvenes en línea.',
+        'Debemos tratar a los demás en internet con el mismo respeto que en persona.',
+        'La inteligencia artificial está revolucionando campos como la medicina y la educación.',
+        'Los robots realizan cirugías con precisión milimétrica y los algoritmos diagnostican enfermedades.',
+        'Las aplicaciones educativas permiten aprender cualquier idioma o habilidad desde casa.',
+        'Los videojuegos no solo entretienen, también desarrollan habilidades cognitivas importantes.',
+        'La programación se ha convertido en un lenguaje universal que todos deberíamos conocer.',
+        'Escribir código es como dar instrucciones precisas a una máquina para resolver problemas.',
+        'Los programadores crean aplicaciones, sitios web, videojuegos y sistemas complejos.',
+        'La mecanografía es una habilidad fundamental para cualquier profesional del siglo XXI.',
+        'Escribir rápido y sin errores aumenta la productividad en cualquier trabajo.',
+        'Por eso es tan importante practicar todos los días con ejercicios como estos.',
+        'La constancia y la disciplina son las claves para dominar cualquier habilidad.',
+        'No importa cuántas veces te equivoques, lo importante es seguir intentando.',
+        'Cada error es una oportunidad de aprendizaje que te acerca a la perfección.',
+        'Felicidades por llegar hasta aquí, has demostrado gran dedicación y esfuerzo.',
+        'Ahora eres un mecanógrafo experto, listo para enfrentar cualquier desafío digital.',
+        'Recuerda que el aprendizaje nunca termina, siempre hay algo nuevo por descubrir.',
+        'Sigue practicando, sigue aprendiendo y sigue soñando con un futuro brillante.',
+        'El mundo necesita personas preparadas, creativas y comprometidas como tú.',
+        'Este es solo el comienzo de un viaje increíble lleno de posibilidades infinitas.',
+        'Gracias por completar el curso de DactiloKids, esperamos verte pronto de nuevo.']
 };
 
 const levelNames = {
@@ -128,7 +447,9 @@ const levelNames = {
     4: 'Fila Superior - QWERT', 5: 'Fila Superior - YUIOP',
     6: 'Fila Inferior - ZXCVB', 7: 'Fila Inferior - NM', 8: 'Palabras Completas', 9: 'Números',
     10: 'Números Escritos', 11: 'Cuento - Saltarín', 12: 'Cuento - Caperucita',
-    13: 'Cuento - Los Tres Cerditos', 14: 'Cuento - Pinocho', 15: 'Cuento - El Patito Feo'
+    13: 'Cuento - Los Tres Cerditos', 14: 'Cuento - Pinocho', 15: 'Cuento - El Patito Feo',
+    16: 'Mi Vida - Puntuación', 17: 'El Sistema Solar', 18: 'Conociendo Bolivia',
+    19: 'El Pueblo Esperanza', 20: 'Desafío Final'
 };
 
 const levelKeys = {
@@ -136,7 +457,9 @@ const levelKeys = {
     4: ['Q', 'W', 'E', 'R', 'T'], 5: ['Y', 'U', 'I', 'O', 'P'],
     6: ['Z', 'X', 'C', 'V', 'B'], 7: ['N', 'M'], 8: ['Palabras'], 9: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
     10: ['Números'], 11: ['📖 Cuento'], 12: ['📖 Cuento'],
-    13: ['📖 Cuento'], 14: ['📖 Cuento'], 15: ['📖 Cuento']
+    13: ['📖 Cuento'], 14: ['📖 Cuento'], 15: ['📖 Cuento'],
+    16: ['.', ',', '¿', '?'], 17: ['🔬 Ciencia'], 18: ['🇧🇴 Bolivia'],
+    19: ['📚 Literatura'], 20: ['🏆 Final']
 };
 
 const levelColors = [
@@ -147,7 +470,10 @@ const levelColors = [
     'linear-gradient(135deg, #F59E0B, #FBBF24)', 'linear-gradient(135deg, #3B82F6, #60A5FA)',
     'linear-gradient(135deg, #10B981, #34D399)', 'linear-gradient(135deg, #F97316, #FB923C)',
     'linear-gradient(135deg, #6366F1, #818CF8)', 'linear-gradient(135deg, #EC4899, #F472B6)',
-    'linear-gradient(135deg, #8B5CF6, #A78BFA)', 'linear-gradient(135deg, #14B8A6, #5EEAD4)'
+    'linear-gradient(135deg, #8B5CF6, #A78BFA)', 'linear-gradient(135deg, #14B8A6, #5EEAD4)',
+    'linear-gradient(135deg, #0EA5E9, #38BDF8)', 'linear-gradient(135deg, #7C3AED, #A855F7)',
+    'linear-gradient(135deg, #059669, #34D399)', 'linear-gradient(135deg, #DC2626, #F87171)',
+    'linear-gradient(135deg, #FFD700, #FFA500)'
 ];
 
 const ranks = [
